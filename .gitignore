@@ -1,0 +1,9 @@
+# Arquivos de lock do LibreOffice
+.~lock.*#
+
+# Documentação interna do projeto (não versionada)
+docs/
+
+# Sistema
+.DS_Store
+Thumbs.db
