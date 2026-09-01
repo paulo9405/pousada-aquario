@@ -281,24 +281,25 @@ O bloco `LodgingBusiness` já traz `streetAddress`, `postalCode`, `telephone`,
 Continuam fora, por dependerem de dado ainda não confirmado: `geo` (sem
 coordenadas verificadas), `priceRange` e `aggregateRating`.
 
-### Antes de publicar: definir o domínio
+### Domínio
 
-Canonical, Open Graph e sitemap usam URL absoluta, com o espaço reservado
-`https://DOMINIO-A-DEFINIR`.
+**Em uso:** `https://hotelpousadaquarios.paulodev.net`
 
-Cheguei a deixar o canonical relativo, para funcionar tanto no endereço
-temporário do Cloudflare quanto no definitivo — o Google aceita. Mas a
-auditoria de SEO do Lighthouse reprova (`Is not an absolute URL`) e derrubava
-a nota de 100 para 92. Como o script de domínio já era obrigatório por causa
-do Open Graph e do sitemap, absoluto saiu mais barato.
+Canonical, Open Graph e sitemap usam URL absoluta. Cheguei a deixar o
+canonical relativo, para funcionar em qualquer domínio — o Google aceita. Mas
+a auditoria de SEO do Lighthouse reprova (`Is not an absolute URL`) e
+derrubava a nota de 100 para 92. Como o script de domínio já era obrigatório
+por causa do Open Graph e do sitemap, absoluto saiu mais barato.
+
+Para trocar (subdomínio novo, ou o domínio próprio da pousada):
 
 ```bash
-python3 tools/definir-dominio.py https://seudominio.com.br
+python3 tools/definir-dominio.py https://outro.dominio.com.br
 ```
 
-Troca as 29 ocorrências em HTML, `sitemap.xml` e `robots.txt` de uma vez. Sem
-isso, a prévia do link no WhatsApp não carrega a imagem e o Search Console
-rejeita o sitemap.
+Atualiza as 29 URLs em HTML, `sitemap.xml` e `robots.txt`. O script descobre
+o domínio atual lendo o canonical da home, então serve para trocar quantas
+vezes precisar — não depende de haver um espaço reservado.
 
 ### Consistência de NAP
 
@@ -326,8 +327,7 @@ dados estruturados, ordem de cabeçalhos e rolagem horizontal em oito
 larguras. Qualquer `[FALHA]` impede a publicação; o domínio de espaço
 reservado sai como `[aviso]`.
 
-Última execução: **173 verificações, 0 falhas.** Os 8 avisos são o domínio
-ainda não definido — 4 páginas × 2 navegadores.
+Última execução: **173 verificações, 0 falhas, 0 avisos.**
 
 O passo a passo da publicação no Cloudflare Pages está em `DEPLOY.md`.
 

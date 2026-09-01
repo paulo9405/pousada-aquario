@@ -8,4 +8,4 @@ Disallow: /styleguide.html
 # Scripts de desenvolvimento
 Disallow: /tools/
 
-Sitemap: https://DOMINIO-A-DEFINIR/sitemap.xml
+Sitemap: https://hotelpousadaquarios.paulodev.net/sitemap.xml

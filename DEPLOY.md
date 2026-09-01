@@ -5,23 +5,19 @@ estão, direto do repositório.
 
 ## Antes de publicar
 
-### 1. Definir o domínio
+### 1. Domínio
 
-Canonical, Open Graph e sitemap usam URL absoluta e estão com o espaço
-reservado `https://DOMINIO-A-DEFINIR`. Sem trocar, a prévia do link no
-WhatsApp não carrega a imagem e o Search Console rejeita o sitemap.
+**Já definido:** `https://hotelpousadaquarios.paulodev.net`
 
-```bash
-python3 tools/definir-dominio.py https://seudominio.com.br
-```
-
-Se for publicar primeiro no endereço temporário do Cloudflare, use ele:
+Canonical, Open Graph e sitemap usam URL absoluta. Para trocar depois — outro
+subdomínio, ou o domínio próprio da pousada:
 
 ```bash
-python3 tools/definir-dominio.py https://pousada-aquarios.pages.dev
+python3 tools/definir-dominio.py https://outro.dominio.com.br
 ```
 
-E rode de novo quando o domínio definitivo entrar no ar.
+O script descobre o domínio atual lendo o canonical da home, então funciona
+para trocar quantas vezes for preciso.
 
 ### 2. Rodar o QA
 
@@ -63,11 +59,22 @@ Acessibilidade 100, Boas Práticas 100, SEO 100.
 5. O arquivo `_headers` na raiz define o cache: um ano para imagens, fontes e
    `vendor/`; revalidação a cada visita para o HTML.
 
-## Domínio próprio
+## Subdomínio em paulodev.net
 
-Em **Custom domains**, adicione o domínio e siga as instruções de DNS. Depois
-que propagar, rode `tools/definir-dominio.py` com o domínio definitivo,
-comite e faça push — o Cloudflare republica sozinho.
+O projeto vai responder em `hotelpousadaquarios.paulodev.net`.
+
+No projeto do Pages, em **Custom domains → Set up a custom domain**, informe
+`hotelpousadaquarios.paulodev.net`. Como a zona `paulodev.net` já está no
+Cloudflare, o registro DNS é criado sozinho — um `CNAME` apontando para o
+`.pages.dev` do projeto, no mesmo padrão do `portfolio.paulodev.net` que já
+existe na sua zona.
+
+Deixe o registro **Proxied** (nuvem laranja): é assim que o Cloudflare aplica
+compressão e cache de borda, que são a base dos números de performance
+medidos.
+
+Quando a pousada tiver domínio próprio, repita o processo e rode
+`tools/definir-dominio.py` com o novo endereço.
 
 ## Depois de publicar
 

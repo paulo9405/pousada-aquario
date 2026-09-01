@@ -3,25 +3,25 @@
      então este arquivo precisa do domínio definitivo antes de publicar. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://DOMINIO-A-DEFINIR/</loc>
+    <loc>https://hotelpousadaquarios.paulodev.net/</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://DOMINIO-A-DEFINIR/acomodacoes.html</loc>
+    <loc>https://hotelpousadaquarios.paulodev.net/acomodacoes.html</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://DOMINIO-A-DEFINIR/pousada.html</loc>
+    <loc>https://hotelpousadaquarios.paulodev.net/pousada.html</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://DOMINIO-A-DEFINIR/contato.html</loc>
+    <loc>https://hotelpousadaquarios.paulodev.net/contato.html</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
