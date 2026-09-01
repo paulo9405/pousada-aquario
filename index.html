@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hotel Pousada Aquários — Buritizeiro/MG</title>
+  <meta name="description" content="Hotel Pousada Aquários, em Buritizeiro/MG, próxima ao Rio São Francisco.">
+  <meta name="theme-color" content="#1A5FC2">
+
+  <!-- Favicon (provisório, derivado da logo — substituir na entrega final) -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- Bootstrap 5 + Bootstrap Icons (CDN com Subresource Integrity) -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+        integrity="sha384-CK2SzKma4jA5H/MXDUU7i1TqZlCFaD4T01vtyDFvPlD97JQyS+IsSh1nI2EFbpyk" crossorigin="anonymous">
+
+  <!-- CSS próprio: sempre depois do Bootstrap -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <!--
+    TELA PROVISÓRIA DE SETUP — FASE 1
+    Serve apenas para validar a base localmente (Bootstrap, ícones, tokens
+    da identidade, navegação entre as páginas). Todo o conteúdo abaixo será
+    substituído a partir da Fase 3 (header/navegação) e Fase 4 (home).
+  -->
+  <main id="conteudo" class="setup">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10 col-xl-9">
+
+          <img src="img/logo.png" alt="Hotel Pousada Aquários"
+               class="setup__logo" width="200" height="133">
+
+          <p class="setup__badge mb-3">Fase 1 — setup inicial</p>
+          <h1 class="mb-2">Início</h1>
+          <p class="aq-text-muted aq-measure mb-4">
+            Base do projeto configurada. Esta tela é provisória e será
+            substituída pelo site a partir da Fase 3.
+          </p>
+
+          <nav aria-label="Páginas do site" class="mb-5">
+            <ul class="list-inline setup__nav mb-0">
+            <li class="list-inline-item me-3"><a href="index.html" aria-current="page">Início</a></li>
+            <li class="list-inline-item me-3"><a href="acomodacoes.html">Acomodações</a></li>
+            <li class="list-inline-item me-3"><a href="pousada.html">A Pousada</a></li>
+            <li class="list-inline-item me-3"><a href="contato.html">Localização e contato</a></li>
+            </ul>
+          </nav>
+
+          <div class="row g-3 mb-5">
+            <div class="col-12 col-md-4">
+              <div class="setup__card">
+                <p class="mb-1"><i class="bi bi-grid-1x2 fs-4 aq-gold" aria-hidden="true"></i></p>
+                <h2 class="h6 mb-1">Bootstrap 5.3.8</h2>
+                <p class="small aq-text-muted mb-0">
+                  Grid e utilitários carregados via CDN com SRI.
+                </p>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="setup__card">
+                <p class="mb-1"><i class="bi bi-emoji-smile fs-4 aq-gold" aria-hidden="true"></i></p>
+                <h2 class="h6 mb-1">Bootstrap Icons 1.13.1</h2>
+                <p class="small aq-text-muted mb-0">
+                  Se este ícone aparecer, a fonte de ícones está ativa.
+                </p>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="setup__card">
+                <p class="mb-1"><i class="bi bi-droplet-half fs-4 aq-gold" aria-hidden="true"></i></p>
+                <h2 class="h6 mb-1">Identidade em CSS</h2>
+                <p class="small aq-text-muted mb-0">
+                  Tokens <code>--aquarios-*</code> definidos em
+                  <code>css/style.css</code>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="h5 mb-3">Paleta extraída da logo</h2>
+          <div class="row g-3 mb-5">
+            <div class="col-6 col-sm-4 col-lg-2">
+              <div class="setup__swatch" style="background: var(--aquarios-primary);"></div>
+              <p class="small aq-text-muted mb-0 mt-2"><code>--aquarios-primary</code><br>#1A5FC2</p>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2">
+              <div class="setup__swatch" style="background: var(--aquarios-primary-dark);"></div>
+              <p class="small aq-text-muted mb-0 mt-2"><code>--aquarios-primary-dark</code><br>#0A2F63</p>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2">
+              <div class="setup__swatch" style="background: var(--aquarios-primary-soft);"></div>
+              <p class="small aq-text-muted mb-0 mt-2"><code>--aquarios-primary-soft</code><br>#E8F0FB</p>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2">
+              <div class="setup__swatch" style="background: var(--aquarios-gold);"></div>
+              <p class="small aq-text-muted mb-0 mt-2"><code>--aquarios-gold</code><br>#F0C419</p>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2">
+              <div class="setup__swatch" style="background: var(--aquarios-bg-alt);"></div>
+              <p class="small aq-text-muted mb-0 mt-2"><code>--aquarios-bg-alt</code><br>#F2F6FB</p>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2">
+              <div class="setup__swatch" style="background: var(--aquarios-text);"></div>
+              <p class="small aq-text-muted mb-0 mt-2"><code>--aquarios-text</code><br>#17212E</p>
+            </div>
+          </div>
+
+          <p class="small aq-text-muted mb-0">
+            WhatsApp, endereço, telefone e dados das acomodações ainda não
+            foram confirmados com o proprietário e não devem ser publicados
+            (roadmap, seção 26).
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

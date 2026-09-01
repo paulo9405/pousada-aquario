@@ -1,0 +1,211 @@
+/* ==========================================================================
+   Hotel Pousada Aquários — style.css
+   Fase 1: base do projeto (tokens de identidade + reset + tipografia base).
+   Componentes (botões, cards, navbar, etc.) entram na Fase 2 / Fase 3.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Tokens da identidade
+   Cores extraídas da logo (img/logo.png):
+   azul do globo, azul escuro para contraste, dourado do lettering "Aquários".
+   Contrastes verificados em WCAG 2.1 — ver anotações ao lado de cada token.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Azuis — base da identidade */
+  --aquarios-primary:        #1A5FC2;  /* 6.07:1 com branco — AA texto normal */
+  --aquarios-primary-dark:   #0A2F63;  /* 13.1:1 com branco — rodapé, overlays */
+  --aquarios-primary-deep:   #071E3F;  /* 16.6:1 com branco — fundos profundos */
+  --aquarios-primary-soft:   #E8F0FB;  /* tinte claro para seções alternadas */
+
+  /* Dourado — cor secundária, uso pontual (nunca dominante) */
+  --aquarios-gold:           #F0C419;  /* 9.75:1 com --aquarios-text — só sobre fundo escuro/claro como preenchimento */
+  --aquarios-gold-dark:      #C9880A;  /* 3.00:1 com branco — apenas texto grande e ícones */
+
+  /* Superfícies e texto */
+  --aquarios-bg:             #FFFFFF;
+  --aquarios-bg-alt:         #F2F6FB;
+  --aquarios-text:           #17212E;  /* 16.2:1 com branco */
+  --aquarios-text-muted:     #5A6675;  /* 5.85:1 com branco — AA texto normal */
+  --aquarios-border:         #DBE3EC;
+
+  /* WhatsApp — canal principal de conversão */
+  --aquarios-whatsapp:       #25D366;
+  --aquarios-whatsapp-dark:  #128C7E;
+
+  /* Tipografia — família definitiva será decidida na Fase 2 */
+  --aquarios-font-base: system-ui, -apple-system, "Segoe UI", Roboto,
+                        "Helvetica Neue", Arial, sans-serif;
+  --aquarios-font-heading: var(--aquarios-font-base);
+
+  /* Escala de espaçamento */
+  --aquarios-space-xs: .5rem;
+  --aquarios-space-sm: 1rem;
+  --aquarios-space-md: 2rem;
+  --aquarios-space-lg: 4rem;
+  --aquarios-space-xl: 6rem;
+
+  /* Bordas e sombras */
+  --aquarios-radius-sm: .375rem;
+  --aquarios-radius:    .75rem;
+  --aquarios-radius-lg: 1.25rem;
+  --aquarios-shadow-sm: 0 1px 2px rgba(7, 30, 63, .06),
+                        0 2px 8px rgba(7, 30, 63, .06);
+  --aquarios-shadow:    0 4px 12px rgba(7, 30, 63, .08),
+                        0 12px 32px rgba(7, 30, 63, .08);
+
+  /* Largura máxima de leitura confortável */
+  --aquarios-measure: 68ch;
+}
+
+/* Sobrescreve as variáveis do Bootstrap 5 para que os utilitários
+   nativos (.btn-primary, .text-primary, .link-primary...) já saiam
+   na identidade da pousada, sem CSS extra. */
+:root {
+  --bs-primary:     #1A5FC2;
+  --bs-primary-rgb: 26, 95, 194;
+  --bs-body-color:  #17212E;
+  --bs-body-color-rgb: 23, 33, 46;
+  --bs-body-bg:     #FFFFFF;
+  --bs-border-color: #DBE3EC;
+  --bs-link-color:  #1A5FC2;
+  --bs-link-color-rgb: 26, 95, 194;
+  --bs-link-hover-color: #0A2F63;
+  --bs-link-hover-color-rgb: 10, 47, 99;
+  --bs-body-font-family: var(--aquarios-font-base);
+  --bs-border-radius: var(--aquarios-radius-sm);
+}
+
+/* --------------------------------------------------------------------------
+   2. Base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  /* Compensa header sticky ao navegar por âncoras (ajustar na Fase 3) */
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  background-color: var(--aquarios-bg);
+  color: var(--aquarios-text);
+  font-family: var(--aquarios-font-base);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Nenhuma página do site deve rolar horizontalmente (Fase 7) */
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--aquarios-font-heading);
+  color: var(--aquarios-primary-dark);
+  font-weight: 700;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+p { text-wrap: pretty; }
+
+a { text-decoration-thickness: 1px; text-underline-offset: .18em; }
+
+/* Imagens nunca estouram o container nem deformam (Fase 7 / Fase 8) */
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+/* --------------------------------------------------------------------------
+   3. Acessibilidade
+   -------------------------------------------------------------------------- */
+:focus-visible {
+  outline: 3px solid var(--aquarios-gold);
+  outline-offset: 2px;
+  border-radius: var(--aquarios-radius-sm);
+}
+
+/* Link "pular para o conteúdo" — visível apenas ao receber foco */
+.skip-link {
+  position: absolute;
+  left: var(--aquarios-space-sm);
+  top: -100%;
+  z-index: 1080;
+  padding: .625rem 1rem;
+  background: var(--aquarios-primary-dark);
+  color: #fff;
+  border-radius: var(--aquarios-radius-sm);
+  text-decoration: none;
+}
+.skip-link:focus { top: var(--aquarios-space-sm); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Utilitários próprios
+   -------------------------------------------------------------------------- */
+.aq-measure   { max-width: var(--aquarios-measure); }
+.aq-bg-alt    { background-color: var(--aquarios-bg-alt); }
+.aq-bg-soft   { background-color: var(--aquarios-primary-soft); }
+.aq-text-muted{ color: var(--aquarios-text-muted); }
+.aq-gold      { color: var(--aquarios-gold-dark); }
+
+/* --------------------------------------------------------------------------
+   5. Tela provisória de setup (Fase 1)
+   Este bloco existe só para validar a base localmente.
+   Deve ser REMOVIDO quando as páginas reais forem construídas (Fase 3+).
+   -------------------------------------------------------------------------- */
+.setup {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--aquarios-space-lg) var(--aquarios-space-sm);
+  background:
+    radial-gradient(1200px 600px at 50% -10%, var(--aquarios-primary-soft), transparent 70%),
+    var(--aquarios-bg);
+}
+.setup__logo  { display: block; width: 200px; margin-bottom: var(--aquarios-space-md); }
+.setup__badge {
+  display: inline-block;
+  padding: .25rem .75rem;
+  border-radius: 999px;
+  background: var(--aquarios-primary-soft);
+  color: var(--aquarios-primary-dark);
+  font-size: .8125rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+.setup__card {
+  background: var(--aquarios-bg);
+  border: 1px solid var(--aquarios-border);
+  border-radius: var(--aquarios-radius);
+  box-shadow: var(--aquarios-shadow-sm);
+  padding: var(--aquarios-space-sm);
+  height: 100%;
+}
+.setup__swatch {
+  height: 3.5rem;
+  border-radius: var(--aquarios-radius-sm);
+  border: 1px solid var(--aquarios-border);
+}
+.setup__nav a {
+  color: var(--aquarios-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+.setup__nav a:hover { color: var(--aquarios-primary-dark); text-decoration: underline; }
+.setup__nav [aria-current="page"] { color: var(--aquarios-text); text-decoration: underline; }
