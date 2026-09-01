@@ -855,19 +855,20 @@ img {
   /* Escurece onde o texto fica (esquerda/baixo) e preserva o dourado do
      amanhecer à direita. Contraste do texto branco medido sobre os pixels
      compostos, não estimado. */
-  /* Escurece por altura, não por largura: o texto fica na metade de baixo e
-     o céu do amanhecer, no topo, continua visível. O leve gradiente lateral
-     só reforça o lado do texto. */
+  /* Escurece mais à esquerda, onde o texto fica, e menos embaixo à direita,
+     onde estão a ponte e o reflexo no rio. Medido: esta combinação dá mais
+     contraste que a anterior E deixa mais foto visível — o véu pesado no pé
+     da imagem gastava opacidade justamente onde não havia texto. */
   background:
     linear-gradient(100deg,
-      rgba(7, 30, 63, .48) 0%,
-      rgba(7, 30, 63, .28) 45%,
-      rgba(7, 30, 63, 0) 75%),
+      rgba(7, 30, 63, .62) 0%,
+      rgba(7, 30, 63, .40) 45%,
+      rgba(7, 30, 63, 0) 78%),
     linear-gradient(180deg,
       rgba(7, 30, 63, 0) 0%,
-      rgba(7, 30, 63, .06) 18%,
-      rgba(7, 30, 63, .55) 42%,
-      rgba(7, 30, 63, .90) 100%);
+      rgba(7, 30, 63, .08) 20%,
+      rgba(7, 30, 63, .46) 46%,
+      rgba(7, 30, 63, .76) 100%);
 }
 .aq-hero__inner {
   position: relative;
