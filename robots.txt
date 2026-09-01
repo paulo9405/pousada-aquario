@@ -1,0 +1,11 @@
+# Hotel Pousada Aquários
+User-agent: *
+Allow: /
+
+# Página interna de referência do design system
+Disallow: /styleguide.html
+
+# Scripts de desenvolvimento
+Disallow: /tools/
+
+Sitemap: https://DOMINIO-A-DEFINIR/sitemap.xml

@@ -7,6 +7,24 @@
   <meta name="description" content="Acomodações da Hotel Pousada Aquários, em Buritizeiro/MG.">
   <meta name="theme-color" content="#1A5FC2">
 
+  <!-- SEO. Todas as URLs absolutas usam um domínio de espaço reservado; rode
+       tools/definir-dominio.py antes de publicar para trocar de uma vez.
+       O canonical é absoluto porque relativo, embora o Google aceite,
+       reprova na auditoria de SEO do Lighthouse. -->
+  <link rel="canonical" href="https://DOMINIO-A-DEFINIR/acomodacoes.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hotel Pousada Aquários">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Acomodações — Hotel Pousada Aquários">
+  <meta property="og:description" content="Acomodações da Hotel Pousada Aquários, em Buritizeiro/MG.">
+  <meta property="og:url" content="https://DOMINIO-A-DEFINIR/acomodacoes.html">
+  <meta property="og:image" content="https://DOMINIO-A-DEFINIR/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Amanhecer sobre o Rio São Francisco, visto de Buritizeiro">
+  <meta name="twitter:card" content="summary_large_image">
+
   <!-- Favicon (provisório, derivado da logo — substituir na entrega final) -->
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -23,6 +41,26 @@
 
   <!-- CSS próprio: sempre depois do Bootstrap -->
   <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Início",
+        "item": "https://DOMINIO-A-DEFINIR/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Acomodações",
+        "item": "https://DOMINIO-A-DEFINIR/acomodacoes.html"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>

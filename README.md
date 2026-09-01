@@ -35,6 +35,8 @@ pousada-aquarios/
 ├── pousada.html         # A Pousada
 ├── contato.html         # Localização e contato
 ├── styleguide.html      # referência interna do design system (noindex)
+├── robots.txt
+├── sitemap.xml
 ├── favicon.ico
 └── apple-touch-icon.png
 ```
@@ -129,8 +131,8 @@ quarto, as regras da hospedagem, a história da pousada e o endereço.
 
 Fases 1 (setup), 2 (design system), 3 (header e navegação), 4 (home),
 5 (acomodações), 6 (institucional e localização), 7 (responsividade) e
-8 (performance) concluídas — as quatro páginas do MVP estão construídas,
-auditadas e medidas.
+8 (performance) e 9 (SEO local) concluídas — as quatro páginas do MVP estão
+construídas, auditadas e medidas.
 
 A home está completa: hero, apresentação, acomodações, comodidades, estrutura
 em mosaico, Rio São Francisco, avaliações, chamada de WhatsApp e rodapé. O
@@ -198,7 +200,8 @@ Cloudflare Pages faz. `tools/servidor-local.py` reproduz isso; o
 | pousada.html     | 100 | 100 | 100 | 100 | 100 |
 | contato.html     | 100 | 100 | 100 | 100 | 100 |
 
-Home no mobile: LCP 2,5 s · FCP 1,1 s · TBT 0 ms · CLS 0 · 289 KiB no total.
+Home no mobile: LCP 2,4 s · FCP 1,1 s · TBT 0 ms · CLS 0 · 289 KiB no total.
+Nenhuma auditoria binária reprovada em nenhuma das quatro páginas.
 
 O que trouxe o ganho:
 
@@ -215,7 +218,53 @@ O que trouxe o ganho:
 AVIF ficou de fora: o ambiente não tem codificador disponível. Vale gerar as
 variantes AVIF junto com as fotos definitivas, quando houver ferramenta.
 
-Próximas fases: 9 (SEO local) e 10 (QA e deploy).
+## SEO local
+
+Cada página tem título único, meta description, canonical, Open Graph e
+Twitter Card. `img/og-image.jpg` (1200×630) é a prévia que aparece quando o
+link é compartilhado — importa porque o WhatsApp é o canal principal.
+
+Dados estruturados em JSON-LD:
+
+- `LodgingBusiness` na home e na página de contato;
+- `BreadcrumbList` nas páginas internas.
+
+**O schema só declara o que está confirmado.** Nome, descrição, cidade,
+estado, país e área atendida entram; rua, telefone, faixa de preço e nota de
+avaliação ficam de fora até a validação com o proprietário. Marcação
+estruturada com dado errado é penalizada pelo Google, não só ignorada.
+
+Quando os dados forem confirmados, acrescentar ao bloco `LodgingBusiness`:
+`streetAddress`, `postalCode`, `telephone`, `geo`, `openingHoursSpecification`,
+`priceRange` e — se a pousada quiser exibir a nota — `aggregateRating` com o
+valor real.
+
+### Antes de publicar: definir o domínio
+
+Canonical, Open Graph e sitemap usam URL absoluta, com o espaço reservado
+`https://DOMINIO-A-DEFINIR`.
+
+Cheguei a deixar o canonical relativo, para funcionar tanto no endereço
+temporário do Cloudflare quanto no definitivo — o Google aceita. Mas a
+auditoria de SEO do Lighthouse reprova (`Is not an absolute URL`) e derrubava
+a nota de 100 para 92. Como o script de domínio já era obrigatório por causa
+do Open Graph e do sitemap, absoluto saiu mais barato.
+
+```bash
+python3 tools/definir-dominio.py https://seudominio.com.br
+```
+
+Troca as 29 ocorrências em HTML, `sitemap.xml` e `robots.txt` de uma vez. Sem
+isso, a prévia do link no WhatsApp não carrega a imagem e o Search Console
+rejeita o sitemap.
+
+### Consistência de NAP
+
+Nome, endereço e telefone precisam ficar idênticos entre site, Google
+Business Profile e redes sociais. Como endereço e telefone ainda não foram
+confirmados, essa checagem fica para a Fase 10.
+
+Próxima fase: 10 (QA e deploy).
 
 O contraste do texto do hero é medido sobre os pixels compostos da foto, não
 estimado — o pior caso em 11 tamanhos de viewport é 5.17:1, acima de AA. Se a

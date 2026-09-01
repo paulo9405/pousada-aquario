@@ -7,6 +7,24 @@
   <meta name="description" content="Hotel Pousada Aquários, em Buritizeiro/MG, próxima ao Rio São Francisco.">
   <meta name="theme-color" content="#1A5FC2">
 
+  <!-- SEO. Todas as URLs absolutas usam um domínio de espaço reservado; rode
+       tools/definir-dominio.py antes de publicar para trocar de uma vez.
+       O canonical é absoluto porque relativo, embora o Google aceite,
+       reprova na auditoria de SEO do Lighthouse. -->
+  <link rel="canonical" href="https://DOMINIO-A-DEFINIR/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hotel Pousada Aquários">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Hotel Pousada Aquários — Buritizeiro/MG">
+  <meta property="og:description" content="Hotel Pousada Aquários, em Buritizeiro/MG, próxima ao Rio São Francisco.">
+  <meta property="og:url" content="https://DOMINIO-A-DEFINIR/">
+  <meta property="og:image" content="https://DOMINIO-A-DEFINIR/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Amanhecer sobre o Rio São Francisco, visto de Buritizeiro">
+  <meta name="twitter:card" content="summary_large_image">
+
   <!-- Favicon (provisório, derivado da logo — substituir na entrega final) -->
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -23,6 +41,33 @@
 
   <!-- CSS próprio: sempre depois do Bootstrap -->
   <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    "name": "Hotel Pousada Aquários",
+    "description": "Pousada em Buritizeiro, no norte de Minas Gerais, perto do Rio São Francisco.",
+    "url": "https://DOMINIO-A-DEFINIR/",
+    "image": "https://DOMINIO-A-DEFINIR/img/og-image.jpg",
+    "logo": "https://DOMINIO-A-DEFINIR/img/logo-nav-360.webp",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Buritizeiro",
+      "addressRegion": "MG",
+      "addressCountry": "BR"
+    },
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Buritizeiro"
+      },
+      {
+        "@type": "City",
+        "name": "Pirapora"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
