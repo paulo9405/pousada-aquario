@@ -122,8 +122,8 @@ quarto, as regras da hospedagem, a história da pousada e o endereço.
 ## Status
 
 Fases 1 (setup), 2 (design system), 3 (header e navegação), 4 (home),
-5 (acomodações) e 6 (institucional e localização) concluídas — as quatro
-páginas do MVP estão construídas.
+5 (acomodações), 6 (institucional e localização) e 7 (responsividade)
+concluídas — as quatro páginas do MVP estão construídas e auditadas.
 
 A home está completa: hero, apresentação, acomodações, comodidades, estrutura
 em mosaico, Rio São Francisco, avaliações, chamada de WhatsApp e rodapé. O
@@ -144,8 +144,41 @@ de contato. O snippet do iframe do Google Maps está em comentário no HTML,
 pronto para colar quando o endereço for confirmado — vale carregá-lo só após
 um clique, para não pesar no Lighthouse.
 
-Próximas fases: 7 (responsividade), 8 (performance), 9 (SEO local) e
-10 (QA e deploy).
+## Responsividade
+
+A verificação é automatizada, não visual. `tools/auditoria-responsiva.py`
+percorre as 4 páginas em 8 larguras
+— 320, 375, 390, 430, 768, 1024, 1280 e 1440 px — e checa os critérios da
+seção 19 do roadmap:
+
+- rolagem horizontal real (`window.scrollX` depois de tentar rolar, não
+  `scrollWidth`, que dá falso positivo com o menu offcanvas fechado);
+- texto cortado por `overflow` escondido;
+- alvos de toque abaixo de 44 px;
+- imagens deformadas (proporção renderizada vs. natural, ignorando
+  `object-fit`);
+- texto abaixo de 12 px;
+- botão flutuante de WhatsApp cobrindo conteúdo;
+- linha de leitura acima de 85 caracteres, medindo o glifo "0" na fonte real
+  do elemento (a Figtree tem "0" com 0,640em — estimar 0,5em inflava a conta
+  em 28%).
+
+Roda nos dois estados: com e sem número de WhatsApp confirmado.
+
+```bash
+python3 -m http.server 8899 --bind 127.0.0.1 &
+python3 tools/auditoria-responsiva.py        # estado atual
+python3 tools/auditoria-responsiva.py --wa   # simulando WhatsApp confirmado
+```
+
+O script é ferramenta de desenvolvimento e não vai para o servidor — a pasta
+`tools/` fica fora do deploy no Cloudflare Pages.
+
+Além disso, o contraste do texto do hero é medido sobre os pixels compostos
+da foto em 11 combinações de viewport, incluindo celular deitado e zoom de
+200%. Pior caso atual: 4,96:1.
+
+Próximas fases: 8 (performance), 9 (SEO local) e 10 (QA e deploy).
 
 O contraste do texto do hero é medido sobre os pixels compostos da foto, não
 estimado — o pior caso em 11 tamanhos de viewport é 5.17:1, acima de AA. Se a

@@ -314,6 +314,9 @@ a:hover { color: var(--aquarios-primary-dark); }
   display: inline-flex;
   align-items: center;
   gap: .375rem;
+  /* Usado sozinho como chamada, então vale como alvo de toque: 44px de
+     altura mínima, o mesmo dos botões (roadmap, seção 19). */
+  min-height: var(--aquarios-tap);
   font-weight: 600;
   text-decoration: none;
 }
@@ -796,6 +799,11 @@ img {
 }
 .aq-fab[hidden] { display: none; }
 
+/* Com o botão flutuante ativo, o rodapé reserva a faixa que ele ocupa, para
+   não cobrir texto quando a página estiver rolada até o fim. A classe é
+   colocada em <body> por initWhatsApp(), junto com a exibição do botão. */
+.aq-com-fab .aq-footer { padding-bottom: 6rem; }
+
 @media (min-width: 992px) {
   .aq-fab {
     right: var(--aquarios-space-md);
@@ -889,6 +897,32 @@ img {
   background-color: rgba(255, 255, 255, .16);
   border-color: #fff;
   color: #fff;
+}
+
+/* Tela baixa — celular deitado, ou desktop com zoom de 200%. O CTA precisa
+   continuar na primeira tela (roadmap, seção 16), então o hero enxuga o
+   respiro vertical e o tamanho do título em vez de empurrar o botão para
+   fora da dobra. */
+@media (max-height: 520px) {
+  .aq-hero__inner {
+    min-height: 0;
+    padding-block: var(--aquarios-space-md);
+  }
+  .aq-hero h1 {
+    font-size: clamp(1.5rem, 1.1rem + 2vw, 2rem);
+    margin-bottom: var(--aquarios-space-2xs);
+  }
+  .aq-hero .aq-lead { font-size: 1rem; }
+  .aq-hero__actions { margin-top: var(--aquarios-space-sm); }
+
+  /* Com o hero baixo o texto sobe para a faixa clara do céu, e as paradas
+     do gradiente são relativas à altura. Véu quase uniforme aqui. */
+  .aq-hero__media::after {
+    background: linear-gradient(180deg,
+      rgba(7, 30, 63, .62) 0%,
+      rgba(7, 30, 63, .70) 40%,
+      rgba(7, 30, 63, .88) 100%);
+  }
 }
 
 @media (max-width: 575.98px) {

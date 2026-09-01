@@ -54,6 +54,9 @@ function initWhatsApp() {
     el.setAttribute('rel', 'noopener');
     el.removeAttribute('hidden');
   });
+
+  // Reserva no rodapé a faixa ocupada pelo botão flutuante (ver style.css)
+  document.body.classList.add('aq-com-fab');
 }
 
 /**
