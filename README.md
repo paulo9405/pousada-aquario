@@ -116,19 +116,27 @@ grep -rn "data-confirmar" *.html
 ```
 
 Hoje isso cobre a lista de comodidades (extraída do material de divulgação da
-própria pousada), a nota do Google e os canais de contato do rodapé.
+própria pousada), a nota do Google, os canais de contato do rodapé e toda a
+página de acomodações — categorias e regras da hospedagem.
 
 ## Status
 
-Fases 1 (setup), 2 (design system), 3 (header e navegação) e 4 (home)
-concluídas.
+Fases 1 (setup), 2 (design system), 3 (header e navegação), 4 (home) e
+5 (acomodações) concluídas.
 
 A home está completa: hero, apresentação, acomodações, comodidades, estrutura
 em mosaico, Rio São Francisco, avaliações, chamada de WhatsApp e rodapé. O
 rodapé é o mesmo nas quatro páginas.
 
-`acomodacoes.html`, `pousada.html` e `contato.html` ainda mostram um
-placeholder no lugar do conteúdo, que entra nas Fases 5 e 6.
+`acomodacoes.html` está estruturada e sem nenhum dado inventado: as
+categorias aparecem como estado vazio, e o modelo de card pronto para
+preencher está em comentário no próprio HTML, logo acima. As regras da
+hospedagem (check-in, check-out, pets, pagamento, cancelamento) são uma ficha
+com todos os valores marcados como "a confirmar" — serve de checklist para a
+conversa com o proprietário.
+
+`pousada.html` e `contato.html` ainda mostram um placeholder no lugar do
+conteúdo, que entra na Fase 6.
 
 O contraste do texto do hero é medido sobre os pixels compostos da foto, não
 estimado — o pior caso em 11 tamanhos de viewport é 5.17:1, acima de AA. Se a

@@ -5,6 +5,7 @@
    Fase 2: design system (tipografia, espaçamentos, botões, cards, mídia).
    Fase 3: header, navegação responsiva e botão flutuante de WhatsApp.
    Fase 4: hero, mosaico de fotos, avaliações e rodapé.
+   Fase 5: cabeçalho de página, estado vazio e ficha de dados.
 
    Sumário
      1. Fontes
@@ -994,4 +995,88 @@ img {
   outline: 2px dashed var(--aquarios-gold-dark);
   outline-offset: 3px;
   background-color: rgba(240, 196, 25, .10);
+}
+
+/* --------------------------------------------------------------------------
+   22. Cabeçalho de página interna
+   Faixa sólida em vez de foto: o hero fotográfico é assinatura da home, e
+   aqui o texto não fica refém do brilho da imagem.
+   -------------------------------------------------------------------------- */
+.aq-pagehead {
+  background-color: var(--aquarios-primary-deep);
+  color: rgba(255, 255, 255, .86);
+  padding-block: clamp(2.5rem, 1.5rem + 5vw, 5rem);
+}
+.aq-pagehead h1 { color: #fff; }
+.aq-pagehead .aq-eyebrow { color: var(--aquarios-gold); }
+.aq-pagehead .aq-lead { color: rgba(255, 255, 255, .84); }
+.aq-pagehead :focus-visible { outline-color: #fff; }
+
+/* Trilha de navegação */
+.aq-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--aquarios-space-sm);
+  font-size: var(--aquarios-fs-sm);
+}
+.aq-breadcrumb li + li::before {
+  content: '/';
+  margin-right: .5rem;
+  color: rgba(255, 255, 255, .45);
+}
+.aq-breadcrumb a { color: rgba(255, 255, 255, .82); text-decoration: none; }
+.aq-breadcrumb a:hover { color: #fff; text-decoration: underline; }
+.aq-breadcrumb [aria-current="page"] { color: #fff; }
+
+/* --------------------------------------------------------------------------
+   23. Estado vazio
+   Para blocos que já existem na estrutura mas ainda dependem de dados
+   confirmados. Comunica o que vai entrar ali, em vez de simular conteúdo.
+   -------------------------------------------------------------------------- */
+.aq-empty {
+  border: 2px dashed var(--aquarios-border-strong);
+  border-radius: var(--aquarios-radius);
+  background-color: var(--aquarios-bg-alt);
+  padding: clamp(1.5rem, 1rem + 3vw, 3rem);
+  text-align: center;
+}
+.aq-empty__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: var(--aquarios-space-xs);
+  border-radius: 50%;
+  background-color: var(--aquarios-primary-soft);
+  color: var(--aquarios-primary);
+  font-size: 1.75rem;
+}
+.aq-empty p { max-width: 42rem; margin-inline: auto; }
+
+/* --------------------------------------------------------------------------
+   24. Ficha de dados
+   Lista de definição para políticas e características, com o valor pendente
+   ainda visível como "a confirmar".
+   -------------------------------------------------------------------------- */
+.aq-specs { margin: 0; }
+.aq-specs__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem var(--aquarios-space-sm);
+  justify-content: space-between;
+  padding-block: var(--aquarios-space-xs);
+  border-bottom: 1px solid var(--aquarios-border);
+}
+.aq-specs__row:last-child { border-bottom: 0; }
+.aq-specs dt { font-weight: 600; color: var(--aquarios-primary-dark); }
+.aq-specs dd { margin: 0; color: var(--aquarios-text-muted); text-align: right; }
+
+/* Valor ainda não confirmado */
+.aq-pending {
+  font-style: italic;
+  color: var(--aquarios-text-muted);
 }

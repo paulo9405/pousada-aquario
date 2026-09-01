@@ -81,18 +81,251 @@
     </div>
   </header>
 
-  <main id="conteudo" class="aq-placeholder">
-    <div class="container">
-      <div class="aq-section-head mb-0">
-        <div class="aq-rule"></div>
-        <span class="aq-eyebrow">Em construção</span>
-        <h1>Acomodações</h1>
-        <p class="aq-lead aq-measure">
-          O cabeçalho e a navegação já estão prontos. O conteúdo desta página
-          entra na Fase 5.
+  <main id="conteudo">
+
+    <!-- ================= CABEÇALHO DA PÁGINA ================= -->
+    <section class="aq-pagehead">
+      <div class="container">
+        <nav aria-label="Trilha de navegação">
+          <ol class="aq-breadcrumb">
+            <li><a href="index.html">Início</a></li>
+            <li aria-current="page">Acomodações</li>
+          </ol>
+        </nav>
+        <span class="aq-eyebrow">Acomodações</span>
+        <h1>Quartos da Hotel Pousada Aquários</h1>
+        <p class="aq-lead aq-measure mb-0">
+          As categorias, com fotos e características de cada uma, serão
+          publicadas aqui assim que forem confirmadas com a pousada.
         </p>
       </div>
-    </div>
+    </section>
+
+    <!-- ================= CATEGORIAS ================= -->
+    <section class="aq-section">
+      <div class="container">
+        <div class="aq-section-head">
+          <div class="aq-rule"></div>
+          <span class="aq-eyebrow">Categorias</span>
+          <h2>Tipos de quarto</h2>
+        </div>
+
+        <!--
+          ESTRUTURA PRONTA PARA AS CATEGORIAS.
+
+          Quando os dados forem confirmados com o proprietário, apague o bloco
+          .aq-empty abaixo e duplique o modelo a seguir dentro de
+          <div class="row g-4"> — um <div class="col-..."> por categoria.
+
+          Não preencher nada por estimativa: nome, capacidade, tipo de cama,
+          comodidades e preço dependem de confirmação (roadmap, seção 17).
+          A identificação interna dos quartos por letras não deve ser usada
+          comercialmente sem autorização.
+
+          <div class="col-12 col-md-6 col-lg-4">
+            <article class="aq-card aq-card--hover">
+              <div class="aq-media aq-media--3x2 aq-media--zoom aq-media--flush">
+                <img src="img/ARQUIVO.webp" alt="DESCRIÇÃO DO QUARTO"
+                     loading="lazy" decoding="async" width="0000" height="0000">
+              </div>
+              <div class="aq-card__body">
+                <h3 class="aq-card__title">NOME DA CATEGORIA</h3>
+                <p class="aq-card__text">DESCRIÇÃO CURTA.</p>
+                <ul class="aq-list aq-text-sm">
+                  <li>Até N hóspedes</li>
+                  <li>TIPO DE CAMA</li>
+                  <li>COMODIDADE</li>
+                </ul>
+              </div>
+              <div class="aq-card__footer">
+                <a class="btn-aq-whatsapp btn-aq-sm btn-aq-block" href="contato.html" data-whatsapp>
+                  <i class="bi bi-whatsapp" aria-hidden="true"></i>
+                  Consultar esta categoria
+                </a>
+              </div>
+            </article>
+          </div>
+        -->
+
+        <div class="aq-empty" data-confirmar>
+          <span class="aq-empty__icon"><i class="bi bi-door-open" aria-hidden="true"></i></span>
+          <h3 class="h5">Categorias em confirmação</h3>
+          <p class="aq-text-muted mb-0">
+            Nome, capacidade, tipo de cama, comodidades e valores de cada
+            categoria ainda não foram confirmados com a pousada. Nada é
+            publicado aqui por estimativa — o espaço já está preparado para
+            receber os dados.
+          </p>
+        </div>
+
+        <div class="row g-4 g-lg-5 align-items-center mt-4 mt-lg-5">
+          <div class="col-12 col-lg-6">
+            <div class="aq-media aq-media--3x2 aq-shadow">
+              <img src="img/foto-de-quarto.webp"
+                   alt="Quarto da pousada, com cama de casal arrumada e janela com cortina"
+                   loading="lazy" decoding="async" width="1280" height="958">
+            </div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <h3>Uma foto que já temos</h3>
+            <p class="aq-text-muted">
+              Imagem atual de um dos quartos, feita pela própria pousada. Serve
+              como referência até a nova sessão de fotos, que vai registrar
+              cada categoria separadamente.
+            </p>
+            <p class="mb-0">
+              <a class="aq-link-arrow" href="pousada.html">Ver a estrutura da pousada</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= O QUE OS QUARTOS TÊM ================= -->
+    <section class="aq-section aq-bg-alt">
+      <div class="container">
+        <div class="aq-section-head aq-section-head--center">
+          <div class="aq-rule"></div>
+          <span class="aq-eyebrow">Nos quartos</span>
+          <h2>O que a pousada informa oferecer</h2>
+          <p class="aq-lead">
+            Lista publicada pela própria pousada em material de divulgação.
+            Será confirmada antes da publicação do site.
+          </p>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="aq-card h-100" data-confirmar><div class="aq-card__body">
+              <span class="aq-card__icon"><i class="bi bi-snow" aria-hidden="true"></i></span>
+              <h3 class="h6 mb-0">Ar-condicionado</h3>
+            </div></div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="aq-card h-100" data-confirmar><div class="aq-card__body">
+              <span class="aq-card__icon"><i class="bi bi-tv" aria-hidden="true"></i></span>
+              <h3 class="h6 mb-0">TV</h3>
+            </div></div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="aq-card h-100" data-confirmar><div class="aq-card__body">
+              <span class="aq-card__icon"><i class="bi bi-cup-straw" aria-hidden="true"></i></span>
+              <h3 class="h6 mb-1">Frigobar</h3>
+              <p class="aq-text-xs aq-text-muted mb-0">Em alguns quartos</p>
+            </div></div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="aq-card h-100" data-confirmar><div class="aq-card__body">
+              <span class="aq-card__icon"><i class="bi bi-droplet" aria-hidden="true"></i></span>
+              <h3 class="h6 mb-0">Ducha de água quente e fria</h3>
+            </div></div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="aq-card h-100" data-confirmar><div class="aq-card__body">
+              <span class="aq-card__icon"><i class="bi bi-moon-stars" aria-hidden="true"></i></span>
+              <h3 class="h6 mb-0">Colchões ortopédicos</h3>
+            </div></div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="aq-card h-100" data-confirmar><div class="aq-card__body">
+              <span class="aq-card__icon"><i class="bi bi-stars" aria-hidden="true"></i></span>
+              <h3 class="h6 mb-0">Enxoval novo</h3>
+            </div></div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="aq-card h-100" data-confirmar><div class="aq-card__body">
+              <span class="aq-card__icon"><i class="bi bi-cup-hot" aria-hidden="true"></i></span>
+              <h3 class="h6 mb-0">Café da manhã</h3>
+            </div></div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="aq-card h-100" data-confirmar><div class="aq-card__body">
+              <span class="aq-card__icon"><i class="bi bi-car-front" aria-hidden="true"></i></span>
+              <h3 class="h6 mb-0">Garagem coberta</h3>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= POLÍTICAS ================= -->
+    <section class="aq-section">
+      <div class="container">
+        <div class="row g-4 g-lg-5">
+          <div class="col-12 col-lg-5">
+            <div class="aq-section-head mb-0">
+              <div class="aq-rule"></div>
+              <span class="aq-eyebrow">Antes de reservar</span>
+              <h2>Regras da hospedagem</h2>
+              <p class="aq-lead">
+                Cada item abaixo entra no site com a informação confirmada pela
+                pousada. Nenhum valor foi presumido.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-7">
+            <div class="aq-card"><div class="aq-card__body">
+              <dl class="aq-specs">
+                <div class="aq-specs__row">
+                  <dt>Check-in</dt>
+                  <dd data-confirmar><span class="aq-pending">a confirmar</span></dd>
+                </div>
+                <div class="aq-specs__row">
+                  <dt>Check-out</dt>
+                  <dd data-confirmar><span class="aq-pending">a confirmar</span></dd>
+                </div>
+                <div class="aq-specs__row">
+                  <dt>Café da manhã</dt>
+                  <dd data-confirmar><span class="aq-pending">horário a confirmar</span></dd>
+                </div>
+                <div class="aq-specs__row">
+                  <dt>Política de crianças</dt>
+                  <dd data-confirmar><span class="aq-pending">a confirmar</span></dd>
+                </div>
+                <div class="aq-specs__row">
+                  <dt>Aceita animais</dt>
+                  <dd data-confirmar><span class="aq-pending">a confirmar</span></dd>
+                </div>
+                <div class="aq-specs__row">
+                  <dt>Formas de pagamento</dt>
+                  <dd data-confirmar><span class="aq-pending">a confirmar</span></dd>
+                </div>
+                <div class="aq-specs__row">
+                  <dt>Cancelamento</dt>
+                  <dd data-confirmar><span class="aq-pending">a confirmar</span></dd>
+                </div>
+                <div class="aq-specs__row">
+                  <dt>Acessibilidade</dt>
+                  <dd data-confirmar><span class="aq-pending">a confirmar</span></dd>
+                </div>
+              </dl>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA WHATSAPP ================= -->
+    <section class="aq-section--sm aq-bg-dark">
+      <div class="container">
+        <div class="row g-3 align-items-center justify-content-between">
+          <div class="col-12 col-lg-7">
+            <h2 class="mb-2">Precisa de um quarto em Buritizeiro?</h2>
+            <p class="aq-lead mb-0">
+              Fale direto com a pousada para consultar disponibilidade e valores.
+            </p>
+          </div>
+          <div class="col-12 col-lg-auto">
+            <a class="btn-aq-gold btn-aq-lg" href="contato.html" data-whatsapp>
+              <i class="bi bi-whatsapp" aria-hidden="true"></i>
+              Consultar disponibilidade
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="aq-footer">
