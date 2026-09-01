@@ -88,10 +88,21 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         pass
 
 
+class Servidor(socketserver.ThreadingTCPServer):
+    """Uma thread por conexão.
+
+    Com o TCPServer de uma thread só, uma conexão presa bloqueia todas as
+    outras — e o tools/qa.py, que abre dezenas de páginas em sequência nos
+    dois navegadores, estourava o timeout no meio da varredura.
+    """
+
+    allow_reuse_address = True
+    daemon_threads = True
+
+
 def main():
-    socketserver.TCPServer.allow_reuse_address = True
     os.chdir(RAIZ)
-    with socketserver.TCPServer(("127.0.0.1", PORTA), Handler) as s:
+    with Servidor(("127.0.0.1", PORTA), Handler) as s:
         print(f"servindo {RAIZ} em http://127.0.0.1:{PORTA}")
         s.serve_forever()
 

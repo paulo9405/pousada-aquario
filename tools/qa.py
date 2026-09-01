@@ -40,6 +40,47 @@ def avisa(rotulo, detalhe=""):
     avisos.append(rotulo)
 
 
+def tags_equilibradas(caminho):
+    """Confere se as tags do HTML abrem e fecham na ordem certa.
+
+    Nasceu de um bug real: um script meu fechou uma <div> cedo demais e
+    quatro cards da grade de comodidades ficaram fora da linha, renderizando
+    em largura cheia. Nenhuma checagem existente pegava isso — o site
+    respondia 200, sem rolagem horizontal e sem erro de console.
+    """
+    from html.parser import HTMLParser
+
+    vazias = {"area", "base", "br", "col", "embed", "hr", "img", "input",
+              "link", "meta", "param", "source", "track", "wbr"}
+
+    class Verificador(HTMLParser):
+        def __init__(self):
+            super().__init__(convert_charrefs=True)
+            self.pilha, self.erros = [], []
+
+        def handle_starttag(self, tag, attrs):
+            if tag not in vazias:
+                self.pilha.append((tag, self.getpos()[0]))
+
+        def handle_endtag(self, tag):
+            if tag in vazias:
+                return
+            if self.pilha and self.pilha[-1][0] == tag:
+                self.pilha.pop()
+            else:
+                self.erros.append(f"</{tag}> na linha {self.getpos()[0]}")
+                for i in range(len(self.pilha) - 1, -1, -1):
+                    if self.pilha[i][0] == tag:
+                        del self.pilha[i:]
+                        break
+
+    v = Verificador()
+    v.feed(open(caminho, encoding="utf-8").read())
+    abertas = [f"<{t}> linha {l}" for t, l in v.pilha
+               if t not in ("html", "body", "head")]
+    return v.erros + abertas
+
+
 def sem_redirecionar(url):
     """Devolve (status, destino) sem seguir redirecionamento."""
     class NaoSegue(urllib.request.HTTPRedirectHandler):
@@ -200,6 +241,15 @@ def rodar(nav, nome_nav):
     checa(altura_antes == altura_depois, "mapa não desloca o layout",
           f"{altura_antes}px -> {altura_depois}px")
     pg.close()
+
+    # estrutura do HTML
+    print("\n-- estrutura do HTML")
+    import pathlib
+    raiz = pathlib.Path(__file__).resolve().parent.parent
+    for arquivo in sorted(raiz.glob("*.html")):
+        problemas = tags_equilibradas(arquivo)
+        checa(not problemas, f"{arquivo.name}: tags equilibradas",
+              "; ".join(problemas[:3]))
 
     # 404 de verdade
     print("\n-- página de erro")
