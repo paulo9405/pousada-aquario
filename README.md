@@ -100,16 +100,32 @@ não mexe no layout.
 
 ## Contato e WhatsApp
 
-O número oficial ainda não foi confirmado, então `AQUARIOS.whatsapp` está
-vazio em `js/main.js`. Enquanto estiver assim:
+Número confirmado: **(31) 99520-6536**, em `AQUARIOS.whatsapp` (`js/main.js`).
+`initWhatsApp()` monta o link `wa.me` com a mensagem pré-preenchida — *"Olá!
+Vim pelo site e gostaria de fazer uma reserva."* — e aplica em todos os pontos
+marcados com `data-whatsapp`, além de revelar o botão flutuante. O número
+aparece uma única vez no código.
 
-- o botão flutuante de WhatsApp fica oculto;
-- o botão "Reservar" do header leva para `contato.html`.
+Para tirar o WhatsApp do ar, basta esvaziar `whatsapp`: os botões voltam ao
+`href` de fallback e o flutuante some. A exceção é o botão do cartão de
+contato, que tem o link `wa.me` escrito direto no HTML para funcionar mesmo
+com JavaScript desativado.
 
-Ao preencher o número (só dígitos, com DDI e DDD), `initWhatsApp()` ativa
-sozinho todos os pontos marcados com `data-whatsapp`: ajusta o `href` para
-`wa.me` com a mensagem pré-preenchida e revela o botão flutuante. Nenhuma
-outra alteração é necessária.
+### Dados da pousada
+
+| Item | Valor |
+| ---- | ----- |
+| Endereço | Av. Barnabé Martins, 133 — Buritizeiro/MG · 39280-000 |
+| Referência | Próximo à Ponte Marechal Hermes |
+| WhatsApp / telefone | (31) 99520-6536 |
+| Check-in / check-out | 12h / 12h |
+| Café da manhã | Das 7h às 10h |
+| Aceita animais | Sim |
+| Pagamento | Dinheiro, cartão e Pix |
+
+Ainda em confirmação (`data-confirmar`): e-mail, política de crianças,
+cancelamento, acessibilidade, categorias de quarto, história da pousada, a
+nota do Google e a lista de comodidades vinda do material de divulgação.
 
 ## Conteúdo a confirmar
 
@@ -148,10 +164,13 @@ conversa com o proprietário.
 `pousada.html` traz a galeria das áreas comuns com as fotos atuais; a
 história fica como estado vazio até a conversa com o proprietário.
 
-`contato.html` tem a ficha de endereço, a área reservada do mapa e os canais
-de contato. O snippet do iframe do Google Maps está em comentário no HTML,
-pronto para colar quando o endereço for confirmado — vale carregá-lo só após
-um clique, para não pesar no Lighthouse.
+`contato.html` tem a ficha de endereço, o mapa, o botão de rota, os canais de
+contato e as perguntas frequentes.
+
+O mapa do Google só é inserido **depois de um clique**: o iframe puxa 18
+requisições de terceiros, e quem só quer o endereço ou a rota não paga por
+isso. O espaço reservado tem a mesma altura do mapa, então não há salto de
+layout na troca.
 
 ## Responsividade
 
@@ -252,15 +271,14 @@ Densidade dos nomes de cidade no texto visível: 2,2% a 3,7% por página,
 somando as duas. Cheguei a repetir a ideia da ponte cinco vezes na home — já
 lia como enchimento, e cortei para três.
 
-**O schema só declara o que está confirmado.** Nome, descrição, cidade,
-estado, país e área atendida entram; rua, telefone, faixa de preço e nota de
-avaliação ficam de fora até a validação com o proprietário. Marcação
-estruturada com dado errado é penalizada pelo Google, não só ignorada.
+**O schema só declara o que está confirmado.** Marcação estruturada com dado
+errado é penalizada pelo Google, não apenas ignorada.
 
-Quando os dados forem confirmados, acrescentar ao bloco `LodgingBusiness`:
-`streetAddress`, `postalCode`, `telephone`, `geo`, `openingHoursSpecification`,
-`priceRange` e — se a pousada quiser exibir a nota — `aggregateRating` com o
-valor real.
+O bloco `LodgingBusiness` já traz `streetAddress`, `postalCode`, `telephone`,
+`checkinTime`, `checkoutTime`, `petsAllowed`, `paymentAccepted` e `hasMap`.
+
+Continuam fora, por dependerem de dado ainda não confirmado: `geo` (sem
+coordenadas verificadas), `priceRange` e `aggregateRating`.
 
 ### Antes de publicar: definir o domínio
 
@@ -284,8 +302,15 @@ rejeita o sitemap.
 ### Consistência de NAP
 
 Nome, endereço e telefone precisam ficar idênticos entre site, Google
-Business Profile e redes sociais. Como endereço e telefone ainda não foram
-confirmados, essa checagem fica para a Fase 10.
+Business Profile e redes sociais:
+
+```text
+Hotel Pousada Aquários
+Av. Barnabé Martins, 133 — Buritizeiro/MG, 39280-000
+(31) 99520-6536
+```
+
+Conferir contra o perfil do Google faz parte da Fase 10.
 
 Próxima fase: 10 (QA e deploy).
 

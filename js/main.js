@@ -9,23 +9,17 @@
 /**
  * Dados de contato do site.
  *
- * ATENÇÃO: nada aqui foi confirmado com o proprietário (ver seção 26 do
- * roadmap). Enquanto `whatsapp` estiver vazio, nenhum link de WhatsApp
- * é publicado: o botão flutuante fica oculto e o botão "Reservar" leva
- * para a página de contato. Não preencher com o número do Google sem
- * confirmar antes.
+ * Número confirmado com o proprietário. Com ele preenchido, initWhatsApp()
+ * ativa todos os pontos marcados com data-whatsapp e revela o botão
+ * flutuante. Para tirar o WhatsApp do ar, basta esvaziar `whatsapp`.
  */
 const AQUARIOS = {
-  // Somente dígitos, com DDI e DDD. Ex.: '5538999999999'
-  whatsapp: '',
+  // Somente dígitos, com DDI e DDD. (31) 99520-6536
+  whatsapp: '5531995206536',
 
-  // Mensagem pré-preenchida do WhatsApp (roadmap, seção 22)
-  whatsappMessage:
-    'Olá! Encontrei a Hotel Pousada Aquários pelo site ' +
-    'e gostaria de consultar disponibilidade.\n\n' +
-    'Check-in:\n' +
-    'Check-out:\n' +
-    'Número de hóspedes:',
+  // Mensagem curta e pré-preenchida: identifica que o contato veio do site,
+  // sem obrigar o hóspede a preencher formulário dentro do WhatsApp.
+  whatsappMessage: 'Olá! Vim pelo site e gostaria de fazer uma reserva.',
 };
 
 /**
@@ -83,6 +77,33 @@ function initHeader() {
 }
 
 /**
+ * Carrega o mapa do Google só depois do clique.
+ *
+ * O iframe puxa vários recursos de terceiros. Quem só quer o endereço ou o
+ * botão de rota — a maioria, no celular — não paga por isso.
+ */
+function initMapa() {
+  const caixa = document.querySelector('[data-mapa]');
+  if (!caixa) return;
+
+  const botao = caixa.querySelector('[data-mapa-abrir]');
+  const src = caixa.getAttribute('data-mapa-src');
+  if (!botao || !src) return;
+
+  botao.addEventListener('click', () => {
+    const iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.title = 'Mapa da localização da Hotel Pousada Aquários';
+    iframe.loading = 'lazy';
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+    iframe.allowFullscreen = true;
+    caixa.innerHTML = '';
+    caixa.classList.remove('aq-empty');
+    caixa.appendChild(iframe);
+  }, { once: true });
+}
+
+/**
  * Preenche o ano corrente em qualquer elemento [data-ano-atual].
  */
 function initAnoAtual() {
@@ -95,5 +116,6 @@ function initAnoAtual() {
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
   initWhatsApp();
+  initMapa();
   initAnoAtual();
 });

@@ -50,12 +50,16 @@
     "url": "https://DOMINIO-A-DEFINIR/",
     "image": "https://DOMINIO-A-DEFINIR/img/og-image.jpg",
     "logo": "https://DOMINIO-A-DEFINIR/img/logo-nav-360.webp",
+    "telephone": "+55-31-99520-6536",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "Av. Barnabé Martins, 133",
       "addressLocality": "Buritizeiro",
       "addressRegion": "MG",
+      "postalCode": "39280-000",
       "addressCountry": "BR"
     },
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=Hotel%20Pousada%20Aqu%C3%A1rios%2C%20Av.%20Barnab%C3%A9%20Martins%2C%20133%2C%20Buritizeiro%20-%20MG%2C%2039280-000",
     "areaServed": [
       {
         "@type": "City",
@@ -64,6 +68,23 @@
       {
         "@type": "City",
         "name": "Pirapora"
+      }
+    ],
+    "checkinTime": "12:00",
+    "checkoutTime": "12:00",
+    "petsAllowed": true,
+    "currenciesAccepted": "BRL",
+    "paymentAccepted": "Dinheiro, Cartão de crédito, Cartão de débito, Pix",
+    "amenityFeature": [
+      {
+        "@type": "LocationFeatureSpecification",
+        "name": "Café da manhã incluso",
+        "value": true
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        "name": "Aceita animais de estimação",
+        "value": true
       }
     ]
   }
@@ -114,7 +135,7 @@
         "name": "Onde fica exatamente a pousada?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Em Buritizeiro, no norte de Minas Gerais. O endereço completo será publicado aqui assim que for confirmado com a pousada."
+          "text": "Na Av. Barnabé Martins, 133, em Buritizeiro/MG, próximo à Ponte Marechal Hermes — a ponte que liga Buritizeiro a Pirapora."
         }
       }
     ]
@@ -193,8 +214,8 @@
         <span class="aq-eyebrow">Localização e contato</span>
         <h1>Como chegar e como falar com a pousada</h1>
         <p class="aq-lead aq-measure mb-0">
-          Endereço, mapa e canais de contato entram aqui assim que forem
-          confirmados com a pousada. Nada é publicado por estimativa.
+          A pousada fica na Av. Barnabé Martins, 133, em Buritizeiro, perto da
+          Ponte Marechal Hermes — a travessia para Pirapora.
         </p>
       </div>
     </section>
@@ -220,57 +241,42 @@
                 </div>
                 <div class="aq-specs__row">
                   <dt>Endereço</dt>
-                  <dd data-confirmar><span class="aq-pending">a confirmar</span></dd>
+                  <dd>Av. Barnabé Martins, 133 — Buritizeiro, MG</dd>
                 </div>
                 <div class="aq-specs__row">
                   <dt>CEP</dt>
-                  <dd data-confirmar><span class="aq-pending">a confirmar</span></dd>
+                  <dd>39280-000</dd>
                 </div>
                 <div class="aq-specs__row">
                   <dt>Ponto de referência</dt>
-                  <dd data-confirmar><span class="aq-pending">a confirmar</span></dd>
+                  <dd>Próximo à Ponte Marechal Hermes</dd>
                 </div>
               </dl>
             </div></div>
 
-            <p class="aq-text-sm aq-text-muted mb-0">
-              Existe um endereço publicado no perfil do Google, mas ele ainda
-              não foi confirmado com a pousada — por isso não aparece aqui
-              (roadmap, seção 6).
+            <p class="mb-0">
+              <a class="btn-aq-outline"
+                 href="https://www.google.com/maps/dir/?api=1&amp;destination=Hotel%20Pousada%20Aqu%C3%A1rios%2C%20Av.%20Barnab%C3%A9%20Martins%2C%20133%2C%20Buritizeiro%20-%20MG%2C%2039280-000"
+                 target="_blank" rel="noopener">
+                <svg class="aq-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/> <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
+                Traçar rota até a pousada
+              </a>
             </p>
           </div>
 
           <div class="col-12 col-lg-7">
-            <!--
-              MAPA — entra depois do endereço confirmado.
-
-              Apague o bloco .aq-empty abaixo e cole o iframe do Google Maps
-              dentro do mesmo <div class="aq-map">, para a altura não mudar:
-
-              <iframe
-                src="https://www.google.com/maps/embed?pb=COLE_AQUI"
-                title="Mapa da localização da Hotel Pousada Aquários"
-                loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                allowfullscreen></iframe>
-
-              Vale carregar o mapa só depois de um clique: o iframe do Google
-              puxa vários recursos de terceiros e pesa no Lighthouse (Fase 8).
-            -->
-            <div class="aq-map aq-empty" data-confirmar>
+            <!-- O iframe do Google puxa vários recursos de terceiros. Só é
+                 inserido depois do clique, para não pesar em quem nem vai
+                 abrir o mapa. A altura do espaço é a mesma antes e depois. -->
+            <div class="aq-map aq-empty" data-mapa
+                 data-mapa-src="https://www.google.com/maps?q=Hotel%20Pousada%20Aqu%C3%A1rios%2C%20Av.%20Barnab%C3%A9%20Martins%2C%20133%2C%20Buritizeiro%20-%20MG%2C%2039280-000&amp;output=embed">
               <div>
                 <span class="aq-empty__icon"><svg class="aq-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/> <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg></span>
-                <h3 class="h5">Mapa em confirmação</h3>
-                <p class="aq-text-muted mb-3">
-                  O mapa entra aqui quando o endereço for confirmado. Enquanto
-                  isso, a busca pelo nome da pousada no Google Maps já
-                  funciona.
-                </p>
-                <a class="btn-aq-outline"
-                   href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Pousada+Aqu%C3%A1rios+Buritizeiro+MG"
-                   target="_blank" rel="noopener">
-                  <svg class="aq-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/> <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/></svg>
-                  Buscar no Google Maps
-                </a>
+                <h3 class="h5">Av. Barnabé Martins, 133 — Buritizeiro, MG</h3>
+                <p class="aq-text-muted mb-3">Próximo à Ponte Marechal Hermes</p>
+                <button type="button" class="btn-aq-outline" data-mapa-abrir>
+                  Ver no mapa
+                </button>
               </div>
             </div>
           </div>
@@ -286,29 +292,32 @@
           <span class="aq-eyebrow">Contato</span>
           <h2>Falar com a pousada</h2>
           <p class="aq-lead">
-            A pousada divulga telefones e e-mail no próprio material impresso.
-            Antes de publicar aqui, é preciso confirmar qual número é o oficial
-            para o site.
+            O WhatsApp é o caminho mais rápido para consultar disponibilidade e
+            valores. A mensagem já vai preenchida, para a pousada saber que o
+            contato veio pelo site.
           </p>
         </div>
 
         <div class="row g-3 justify-content-center">
           <div class="col-12 col-md-6 col-lg-4">
-            <div class="aq-card h-100" data-confirmar><div class="aq-card__body">
+            <div class="aq-card h-100"><div class="aq-card__body">
               <span class="aq-card__icon"><svg class="aq-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg></span>
               <h3 class="aq-card__title h5">WhatsApp</h3>
-              <p class="aq-card__text mb-0">
-                Canal principal para consultar disponibilidade e valores.
-                Número oficial <span class="aq-pending">a confirmar</span>.
+              <p class="aq-card__text">
+                (31) 99520-6536 — canal principal para reservas.
               </p>
+              <a class="btn-aq-whatsapp btn-aq-block" href="https://wa.me/5531995206536?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20fazer%20uma%20reserva." data-whatsapp>
+                <svg class="aq-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
+                Falar no WhatsApp
+              </a>
             </div></div>
           </div>
           <div class="col-12 col-md-6 col-lg-4">
-            <div class="aq-card h-100" data-confirmar><div class="aq-card__body">
+            <div class="aq-card h-100"><div class="aq-card__body">
               <span class="aq-card__icon"><svg class="aq-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/></svg></span>
               <h3 class="aq-card__title h5">Telefone</h3>
               <p class="aq-card__text mb-0">
-                Número <span class="aq-pending">a confirmar</span>.
+                <a href="tel:+5531995206536">(31) 99520-6536</a>
               </p>
             </div></div>
           </div>
@@ -323,17 +332,6 @@
           </div>
         </div>
 
-        <div class="aq-card mt-4" style="border-left: 4px solid var(--aquarios-gold)">
-          <div class="aq-card__body">
-            <h3 class="h6 mb-2">Nota de trabalho</h3>
-            <p class="aq-text-sm aq-text-muted aq-measure mb-0">
-              O material de divulgação da pousada traz três telefones e um
-              e-mail. Publicar todos confunde quem chega pelo site: o ideal é
-              escolher um número para o botão de WhatsApp e, se fizer sentido,
-              um segundo como alternativa. Essa definição é do proprietário.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -401,7 +399,7 @@
           <div class="col-12 col-lg-4">
             <div class="aq-card h-100"><div class="aq-card__body">
               <h3 class="aq-card__title h5">Onde fica exatamente a pousada?</h3>
-              <p class="aq-card__text mb-0">Em Buritizeiro, no norte de Minas Gerais. O endereço completo será publicado aqui assim que for confirmado com a pousada.</p>
+              <p class="aq-card__text mb-0">Na Av. Barnabé Martins, 133, em Buritizeiro/MG, próximo à Ponte Marechal Hermes — a ponte que liga Buritizeiro a Pirapora.</p>
             </div></div>
           </div>
         </div>
@@ -457,9 +455,9 @@
           <!-- Nenhum canal de contato é publicado antes da confirmação com o
                proprietário (roadmap, seção 26). -->
           <ul class="aq-footer__list">
-            <li data-confirmar>WhatsApp: <span class="aq-text-sm">a confirmar</span></li>
+            <li>WhatsApp: <a href="tel:+5531995206536">(31) 99520-6536</a></li>
             <li data-confirmar>E-mail: <span class="aq-text-sm">a confirmar</span></li>
-            <li data-confirmar>Endereço: <span class="aq-text-sm">a confirmar</span></li>
+            <li>Av. Barnabé Martins, 133<br>Buritizeiro/MG · 39280-000</li>
           </ul>
         </div>
 
