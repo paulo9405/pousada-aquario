@@ -23,7 +23,8 @@ pousada-aquarios/
 ├── js/main.js           # configuração do site (contato, helpers)
 ├── fonts/               # Figtree variável (woff2, self-hosted)
 ├── img/                 # fotografias e logo (provisórias)
-│   └── logo-nav.webp    # logo recortada e otimizada para o header
+│   ├── logo-nav.webp    # logo recortada e otimizada para o header
+│   └── hero-rio-*.webp  # recortes do hero (wide para desktop, tall para mobile)
 ├── index.html           # Início
 ├── acomodacoes.html     # Acomodações
 ├── pousada.html         # A Pousada
@@ -102,13 +103,36 @@ sozinho todos os pontos marcados com `data-whatsapp`: ajusta o `href` para
 `wa.me` com a mensagem pré-preenchida e revela o botão flutuante. Nenhuma
 outra alteração é necessária.
 
+## Conteúdo a confirmar
+
+Todo dado que ainda depende de confirmação com o proprietário está marcado
+com o atributo `data-confirmar`. Para revisar visualmente, adicione a classe
+`aq-revisao` ao `<body>` — todos ficam destacados na tela.
+
+Para listar tudo:
+
+```bash
+grep -rn "data-confirmar" *.html
+```
+
+Hoje isso cobre a lista de comodidades (extraída do material de divulgação da
+própria pousada), a nota do Google e os canais de contato do rodapé.
+
 ## Status
 
-Fases 1 (setup), 2 (design system) e 3 (header e navegação) concluídas.
+Fases 1 (setup), 2 (design system), 3 (header e navegação) e 4 (home)
+concluídas.
 
-O header é sticky, com navegação em offcanvas no mobile e barra horizontal a
-partir de 992 px. As quatro páginas ainda mostram um placeholder no lugar do
-conteúdo, que entra nas Fases 4 a 6.
+A home está completa: hero, apresentação, acomodações, comodidades, estrutura
+em mosaico, Rio São Francisco, avaliações, chamada de WhatsApp e rodapé. O
+rodapé é o mesmo nas quatro páginas.
+
+`acomodacoes.html`, `pousada.html` e `contato.html` ainda mostram um
+placeholder no lugar do conteúdo, que entra nas Fases 5 e 6.
+
+O contraste do texto do hero é medido sobre os pixels compostos da foto, não
+estimado — o pior caso em 11 tamanhos de viewport é 5.17:1, acima de AA. Se a
+foto do hero for trocada, vale refazer essa medição.
 
 Nenhum dado da pousada — WhatsApp, telefone, endereço, acomodações, preços,
 políticas — foi confirmado com o proprietário. Nada disso deve ser publicado

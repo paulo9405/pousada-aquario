@@ -4,6 +4,7 @@
    Fase 1: base do projeto (tokens de identidade + reset + tipografia base).
    Fase 2: design system (tipografia, espaçamentos, botões, cards, mídia).
    Fase 3: header, navegação responsiva e botão flutuante de WhatsApp.
+   Fase 4: hero, mosaico de fotos, avaliações e rodapé.
 
    Sumário
      1. Fontes
@@ -808,3 +809,189 @@ img {
    cada página for construída.
    -------------------------------------------------------------------------- */
 .aq-placeholder { padding-block: clamp(3rem, 2rem + 6vw, 7rem); }
+
+/* --------------------------------------------------------------------------
+   17. Hero
+   O CTA principal precisa aparecer já na primeira tela, inclusive no celular
+   (roadmap, seção 16). Por isso a altura é limitada por vh, não por conteúdo.
+   -------------------------------------------------------------------------- */
+.aq-hero {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--aquarios-primary-deep);
+}
+.aq-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.aq-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* Véu escuro: garante contraste do texto branco sobre qualquer trecho da foto */
+.aq-hero__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* Escurece onde o texto fica (esquerda/baixo) e preserva o dourado do
+     amanhecer à direita. Contraste do texto branco medido sobre os pixels
+     compostos, não estimado. */
+  /* Escurece por altura, não por largura: o texto fica na metade de baixo e
+     o céu do amanhecer, no topo, continua visível. O leve gradiente lateral
+     só reforça o lado do texto. */
+  background:
+    linear-gradient(100deg,
+      rgba(7, 30, 63, .48) 0%,
+      rgba(7, 30, 63, .28) 45%,
+      rgba(7, 30, 63, 0) 75%),
+    linear-gradient(180deg,
+      rgba(7, 30, 63, 0) 0%,
+      rgba(7, 30, 63, .06) 18%,
+      rgba(7, 30, 63, .55) 42%,
+      rgba(7, 30, 63, .90) 100%);
+}
+.aq-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  min-height: min(38rem, 82vh);
+  padding-block: var(--aquarios-space-xl) var(--aquarios-space-lg);
+}
+.aq-hero__content { max-width: 40rem; }
+.aq-hero h1 { color: #fff; margin-bottom: var(--aquarios-space-sm); }
+/* Eyebrow em branco, não em dourado: medido sobre a foto composta, o
+   dourado fica em 3.5:1 no mobile — abaixo de AA para 13px bold. E o hero
+   vai trocar de foto, então o texto precisa de contraste que não dependa
+   da imagem. O dourado segue como destaque no botão. */
+.aq-hero .aq-eyebrow { color: #fff; }
+.aq-hero .aq-lead { color: rgba(255, 255, 255, .90); }
+.aq-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--aquarios-space-xs);
+  margin-top: var(--aquarios-space-md);
+}
+.aq-hero :focus-visible { outline-color: #fff; }
+
+/* Botão de contorno sobre foto ou fundo escuro */
+.btn-aq-outline--invert {
+  border-color: rgba(255, 255, 255, .65);
+  color: #fff;
+  background-color: rgba(255, 255, 255, .06);
+}
+.btn-aq-outline--invert:hover {
+  background-color: rgba(255, 255, 255, .16);
+  border-color: #fff;
+  color: #fff;
+}
+
+@media (max-width: 575.98px) {
+  .aq-hero__actions .btn-aq-gold,
+  .aq-hero__actions .btn-aq-outline { width: 100%; }
+
+  /* Em telas estreitas o hero encurta e o texto sobe para a faixa clara do
+     céu. As paradas do gradiente são relativas à altura, então aqui ele
+     precisa começar a escurecer mais cedo. Medido a partir de 320px. */
+  .aq-hero__media::after {
+    background: linear-gradient(180deg,
+      rgba(7, 30, 63, .62) 0%,
+      rgba(7, 30, 63, .68) 35%,
+      rgba(7, 30, 63, .90) 100%);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   18. Mosaico de fotos
+   -------------------------------------------------------------------------- */
+.aq-mosaic {
+  display: grid;
+  gap: var(--aquarios-space-xs);
+  grid-template-columns: repeat(2, 1fr);
+}
+.aq-mosaic .aq-media { height: 100%; }
+
+@media (min-width: 768px) {
+  .aq-mosaic { grid-template-columns: repeat(4, 1fr); }
+  .aq-mosaic__item--lead { grid-column: span 2; grid-row: span 2; }
+}
+
+/* Legenda sobre a foto */
+.aq-mosaic figure { position: relative; margin: 0; height: 100%; }
+.aq-mosaic figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: var(--aquarios-space-md) var(--aquarios-space-sm) var(--aquarios-space-xs);
+  background: linear-gradient(180deg, rgba(7, 30, 63, 0), rgba(7, 30, 63, .80));
+  color: #fff;
+  font-size: var(--aquarios-fs-sm);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   19. Avaliações
+   -------------------------------------------------------------------------- */
+.aq-rating {
+  display: flex;
+  align-items: center;
+  gap: var(--aquarios-space-md);
+  flex-wrap: wrap;
+}
+.aq-rating__score {
+  font-size: clamp(3rem, 2rem + 5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--aquarios-primary-dark);
+  letter-spacing: -.03em;
+}
+/* Ícone é elemento gráfico: 3:1 basta, e o dourado escuro entrega 3.00:1 */
+.aq-stars { color: var(--aquarios-gold-dark); font-size: 1.25rem; letter-spacing: .1em; }
+
+/* --------------------------------------------------------------------------
+   20. Rodapé
+   A logo tem lettering preto e sumiria no azul profundo: no rodapé a marca
+   aparece como texto.
+   -------------------------------------------------------------------------- */
+.aq-footer {
+  background-color: var(--aquarios-primary-deep);
+  color: rgba(255, 255, 255, .78);
+  padding-block: var(--aquarios-space-xl) var(--aquarios-space-md);
+}
+.aq-footer h2, .aq-footer h3 { color: #fff; }
+.aq-footer a { color: rgba(255, 255, 255, .88); text-decoration: none; }
+.aq-footer a:hover { color: #fff; text-decoration: underline; }
+.aq-footer :focus-visible { outline-color: #fff; }
+
+.aq-footer__brand {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -.01em;
+}
+.aq-footer__list { list-style: none; padding: 0; margin: 0; }
+.aq-footer__list li + li { margin-top: var(--aquarios-space-2xs); }
+.aq-footer__bottom {
+  margin-top: var(--aquarios-space-lg);
+  padding-top: var(--aquarios-space-sm);
+  border-top: 1px solid rgba(255, 255, 255, .16);
+  font-size: var(--aquarios-fs-sm);
+  color: rgba(255, 255, 255, .68);
+}
+
+/* --------------------------------------------------------------------------
+   21. Marcador de dado a confirmar
+   [data-confirmar] marca todo conteúdo que ainda depende de confirmação com
+   o proprietário (roadmap, seção 26). Não aparece por padrão; para revisar,
+   basta adicionar a classe .aq-revisao ao <body> e todos ficam destacados.
+   -------------------------------------------------------------------------- */
+.aq-revisao [data-confirmar] {
+  outline: 2px dashed var(--aquarios-gold-dark);
+  outline-offset: 3px;
+  background-color: rgba(240, 196, 25, .10);
+}

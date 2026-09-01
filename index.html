@@ -81,19 +81,406 @@
     </div>
   </header>
 
-  <main id="conteudo" class="aq-placeholder">
+  <main id="conteudo">
+
+    <!-- ================= HERO ================= -->
+    <section class="aq-hero">
+      <div class="aq-hero__media">
+        <picture>
+          <source media="(min-width: 768px)"
+                  srcset="img/hero-rio-wide-768.webp 768w,
+                          img/hero-rio-wide-1024.webp 1024w,
+                          img/hero-rio-wide-1536.webp 1536w"
+                  sizes="100vw">
+          <img src="img/hero-rio-tall-900.webp"
+               srcset="img/hero-rio-tall-600.webp 600w, img/hero-rio-tall-900.webp 900w"
+               sizes="100vw"
+               width="1536" height="864"
+               alt="Amanhecer sobre o Rio São Francisco, visto de Buritizeiro"
+               fetchpriority="high" decoding="async">
+        </picture>
+      </div>
+
+      <div class="container aq-hero__inner">
+        <div class="aq-hero__content">
+          <span class="aq-eyebrow">Buritizeiro · Minas Gerais</span>
+          <h1>Uma pousada simples e acolhedora perto do Rio São Francisco</h1>
+          <p class="aq-lead">
+            Acolhimento, segurança, conforto e bem estar para quem passa por
+            Buritizeiro e Pirapora.
+          </p>
+          <div class="aq-hero__actions">
+            <a class="btn-aq-gold btn-aq-lg" href="contato.html" data-whatsapp>
+              <i class="bi bi-whatsapp" aria-hidden="true"></i>
+              Consultar disponibilidade
+            </a>
+            <a class="btn-aq-outline btn-aq-outline--invert btn-aq-lg" href="acomodacoes.html">
+              Ver acomodações
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= APRESENTAÇÃO ================= -->
+    <section class="aq-section">
+      <div class="container">
+        <div class="row g-4 g-lg-5 align-items-center">
+          <div class="col-12 col-lg-6">
+            <div class="aq-section-head mb-0">
+              <div class="aq-rule"></div>
+              <span class="aq-eyebrow">A pousada</span>
+              <h2>Perto do rio, no ritmo de Buritizeiro</h2>
+              <p class="aq-lead">
+                A Hotel Pousada Aquários fica em Buritizeiro, no norte de Minas
+                Gerais — cidade separada de Pirapora pelo Rio São Francisco.
+              </p>
+              <p>
+                A proposta é direta: um lugar bem cuidado e confortável, com bom
+                custo-benefício, para quem vem a trabalho, está de passagem ou
+                quer alguns dias perto do rio.
+              </p>
+              <p class="mt-3 mb-0">
+                <a class="aq-link-arrow" href="pousada.html">Conheça a pousada</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <div class="aq-media aq-media--4x3 aq-shadow">
+              <img src="img/local-externo-sentar.webp"
+                   alt="Varanda coberta da pousada, com bancos e piso claro"
+                   loading="lazy" decoding="async" width="765" height="1020">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ACOMODAÇÕES ================= -->
+    <section class="aq-section aq-bg-alt">
+      <div class="container">
+        <div class="row g-4 g-lg-5 align-items-center">
+          <div class="col-12 col-lg-6 order-lg-2">
+            <div class="aq-section-head mb-0">
+              <div class="aq-rule"></div>
+              <span class="aq-eyebrow">Acomodações</span>
+              <h2>Suítes prontas para descansar</h2>
+              <p class="aq-lead">
+                Capacidade, tipo de cama e comodidades de cada categoria estão
+                em confirmação com a pousada e serão publicados aqui.
+              </p>
+              <p class="mt-3 mb-0">
+                <a class="btn-aq" href="acomodacoes.html">Ver acomodações</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6 order-lg-1">
+            <div class="aq-media aq-media--3x2 aq-shadow">
+              <img src="img/foto-de-quarto.webp"
+                   alt="Quarto da pousada, com cama de casal arrumada"
+                   loading="lazy" decoding="async" width="1280" height="958">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= COMODIDADES ================= -->
+    <section class="aq-section">
+      <div class="container">
+        <div class="aq-section-head aq-section-head--center">
+          <div class="aq-rule"></div>
+          <span class="aq-eyebrow">Comodidades</span>
+          <h2>O que a pousada informa oferecer</h2>
+          <p class="aq-lead">
+            Lista publicada pela própria pousada em material de divulgação.
+            Será confirmada antes da publicação do site.
+          </p>
+        </div>
+
+        <!-- Todos os itens vêm do material de divulgação da pousada e seguem
+             marcados com data-confirmar até a validação com o proprietário. -->
+        <div class="row g-3">
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="aq-card h-100" data-confirmar>
+              <div class="aq-card__body">
+                <span class="aq-card__icon"><i class="bi bi-snow" aria-hidden="true"></i></span>
+                <h3 class="h6 mb-0">Ar-condicionado</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="aq-card h-100" data-confirmar>
+              <div class="aq-card__body">
+                <span class="aq-card__icon"><i class="bi bi-tv" aria-hidden="true"></i></span>
+                <h3 class="h6 mb-0">TV</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="aq-card h-100" data-confirmar>
+              <div class="aq-card__body">
+                <span class="aq-card__icon"><i class="bi bi-cup-straw" aria-hidden="true"></i></span>
+                <h3 class="h6 mb-1">Frigobar</h3>
+                <p class="aq-text-xs aq-text-muted mb-0">Em alguns quartos</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="aq-card h-100" data-confirmar>
+              <div class="aq-card__body">
+                <span class="aq-card__icon"><i class="bi bi-cup-hot" aria-hidden="true"></i></span>
+                <h3 class="h6 mb-0">Café da manhã</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="aq-card h-100" data-confirmar>
+              <div class="aq-card__body">
+                <span class="aq-card__icon"><i class="bi bi-car-front" aria-hidden="true"></i></span>
+                <h3 class="h6 mb-0">Garagem coberta</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="aq-card h-100" data-confirmar>
+              <div class="aq-card__body">
+                <span class="aq-card__icon"><i class="bi bi-droplet" aria-hidden="true"></i></span>
+                <h3 class="h6 mb-0">Ducha de água quente e fria</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="aq-card h-100" data-confirmar>
+              <div class="aq-card__body">
+                <span class="aq-card__icon"><i class="bi bi-moon-stars" aria-hidden="true"></i></span>
+                <h3 class="h6 mb-0">Colchões ortopédicos</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="aq-card h-100" data-confirmar>
+              <div class="aq-card__body">
+                <span class="aq-card__icon"><i class="bi bi-stars" aria-hidden="true"></i></span>
+                <h3 class="h6 mb-0">Enxoval novo</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ESTRUTURA ================= -->
+    <section class="aq-section aq-bg-alt">
+      <div class="container">
+        <div class="aq-section-head">
+          <div class="aq-rule"></div>
+          <span class="aq-eyebrow">Estrutura</span>
+          <h2>A pousada em fotos</h2>
+          <p class="aq-lead">
+            Imagens atuais, feitas pela própria pousada. Serão substituídas por
+            fotografias novas antes da publicação.
+          </p>
+        </div>
+
+        <div class="aq-mosaic">
+          <figure class="aq-mosaic__item--lead">
+            <div class="aq-media aq-media--1x1">
+              <img src="img/area-cafe-social.webp"
+                   alt="Área coberta com mesas e cadeiras de madeira, usada para o café"
+                   loading="lazy" decoding="async" width="765" height="1020">
+            </div>
+            <figcaption>Área de café e convivência</figcaption>
+          </figure>
+
+          <figure>
+            <div class="aq-media aq-media--1x1">
+              <img src="img/sacada.webp"
+                   alt="Corredor externo do andar superior, com guarda-corpo branco"
+                   loading="lazy" decoding="async" width="1360" height="1020">
+            </div>
+            <figcaption>Circulação externa</figcaption>
+          </figure>
+
+          <figure>
+            <div class="aq-media aq-media--1x1">
+              <img src="img/area-jardim.webp"
+                   alt="Jardim interno com canteiro central e palmeira"
+                   loading="lazy" decoding="async" width="1360" height="765">
+            </div>
+            <figcaption>Jardim interno</figcaption>
+          </figure>
+
+          <figure>
+            <div class="aq-media aq-media--1x1">
+              <img src="img/nascer-do-sol1.webp"
+                   alt="Vista da cidade e do rio ao amanhecer"
+                   loading="lazy" decoding="async" width="1360" height="661">
+            </div>
+            <figcaption>Vista ao amanhecer</figcaption>
+          </figure>
+
+          <figure>
+            <div class="aq-media aq-media--1x1">
+              <img src="img/area-jardin-noite.webp"
+                   alt="Jardim da pousada iluminado à noite"
+                   loading="lazy" decoding="async" width="459" height="1020">
+            </div>
+            <figcaption>Jardim à noite</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RIO SÃO FRANCISCO ================= -->
+    <section class="aq-section aq-bg-dark">
+      <div class="container">
+        <div class="row g-4 g-lg-5 align-items-center">
+          <div class="col-12 col-lg-6">
+            <div class="aq-section-head mb-0">
+              <div class="aq-rule"></div>
+              <span class="aq-eyebrow">Rio São Francisco</span>
+              <h2>O amanhecer do Velho Chico</h2>
+              <p class="aq-lead">
+                Buritizeiro fica na margem do São Francisco, ligada a Pirapora
+                pela ponte sobre o rio.
+              </p>
+              <p>
+                O endereço completo e as referências de como chegar entram na
+                página de localização assim que forem confirmados.
+              </p>
+              <p class="mt-3 mb-0">
+                <a class="btn-aq-outline btn-aq-outline--invert" href="contato.html">
+                  Como chegar
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <div class="aq-media aq-media--3x2 aq-shadow-lg">
+              <img src="img/nascer-do-sol-3.jpeg"
+                   alt="Sol nascendo sobre o Rio São Francisco"
+                   loading="lazy" decoding="async" width="1536" height="2048">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= AVALIAÇÕES ================= -->
+    <section class="aq-section">
+      <div class="container">
+        <div class="row g-4 g-lg-5 align-items-center">
+          <div class="col-12 col-lg-5">
+            <div class="aq-section-head mb-0">
+              <div class="aq-rule"></div>
+              <span class="aq-eyebrow">Avaliações</span>
+              <h2>O que os hóspedes dizem no Google</h2>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-7">
+            <div class="aq-card">
+              <div class="aq-card__body">
+                <div class="aq-rating mb-3">
+                  <span class="aq-rating__score" data-confirmar>4,4</span>
+                  <div>
+                    <p class="aq-stars mb-1" aria-hidden="true">
+                      <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                    </p>
+                    <p class="aq-text-muted mb-0" data-confirmar>
+                      Dezenas de avaliações no perfil público do Google
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Nenhuma avaliação é reproduzida aqui: o conteúdo das
+                     avaliações reais só entra depois de confirmado com a
+                     pousada (roadmap, seção 23). Nada é inventado ou editado. -->
+                <p class="aq-text-sm aq-text-muted">
+                  Nota e quantidade lidas do perfil público no Google, ainda não
+                  confirmadas. Nenhuma avaliação foi criada ou alterada.
+                </p>
+
+                <a class="btn-aq-outline"
+                   href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Pousada+Aqu%C3%A1rios+Buritizeiro+MG"
+                   target="_blank" rel="noopener">
+                  <i class="bi bi-google" aria-hidden="true"></i>
+                  Ver avaliações no Google
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA WHATSAPP ================= -->
+    <section class="aq-section--sm aq-bg-dark">
+      <div class="container">
+        <div class="row g-3 align-items-center justify-content-between">
+          <div class="col-12 col-lg-7">
+            <h2 class="mb-2">Vai passar por Buritizeiro?</h2>
+            <p class="aq-lead mb-0">
+              Fale direto com a pousada para consultar disponibilidade e valores.
+            </p>
+          </div>
+          <div class="col-12 col-lg-auto">
+            <a class="btn-aq-gold btn-aq-lg" href="contato.html" data-whatsapp>
+              <i class="bi bi-whatsapp" aria-hidden="true"></i>
+              Consultar disponibilidade
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="aq-footer">
     <div class="container">
-      <div class="aq-section-head mb-0">
-        <div class="aq-rule"></div>
-        <span class="aq-eyebrow">Em construção</span>
-        <h1>Início</h1>
-        <p class="aq-lead aq-measure">
-          O cabeçalho e a navegação já estão prontos. O conteúdo da home
-          entra na Fase 4.
-        </p>
+      <div class="row g-4">
+
+        <div class="col-12 col-lg-5">
+          <p class="aq-footer__brand mb-2">Hotel Pousada Aquários</p>
+          <p class="mb-0" style="max-width: 30rem">
+            Acolhimento, segurança, conforto e bem estar em Buritizeiro,
+            no norte de Minas Gerais, perto do Rio São Francisco.
+          </p>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <h2 class="h6 mb-3">Navegação</h2>
+          <ul class="aq-footer__list">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="acomodacoes.html">Acomodações</a></li>
+            <li><a href="pousada.html">A Pousada</a></li>
+            <li><a href="contato.html">Localização e contato</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-4">
+          <h2 class="h6 mb-3">Contato</h2>
+          <!-- Nenhum canal de contato é publicado antes da confirmação com o
+               proprietário (roadmap, seção 26). -->
+          <ul class="aq-footer__list">
+            <li data-confirmar>WhatsApp: <span class="aq-text-sm">a confirmar</span></li>
+            <li data-confirmar>E-mail: <span class="aq-text-sm">a confirmar</span></li>
+            <li data-confirmar>Endereço: <span class="aq-text-sm">a confirmar</span></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="aq-footer__bottom d-flex flex-wrap gap-2 justify-content-between">
+        <p class="mb-0">&copy; <span data-ano-atual>2026</span> Hotel Pousada Aquários</p>
+        <p class="mb-0">Buritizeiro · Minas Gerais</p>
       </div>
     </div>
-  </main>
+  </footer>
 
   <!-- Botão flutuante de WhatsApp. Fica oculto até o número oficial ser
        confirmado e preenchido em js/main.js (roadmap, seção 26). -->
@@ -103,7 +490,8 @@
   </a>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous" defer></script>
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+          crossorigin="anonymous" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>
