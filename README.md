@@ -227,7 +227,30 @@ link é compartilhado — importa porque o WhatsApp é o canal principal.
 Dados estruturados em JSON-LD:
 
 - `LodgingBusiness` na home e na página de contato;
-- `BreadcrumbList` nas páginas internas.
+- `BreadcrumbList` nas páginas internas;
+- `FAQPage` na página de contato (as três respostas estão visíveis na página,
+  como o Google exige).
+
+### Buritizeiro e Pirapora
+
+A pousada fica em **Buritizeiro** — esse é o endereço, no site e no schema.
+Pirapora entra como segundo alvo geográfico: as duas cidades ficam em margens
+opostas do Rio São Francisco, ligadas pela ponte, e quem procura hospedagem em
+Pirapora tem na pousada uma opção do outro lado.
+
+Como isso está implementado:
+
+- `areaServed` no schema lista as duas cidades; `address` continua só
+  Buritizeiro. Declarar endereço em Pirapora seria falsear a localização.
+- Títulos e meta descriptions das quatro páginas citam as duas cidades.
+- O conteúdo explica a relação geográfica onde ela ajuda quem lê — no
+  cabeçalho da apresentação, na seção do rio e nas perguntas frequentes.
+- A primeira pergunta frequente é literalmente "A pousada fica em Pirapora?",
+  respondida com a verdade: não, fica em Buritizeiro, do outro lado da ponte.
+
+Densidade dos nomes de cidade no texto visível: 2,2% a 3,7% por página,
+somando as duas. Cheguei a repetir a ideia da ponte cinco vezes na home — já
+lia como enchimento, e cortei para três.
 
 **O schema só declara o que está confirmado.** Nome, descrição, cidade,
 estado, país e área atendida entram; rua, telefone, faixa de preço e nota de
