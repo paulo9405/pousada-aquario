@@ -49,7 +49,10 @@
         <div class="offcanvas offcanvas-end aq-offcanvas" tabindex="-1"
              id="aqMenu" aria-labelledby="aqMenuTitulo">
           <div class="offcanvas-header">
-            <h2 class="offcanvas-title h6 mb-0" id="aqMenuTitulo">Menu</h2>
+            <!-- <p> e não <h2>: o painel fica no topo do DOM e um h2 aqui
+                 apareceria antes do h1 da página, quebrando a ordem de
+                 cabeçalhos. O aria-labelledby funciona igual. -->
+            <p class="offcanvas-title h6 mb-0" id="aqMenuTitulo">Menu</p>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
                     aria-label="Fechar menu"></button>
           </div>
@@ -71,7 +74,7 @@
 
             <!-- CTA principal. Vira link do WhatsApp assim que o número for
                  confirmado em js/main.js; até lá leva para a página de contato. -->
-            <a class="btn-aq aq-header__cta" href="contato.html" data-whatsapp>
+            <a class="btn-aq aq-header__cta" href="#contato" data-whatsapp>
               Reservar
             </a>
           </div>
@@ -81,18 +84,214 @@
     </div>
   </header>
 
-  <main id="conteudo" class="aq-placeholder">
-    <div class="container">
-      <div class="aq-section-head mb-0">
-        <div class="aq-rule"></div>
-        <span class="aq-eyebrow">Em construção</span>
-        <h1>Localização e contato</h1>
-        <p class="aq-lead aq-measure">
-          O cabeçalho e a navegação já estão prontos. O conteúdo desta página
-          entra na Fase 6.
+  <main id="conteudo">
+
+    <section class="aq-pagehead">
+      <div class="container">
+        <nav aria-label="Trilha de navegação">
+          <ol class="aq-breadcrumb">
+            <li><a href="index.html">Início</a></li>
+            <li aria-current="page">Localização e contato</li>
+          </ol>
+        </nav>
+        <span class="aq-eyebrow">Localização e contato</span>
+        <h1>Como chegar e como falar com a pousada</h1>
+        <p class="aq-lead aq-measure mb-0">
+          Endereço, mapa e canais de contato entram aqui assim que forem
+          confirmados com a pousada. Nada é publicado por estimativa.
         </p>
       </div>
-    </div>
+    </section>
+
+    <!-- ================= ENDEREÇO E MAPA ================= -->
+    <section class="aq-section">
+      <div class="container">
+        <div class="row g-4 g-lg-5">
+          <div class="col-12 col-lg-5">
+            <div class="aq-section-head">
+              <div class="aq-rule"></div>
+              <span class="aq-eyebrow">Endereço</span>
+              <h2>Onde fica</h2>
+            </div>
+
+            <!-- h-auto: .aq-card estica para a altura da linha, e aqui a linha
+                 é definida pelo mapa (22rem), o que deixaria a ficha vazia embaixo. -->
+            <div class="aq-card h-auto mb-4"><div class="aq-card__body">
+              <dl class="aq-specs">
+                <div class="aq-specs__row">
+                  <dt>Cidade</dt>
+                  <dd>Buritizeiro · Minas Gerais</dd>
+                </div>
+                <div class="aq-specs__row">
+                  <dt>Endereço</dt>
+                  <dd data-confirmar><span class="aq-pending">a confirmar</span></dd>
+                </div>
+                <div class="aq-specs__row">
+                  <dt>CEP</dt>
+                  <dd data-confirmar><span class="aq-pending">a confirmar</span></dd>
+                </div>
+                <div class="aq-specs__row">
+                  <dt>Ponto de referência</dt>
+                  <dd data-confirmar><span class="aq-pending">a confirmar</span></dd>
+                </div>
+              </dl>
+            </div></div>
+
+            <p class="aq-text-sm aq-text-muted mb-0">
+              Existe um endereço publicado no perfil do Google, mas ele ainda
+              não foi confirmado com a pousada — por isso não aparece aqui
+              (roadmap, seção 6).
+            </p>
+          </div>
+
+          <div class="col-12 col-lg-7">
+            <!--
+              MAPA — entra depois do endereço confirmado.
+
+              Apague o bloco .aq-empty abaixo e cole o iframe do Google Maps
+              dentro do mesmo <div class="aq-map">, para a altura não mudar:
+
+              <iframe
+                src="https://www.google.com/maps/embed?pb=COLE_AQUI"
+                title="Mapa da localização da Hotel Pousada Aquários"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen></iframe>
+
+              Vale carregar o mapa só depois de um clique: o iframe do Google
+              puxa vários recursos de terceiros e pesa no Lighthouse (Fase 8).
+            -->
+            <div class="aq-map aq-empty" data-confirmar>
+              <div>
+                <span class="aq-empty__icon"><i class="bi bi-geo-alt" aria-hidden="true"></i></span>
+                <h3 class="h5">Mapa em confirmação</h3>
+                <p class="aq-text-muted mb-3">
+                  O mapa entra aqui quando o endereço for confirmado. Enquanto
+                  isso, a busca pelo nome da pousada no Google Maps já
+                  funciona.
+                </p>
+                <a class="btn-aq-outline"
+                   href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Pousada+Aqu%C3%A1rios+Buritizeiro+MG"
+                   target="_blank" rel="noopener">
+                  <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                  Buscar no Google Maps
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CANAIS DE CONTATO ================= -->
+    <section class="aq-section aq-bg-alt" id="contato">
+      <div class="container">
+        <div class="aq-section-head aq-section-head--center">
+          <div class="aq-rule"></div>
+          <span class="aq-eyebrow">Contato</span>
+          <h2>Falar com a pousada</h2>
+          <p class="aq-lead">
+            A pousada divulga telefones e e-mail no próprio material impresso.
+            Antes de publicar aqui, é preciso confirmar qual número é o oficial
+            para o site.
+          </p>
+        </div>
+
+        <div class="row g-3 justify-content-center">
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="aq-card h-100" data-confirmar><div class="aq-card__body">
+              <span class="aq-card__icon"><i class="bi bi-whatsapp" aria-hidden="true"></i></span>
+              <h3 class="aq-card__title h5">WhatsApp</h3>
+              <p class="aq-card__text mb-0">
+                Canal principal para consultar disponibilidade e valores.
+                Número oficial <span class="aq-pending">a confirmar</span>.
+              </p>
+            </div></div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="aq-card h-100" data-confirmar><div class="aq-card__body">
+              <span class="aq-card__icon"><i class="bi bi-telephone" aria-hidden="true"></i></span>
+              <h3 class="aq-card__title h5">Telefone</h3>
+              <p class="aq-card__text mb-0">
+                Número <span class="aq-pending">a confirmar</span>.
+              </p>
+            </div></div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="aq-card h-100" data-confirmar><div class="aq-card__body">
+              <span class="aq-card__icon"><i class="bi bi-envelope" aria-hidden="true"></i></span>
+              <h3 class="aq-card__title h5">E-mail</h3>
+              <p class="aq-card__text mb-0">
+                Endereço <span class="aq-pending">a confirmar</span>.
+              </p>
+            </div></div>
+          </div>
+        </div>
+
+        <div class="aq-card mt-4" style="border-left: 4px solid var(--aquarios-gold)">
+          <div class="aq-card__body">
+            <h3 class="h6 mb-2">Nota de trabalho</h3>
+            <p class="aq-text-sm aq-text-muted mb-0">
+              O material de divulgação da pousada traz três telefones e um
+              e-mail. Publicar todos confunde quem chega pelo site: o ideal é
+              escolher um número para o botão de WhatsApp e, se fizer sentido,
+              um segundo como alternativa. Essa definição é do proprietário.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= REFERÊNCIAS LOCAIS ================= -->
+    <section class="aq-section">
+      <div class="container">
+        <div class="row g-4 g-lg-5 align-items-center">
+          <div class="col-12 col-lg-6">
+            <div class="aq-section-head mb-0">
+              <div class="aq-rule"></div>
+              <span class="aq-eyebrow">Na região</span>
+              <h2>Buritizeiro e Pirapora</h2>
+              <p class="aq-lead">
+                As duas cidades ficam em margens opostas do Rio São Francisco,
+                ligadas pela ponte sobre o rio.
+              </p>
+              <p class="mb-0">
+                Distâncias até a rodoviária, o centro e os pontos de interesse
+                da região entram aqui depois de conferidas — nenhuma foi
+                estimada.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <div class="aq-media aq-media--3x2 aq-shadow">
+              <img src="img/nascer-do-sol1.webp"
+                   alt="Vista da cidade e do rio ao amanhecer"
+                   loading="lazy" decoding="async" width="1360" height="661">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA WHATSAPP ================= -->
+    <section class="aq-section--sm aq-bg-dark">
+      <div class="container">
+        <div class="row g-3 align-items-center justify-content-between">
+          <div class="col-12 col-lg-7">
+            <h2 class="mb-2">Vai passar por Buritizeiro?</h2>
+            <p class="aq-lead mb-0">
+              Fale direto com a pousada para consultar disponibilidade e valores.
+            </p>
+          </div>
+          <div class="col-12 col-lg-auto">
+            <a class="btn-aq-gold btn-aq-lg" href="#contato" data-whatsapp>
+              <i class="bi bi-whatsapp" aria-hidden="true"></i>
+              Consultar disponibilidade
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="aq-footer">

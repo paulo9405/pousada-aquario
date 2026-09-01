@@ -49,7 +49,10 @@
         <div class="offcanvas offcanvas-end aq-offcanvas" tabindex="-1"
              id="aqMenu" aria-labelledby="aqMenuTitulo">
           <div class="offcanvas-header">
-            <h2 class="offcanvas-title h6 mb-0" id="aqMenuTitulo">Menu</h2>
+            <!-- <p> e não <h2>: o painel fica no topo do DOM e um h2 aqui
+                 apareceria antes do h1 da página, quebrando a ordem de
+                 cabeçalhos. O aria-labelledby funciona igual. -->
+            <p class="offcanvas-title h6 mb-0" id="aqMenuTitulo">Menu</p>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
                     aria-label="Fechar menu"></button>
           </div>
@@ -81,18 +84,231 @@
     </div>
   </header>
 
-  <main id="conteudo" class="aq-placeholder">
-    <div class="container">
-      <div class="aq-section-head mb-0">
-        <div class="aq-rule"></div>
-        <span class="aq-eyebrow">Em construção</span>
-        <h1>A Pousada</h1>
-        <p class="aq-lead aq-measure">
-          O cabeçalho e a navegação já estão prontos. O conteúdo desta página
-          entra na Fase 6.
+  <main id="conteudo">
+
+    <section class="aq-pagehead">
+      <div class="container">
+        <nav aria-label="Trilha de navegação">
+          <ol class="aq-breadcrumb">
+            <li><a href="index.html">Início</a></li>
+            <li aria-current="page">A Pousada</li>
+          </ol>
+        </nav>
+        <span class="aq-eyebrow">A Pousada</span>
+        <h1>Uma pousada de bairro, perto do rio</h1>
+        <p class="aq-lead aq-measure mb-0">
+          A Hotel Pousada Aquários fica em Buritizeiro, no norte de Minas
+          Gerais — cidade separada de Pirapora pelo Rio São Francisco.
         </p>
       </div>
-    </div>
+    </section>
+
+    <!-- ================= HISTÓRIA ================= -->
+    <section class="aq-section">
+      <div class="container">
+        <div class="row g-4 g-lg-5">
+          <div class="col-12 col-lg-5">
+            <div class="aq-section-head mb-0">
+              <div class="aq-rule"></div>
+              <span class="aq-eyebrow">História</span>
+              <h2>Como a pousada começou</h2>
+            </div>
+          </div>
+          <div class="col-12 col-lg-7">
+            <!--
+              O texto de história entra aqui depois da conversa com o
+              proprietário: quando a pousada abriu, quem toca o dia a dia, o
+              que mudou ao longo do tempo. Nada é escrito por suposição
+              (roadmap, seção 18).
+            -->
+            <div class="aq-empty" data-confirmar>
+              <span class="aq-empty__icon"><i class="bi bi-journal-text" aria-hidden="true"></i></span>
+              <h3 class="h5">História em confirmação</h3>
+              <p class="aq-text-muted mb-0">
+                Quando a pousada abriu, quem cuida do dia a dia e o que mudou
+                ao longo dos anos são informações que só o proprietário pode
+                contar. O espaço está reservado.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ESTRUTURA / GALERIA ================= -->
+    <section class="aq-section aq-bg-alt">
+      <div class="container">
+        <div class="aq-section-head">
+          <div class="aq-rule"></div>
+          <span class="aq-eyebrow">Estrutura</span>
+          <h2>As áreas comuns</h2>
+          <p class="aq-lead">
+            Fotografias atuais, feitas pela própria pousada. Serão substituídas
+            por imagens novas antes da publicação.
+          </p>
+        </div>
+
+        <div class="aq-gallery">
+          <figure>
+            <div class="aq-media aq-media--4x3">
+              <img src="img/area-cafe-social.webp"
+                   alt="Área coberta com mesas e bancos de madeira, usada para o café da manhã"
+                   loading="lazy" decoding="async" width="765" height="1020">
+            </div>
+            <figcaption>Área de café e convivência</figcaption>
+          </figure>
+          <figure>
+            <div class="aq-media aq-media--4x3">
+              <img src="img/local-externo-sentar.webp"
+                   alt="Varanda com colunas brancas, bancos de madeira e piso claro"
+                   loading="lazy" decoding="async" width="765" height="1020">
+            </div>
+            <figcaption>Varanda</figcaption>
+          </figure>
+          <figure>
+            <div class="aq-media aq-media--4x3">
+              <img src="img/sacada.webp"
+                   alt="Corredor externo do andar superior, com guarda-corpo branco"
+                   loading="lazy" decoding="async" width="1360" height="1020">
+            </div>
+            <figcaption>Circulação externa</figcaption>
+          </figure>
+          <figure>
+            <div class="aq-media aq-media--4x3">
+              <img src="img/area-jardim.webp"
+                   alt="Jardim interno com canteiro central e palmeira"
+                   loading="lazy" decoding="async" width="1360" height="765">
+            </div>
+            <figcaption>Jardim interno</figcaption>
+          </figure>
+          <figure>
+            <div class="aq-media aq-media--4x3">
+              <img src="img/area-jardin-noite.webp"
+                   alt="Área interna da pousada iluminada à noite"
+                   loading="lazy" decoding="async" width="459" height="1020">
+            </div>
+            <figcaption>À noite</figcaption>
+          </figure>
+          <figure>
+            <div class="aq-media aq-media--4x3">
+              <img src="img/foto-de-quarto.webp"
+                   alt="Quarto da pousada, com cama de casal arrumada"
+                   loading="lazy" decoding="async" width="1280" height="958">
+            </div>
+            <figcaption>Um dos quartos</figcaption>
+          </figure>
+        </div>
+
+        <p class="mt-4 mb-0">
+          <a class="aq-link-arrow" href="acomodacoes.html">Ver as acomodações</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= SERVIÇOS ================= -->
+    <section class="aq-section">
+      <div class="container">
+        <div class="aq-section-head aq-section-head--center">
+          <div class="aq-rule"></div>
+          <span class="aq-eyebrow">No dia a dia</span>
+          <h2>O que a pousada informa oferecer</h2>
+          <p class="aq-lead">
+            Lista publicada pela própria pousada em material de divulgação.
+            Será confirmada antes da publicação do site.
+          </p>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="aq-card h-100" data-confirmar><div class="aq-card__body">
+              <span class="aq-card__icon"><i class="bi bi-cup-hot" aria-hidden="true"></i></span>
+              <h3 class="aq-card__title h5">Café da manhã</h3>
+              <p class="aq-card__text mb-0">
+                Servido na área de convivência. O horário será confirmado com a
+                pousada.
+              </p>
+            </div></div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="aq-card h-100" data-confirmar><div class="aq-card__body">
+              <span class="aq-card__icon"><i class="bi bi-car-front" aria-hidden="true"></i></span>
+              <h3 class="aq-card__title h5">Garagem coberta</h3>
+              <p class="aq-card__text mb-0">
+                Estacionamento no próprio local, conforme o material de
+                divulgação da pousada.
+              </p>
+            </div></div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="aq-card h-100" data-confirmar><div class="aq-card__body">
+              <span class="aq-card__icon"><i class="bi bi-tree" aria-hidden="true"></i></span>
+              <h3 class="aq-card__title h5">Áreas comuns</h3>
+              <p class="aq-card__text mb-0">
+                Jardim, varanda e área coberta com mesas, como aparecem nas
+                fotos acima.
+              </p>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RIO SÃO FRANCISCO ================= -->
+    <section class="aq-section aq-bg-dark">
+      <div class="container">
+        <div class="row g-4 g-lg-5 align-items-center">
+          <div class="col-12 col-lg-6">
+            <div class="aq-section-head mb-0">
+              <div class="aq-rule"></div>
+              <span class="aq-eyebrow">Rio São Francisco</span>
+              <h2>O Velho Chico ao lado</h2>
+              <p class="aq-lead">
+                Buritizeiro e Pirapora ficam em margens opostas do São
+                Francisco, ligadas pela ponte sobre o rio.
+              </p>
+              <p>
+                A distância exata entre a pousada e o rio, e os pontos de
+                interesse perto dela, entram na página de localização assim que
+                forem confirmados.
+              </p>
+              <p class="mt-3 mb-0">
+                <a class="btn-aq-outline btn-aq-outline--invert" href="contato.html">
+                  Ver localização
+                </a>
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <div class="aq-media aq-media--3x2 aq-shadow-lg">
+              <img src="img/nascer-do-sol2.jpeg"
+                   alt="Sol nascendo sobre o Rio São Francisco, com árvores em silhueta"
+                   loading="lazy" decoding="async" width="1536" height="2048">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA WHATSAPP ================= -->
+    <section class="aq-section--sm aq-bg-dark">
+      <div class="container">
+        <div class="row g-3 align-items-center justify-content-between">
+          <div class="col-12 col-lg-7">
+            <h2 class="mb-2">Quer conhecer a pousada?</h2>
+            <p class="aq-lead mb-0">
+              Fale direto com a pousada para consultar disponibilidade e valores.
+            </p>
+          </div>
+          <div class="col-12 col-lg-auto">
+            <a class="btn-aq-gold btn-aq-lg" href="contato.html" data-whatsapp>
+              <i class="bi bi-whatsapp" aria-hidden="true"></i>
+              Consultar disponibilidade
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="aq-footer">

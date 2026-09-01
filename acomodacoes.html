@@ -49,7 +49,10 @@
         <div class="offcanvas offcanvas-end aq-offcanvas" tabindex="-1"
              id="aqMenu" aria-labelledby="aqMenuTitulo">
           <div class="offcanvas-header">
-            <h2 class="offcanvas-title h6 mb-0" id="aqMenuTitulo">Menu</h2>
+            <!-- <p> e não <h2>: o painel fica no topo do DOM e um h2 aqui
+                 apareceria antes do h1 da página, quebrando a ordem de
+                 cabeçalhos. O aria-labelledby funciona igual. -->
+            <p class="offcanvas-title h6 mb-0" id="aqMenuTitulo">Menu</p>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
                     aria-label="Fechar menu"></button>
           </div>

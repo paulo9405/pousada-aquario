@@ -116,13 +116,14 @@ grep -rn "data-confirmar" *.html
 ```
 
 Hoje isso cobre a lista de comodidades (extraída do material de divulgação da
-própria pousada), a nota do Google, os canais de contato do rodapé e toda a
-página de acomodações — categorias e regras da hospedagem.
+própria pousada), a nota do Google, os canais de contato, as categorias de
+quarto, as regras da hospedagem, a história da pousada e o endereço.
 
 ## Status
 
-Fases 1 (setup), 2 (design system), 3 (header e navegação), 4 (home) e
-5 (acomodações) concluídas.
+Fases 1 (setup), 2 (design system), 3 (header e navegação), 4 (home),
+5 (acomodações) e 6 (institucional e localização) concluídas — as quatro
+páginas do MVP estão construídas.
 
 A home está completa: hero, apresentação, acomodações, comodidades, estrutura
 em mosaico, Rio São Francisco, avaliações, chamada de WhatsApp e rodapé. O
@@ -135,8 +136,16 @@ hospedagem (check-in, check-out, pets, pagamento, cancelamento) são uma ficha
 com todos os valores marcados como "a confirmar" — serve de checklist para a
 conversa com o proprietário.
 
-`pousada.html` e `contato.html` ainda mostram um placeholder no lugar do
-conteúdo, que entra na Fase 6.
+`pousada.html` traz a galeria das áreas comuns com as fotos atuais; a
+história fica como estado vazio até a conversa com o proprietário.
+
+`contato.html` tem a ficha de endereço, a área reservada do mapa e os canais
+de contato. O snippet do iframe do Google Maps está em comentário no HTML,
+pronto para colar quando o endereço for confirmado — vale carregá-lo só após
+um clique, para não pesar no Lighthouse.
+
+Próximas fases: 7 (responsividade), 8 (performance), 9 (SEO local) e
+10 (QA e deploy).
 
 O contraste do texto do hero é medido sobre os pixels compostos da foto, não
 estimado — o pior caso em 11 tamanhos de viewport é 5.17:1, acima de AA. Se a
