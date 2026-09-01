@@ -345,6 +345,7 @@ pontos pendentes ficam destacados na tela.
 | Café da manhã | Das 7h às 10h |
 | Aceita animais | Sim |
 | Formas de pagamento | Dinheiro, cartão e Pix |
+| Distância até Pirapora | ~13 min a pé, ~4 min de bicicleta até o centro (fonte: Google Maps) |
 
 A pousada fica separada do rio por uma rua — "às margens" é uso correto em
 hospedagem. O limite fica um degrau acima: **não** afirmar "pé na água",
@@ -367,7 +368,6 @@ quartos nunca foi confirmada e não é afirmada em lugar nenhum.**
 | Nota do Google (4,4) | Exibida, marcada como não confirmada. **Nenhuma avaliação é reproduzida** |
 | Lista de comodidades | Ar-condicionado, TV, frigobar, garagem, ducha quente/fria, colchões ortopédicos, enxoval novo — vieram do **folheto de divulgação da própria pousada** (`img/area-externa.webp`), não confirmados um a um |
 | Telefones extras | O folheto traz (38) 99156-7590 e (38) 98843-9676. Não estão no site |
-| Distâncias | A home publica 13 min a pé e 4 de bicicleta até Pirapora. **`contato.html` ainda diz que nenhuma distância foi estimada — inconsistência a resolver** |
 
 Detalhe: `img/area-externa.webp` **não é foto da pousada** — é o folheto de
 divulgação, com telefones e e-mail. Nenhuma página o usa. Como o repositório é
@@ -385,23 +385,15 @@ Pendências conhecidas de imagem:
 - **Não existe nenhuma foto da fachada** da pousada
 - Cada categoria de quarto precisa ser fotografada separadamente
 
-**Origem da foto de capa — pendência aberta e importante.**
+**Foto de capa.** O hero usa `img/paisagem-ponte-marechal.png` (2048×768),
+da Ponte Marechal Hermes ao pôr do sol. **Fotografia autoral do desenvolvedor
+do site** — sem questão de licença.
 
-O hero usa `img/paisagem-ponte-marechal.png` (2048×768). No mesmo diretório
-existem `img/ponte-marechal-mg-635x421.jpg` (635×421, nome no padrão de imagem
-baixada de site) e `img/ChatGPT Image 1 de set. de 2026, 09_33_37.png`
-(1672×941). **As três mostram a mesma cena**: mesma ponte, mesmo pôr do sol,
-mesmo enquadramento com folhagem. A evidência indica que a capa é uma
-**geração/expansão por IA a partir de uma fotografia de terceiro**.
-
-Duas consequências, ambas para decisão do proprietário:
-
-1. **Direito autoral** — derivada de foto de licença desconhecida
-2. **Veracidade** — é imagem sintética de um marco real, usada como capa do
-   site de um negócio real
-
-Nenhuma das duas é impeditivo técnico, mas as duas precisam ser decididas
-conscientemente antes de o site deixar de ser protótipo.
+No mesmo diretório existem duas versões auxiliares do mesmo enquadramento,
+`img/ponte-marechal-mg-635x421.jpg` e
+`img/ChatGPT Image 1 de set. de 2026, 09_33_37.png`. Nenhuma página as usa;
+ficam como material de apoio. Só a `paisagem-ponte-marechal.png` gera as
+variantes servidas (`hero-ponte-wide-*` e `hero-ponte-tall-*`).
 
 ---
 
@@ -599,14 +591,11 @@ HTTPS e deploy automático funcionando.
 
 1. **Categorias de quarto** — o maior buraco. Quem chega pelo Google querendo
    hospedagem vê um aviso de "em confirmação"
-2. **Origem da foto de capa** — direito autoral e veracidade
-3. **Confirmar as demais informações** com o proprietário —
+2. **Confirmar as demais informações** com o proprietário —
    `docs/Informacoes-a-confirmar-com-Roney.md` tem o checklist completo
 
 ### Pendências técnicas menores
 
-- `contato.html` diz que nenhuma distância foi estimada, mas a home publica
-  13 min a pé — resolver a inconsistência
 - `img/og-image.jpg` ainda usa a foto antiga do amanhecer
 - Mover `img/area-externa.webp` (folheto com telefones) para `docs/`
 - Gerar variantes AVIF quando houver codificador
