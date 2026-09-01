@@ -12,19 +12,22 @@ HTML5 · CSS3 · Bootstrap 5.3.8 · Bootstrap Icons 1.13.1 · JavaScript vanilla
 Cloudflare Pages
 
 Bootstrap e Bootstrap Icons são carregados por CDN com Subresource Integrity.
+A fonte (Figtree variável) é servida do próprio domínio, em `fonts/`.
 Não há etapa de build: os arquivos são servidos como estão.
 
 ## Estrutura
 
 ```text
 pousada-aquarios/
-├── css/style.css        # tokens da identidade + base
+├── css/style.css        # design system completo
 ├── js/main.js           # configuração do site (contato, helpers)
+├── fonts/               # Figtree variável (woff2, self-hosted)
 ├── img/                 # fotografias e logo (provisórias)
 ├── index.html           # Início
 ├── acomodacoes.html     # Acomodações
 ├── pousada.html         # A Pousada
 ├── contato.html         # Localização e contato
+├── styleguide.html      # referência interna do design system (noindex)
 ├── favicon.ico
 └── apple-touch-icon.png
 ```
@@ -42,11 +45,19 @@ python3 -m http.server 8000
 # http://localhost:8000
 ```
 
-## Identidade
+## Design system
 
-As cores foram extraídas da logo e estão em `css/style.css` como tokens
-`--aquarios-*`. Os contrastes foram verificados em WCAG 2.1 — as anotações
-estão ao lado de cada token.
+Tudo vive em `css/style.css`, organizado em 14 seções (fontes, tokens,
+overrides do Bootstrap, base, tipografia, layout, links, botões, cards,
+mídia, detalhes, acessibilidade, utilitários).
+
+`styleguide.html` mostra o sistema inteiro renderizado — é a referência de
+trabalho. Está com `noindex` e não entra no menu nem no sitemap.
+
+### Cores
+
+Extraídas da logo. Os contrastes foram verificados em WCAG 2.1 — as
+anotações estão ao lado de cada token.
 
 | Token                     | Valor     | Uso                              |
 | ------------------------- | --------- | -------------------------------- |
@@ -55,11 +66,33 @@ estão ao lado de cada token.
 | `--aquarios-primary-soft` | `#E8F0FB` | fundos de seção                  |
 | `--aquarios-gold`         | `#F0C419` | destaque pontual (nunca dominante) |
 | `--aquarios-text`         | `#17212E` | texto                            |
+| `--aquarios-whatsapp`     | `#0F7A6C` | superfícies de conversão         |
+
+O verde oficial do WhatsApp (`#25D366`) tem 1.98:1 com branco e reprova em
+WCAG. Superfícies clicáveis usam `#0F7A6C`, da própria paleta do WhatsApp; o
+verde claro fica reservado a ícone sobre fundo escuro.
+
+### Tipografia
+
+Figtree variável, self-hosted — um arquivo de ~20 KB cobre os pesos 300–900.
+A escala é fluida com `clamp()`: cresce sozinha entre 320 px e 1400 px, sem
+breakpoints.
+
+### Componentes
+
+`.btn-aq` · `.btn-aq-outline` · `.btn-aq-gold` · `.btn-aq-whatsapp` ·
+`.aq-card` · `.aq-media` (proporções fixas) · `.aq-pill` · `.aq-section-head` ·
+`.aq-list` · `.aq-rule`
+
+Todos os botões têm no mínimo 44 px de altura. A proporção das imagens fica
+no container, não no arquivo — trocar as fotos provisórias pelas definitivas
+não mexe no layout.
 
 ## Status
 
-Fase 1 (setup inicial) concluída. As páginas exibem uma tela provisória de
-verificação da base, que será substituída a partir da Fase 3.
+Fases 1 (setup) e 2 (design system) concluídas. As quatro páginas ainda
+exibem uma tela provisória de verificação, que será substituída a partir da
+Fase 3 (header e navegação).
 
 Nenhum dado da pousada — WhatsApp, telefone, endereço, acomodações, preços,
 políticas — foi confirmado com o proprietário. Nada disso deve ser publicado

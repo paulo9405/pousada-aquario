@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design system — Hotel Pousada Aquários</title>
+  <meta name="description" content="Referência interna do design system do site da Hotel Pousada Aquários.">
+  <!-- Página interna de referência: nunca deve ser indexada nem entrar no sitemap -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#1A5FC2">
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <link rel="preload" href="fonts/figtree-latin-wght-normal.woff2"
+        as="font" type="font/woff2" crossorigin>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+        integrity="sha384-CK2SzKma4jA5H/MXDUU7i1TqZlCFaD4T01vtyDFvPlD97JQyS+IsSh1nI2EFbpyk" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Estilos exclusivos desta página de referência — não fazem parte do site */
+    .sg-swatch { height: 5rem; border-radius: var(--aquarios-radius-sm); border: 1px solid var(--aquarios-border); }
+    .sg-label  { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .8125rem; }
+    .sg-box    { border: 1px dashed var(--aquarios-border-strong); border-radius: var(--aquarios-radius-sm); background: var(--aquarios-bg-alt); }
+    .sg-anchor { scroll-margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="aq-section--sm border-bottom">
+    <div class="container">
+      <img src="img/logo.png" alt="Hotel Pousada Aquários" width="150" height="100" style="display:block;width:150px">
+      <span class="aq-eyebrow mt-3">Fase 2 — referência interna</span>
+      <h1>Design system</h1>
+      <p class="aq-lead aq-measure">
+        Base visual do site da Hotel Pousada Aquários. Tudo aqui vem de
+        <code>css/style.css</code>. Esta página é uma referência de trabalho:
+        não entra no menu, no sitemap nem na indexação.
+      </p>
+      <p class="mt-3 mb-0">
+        <a class="aq-link-arrow" href="index.html">Voltar para o site</a>
+      </p>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ================= CORES ================= -->
+    <section class="aq-section sg-anchor" id="cores">
+      <div class="container">
+        <div class="aq-section-head">
+          <div class="aq-rule"></div>
+          <span class="aq-eyebrow">01</span>
+          <h2>Cores</h2>
+          <p class="aq-lead">
+            Extraídas da logo. Os azuis carregam a identidade; o dourado é
+            secundário e nunca domina a tela. Cada contraste abaixo foi
+            verificado em WCAG 2.1.
+          </p>
+        </div>
+
+        <h3 class="h5">Azuis</h3>
+        <div class="row g-3 mb-4">
+          <div class="col-6 col-md-3">
+            <div class="sg-swatch" style="background: var(--aquarios-primary)"></div>
+            <p class="sg-label mt-2 mb-0">--aquarios-primary</p>
+            <p class="aq-text-xs aq-text-muted mb-0">#1A5FC2 · 6.07:1 com branco · AA</p>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="sg-swatch" style="background: var(--aquarios-primary-dark)"></div>
+            <p class="sg-label mt-2 mb-0">--aquarios-primary-dark</p>
+            <p class="aq-text-xs aq-text-muted mb-0">#0A2F63 · 13.1:1 · títulos e rodapé</p>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="sg-swatch" style="background: var(--aquarios-primary-deep)"></div>
+            <p class="sg-label mt-2 mb-0">--aquarios-primary-deep</p>
+            <p class="aq-text-xs aq-text-muted mb-0">#071E3F · 16.6:1 · fundos escuros</p>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="sg-swatch" style="background: var(--aquarios-primary-soft)"></div>
+            <p class="sg-label mt-2 mb-0">--aquarios-primary-soft</p>
+            <p class="aq-text-xs aq-text-muted mb-0">#E8F0FB · fundo de seção</p>
+          </div>
+        </div>
+
+        <h3 class="h5">Dourado</h3>
+        <div class="row g-3 mb-4">
+          <div class="col-6 col-md-3">
+            <div class="sg-swatch" style="background: var(--aquarios-gold)"></div>
+            <p class="sg-label mt-2 mb-0">--aquarios-gold</p>
+            <p class="aq-text-xs aq-text-muted mb-0">#F0C419 · preenchimento, nunca texto sobre branco</p>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="sg-swatch" style="background: var(--aquarios-gold-dark)"></div>
+            <p class="sg-label mt-2 mb-0">--aquarios-gold-dark</p>
+            <p class="aq-text-xs aq-text-muted mb-0">#C9880A · 3.00:1 · só texto grande e ícones</p>
+          </div>
+        </div>
+
+        <h3 class="h5">Superfícies e texto</h3>
+        <div class="row g-3">
+          <div class="col-6 col-md-3">
+            <div class="sg-swatch" style="background: var(--aquarios-bg-alt)"></div>
+            <p class="sg-label mt-2 mb-0">--aquarios-bg-alt</p>
+            <p class="aq-text-xs aq-text-muted mb-0">#F2F6FB</p>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="sg-swatch" style="background: var(--aquarios-text)"></div>
+            <p class="sg-label mt-2 mb-0">--aquarios-text</p>
+            <p class="aq-text-xs aq-text-muted mb-0">#17212E · 16.2:1</p>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="sg-swatch" style="background: var(--aquarios-text-muted)"></div>
+            <p class="sg-label mt-2 mb-0">--aquarios-text-muted</p>
+            <p class="aq-text-xs aq-text-muted mb-0">#5A6675 · 5.85:1 · AA</p>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="sg-swatch" style="background: var(--aquarios-whatsapp)"></div>
+            <p class="sg-label mt-2 mb-0">--aquarios-whatsapp</p>
+            <p class="aq-text-xs aq-text-muted mb-0">#0F7A6C · 5.22:1 · AA</p>
+          </div>
+        </div>
+
+        <div class="aq-card mt-4" style="border-left: 4px solid var(--aquarios-gold)">
+          <div class="aq-card__body">
+            <h4 class="h6 mb-2">Por que o verde do WhatsApp não é o oficial</h4>
+            <p class="aq-text-sm aq-text-muted mb-0">
+              O verde de marca <code>#25D366</code> tem 1.98:1 com branco e
+              reprova em WCAG tanto para texto quanto para componentes. As
+              superfícies clicáveis usam <code>#0F7A6C</code>, da própria
+              paleta do WhatsApp. O verde claro fica só para preenchimento de
+              ícone sobre fundo escuro.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TIPOGRAFIA ================= -->
+    <section class="aq-section aq-bg-alt sg-anchor" id="tipografia">
+      <div class="container">
+        <div class="aq-section-head">
+          <div class="aq-rule"></div>
+          <span class="aq-eyebrow">02</span>
+          <h2>Tipografia</h2>
+          <p class="aq-lead">
+            Figtree variável, servida do próprio domínio. Um arquivo de ~20 KB
+            cobre todos os pesos. A escala é fluida: cresce sozinha entre
+            320&nbsp;px e 1400&nbsp;px, sem breakpoints.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-12 col-lg-7">
+            <div class="aq-card">
+              <div class="aq-card__body">
+                <h1 class="mb-1">Hospedagem à beira do Rio São Francisco</h1>
+                <p class="sg-label aq-text-muted mb-4">h1 · 800 · clamp(2rem → 3.5rem)</p>
+
+                <h2 class="mb-1">Acomodações confortáveis</h2>
+                <p class="sg-label aq-text-muted mb-4">h2 · 800 · clamp(1.625rem → 2.5rem)</p>
+
+                <h3 class="mb-1">Café da manhã e áreas comuns</h3>
+                <p class="sg-label aq-text-muted mb-4">h3 · 700 · clamp(1.25rem → 1.625rem)</p>
+
+                <h4 class="mb-1">Estacionamento no local</h4>
+                <p class="sg-label aq-text-muted mb-4">h4 · 700</p>
+
+                <p class="aq-lead mb-1">
+                  Texto de apoio, usado logo abaixo dos títulos de seção.
+                </p>
+                <p class="sg-label aq-text-muted mb-4">.aq-lead</p>
+
+                <p class="mb-1">
+                  Parágrafo padrão. Acentuação conferida: ação, coração,
+                  português, Aquários, São Francisco, hóspede, três, você.
+                </p>
+                <p class="sg-label aq-text-muted mb-0">body · 1rem / 1.65</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-5">
+            <div class="aq-card">
+              <div class="aq-card__body">
+                <span class="aq-eyebrow">Eyebrow</span>
+                <h3 class="mb-2">Cabeçalho de seção</h3>
+                <p class="aq-lead mb-4">Eyebrow, título e lead formam o padrão <code>.aq-section-head</code>.</p>
+
+                <h4 class="h6">Lista com marcador</h4>
+                <ul class="aq-list mb-4">
+                  <li>Item de comodidade</li>
+                  <li>Outro item da lista</li>
+                  <li>Terceiro item</li>
+                </ul>
+
+                <h4 class="h6">Pesos disponíveis</h4>
+                <p class="mb-0" style="font-weight:300">300 — Light</p>
+                <p class="mb-0" style="font-weight:400">400 — Regular</p>
+                <p class="mb-0" style="font-weight:600">600 — Semibold</p>
+                <p class="mb-0" style="font-weight:700">700 — Bold</p>
+                <p class="mb-0" style="font-weight:800">800 — Extrabold</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BOTÕES E LINKS ================= -->
+    <section class="aq-section sg-anchor" id="botoes">
+      <div class="container">
+        <div class="aq-section-head">
+          <div class="aq-rule"></div>
+          <span class="aq-eyebrow">03</span>
+          <h2>Botões e links</h2>
+          <p class="aq-lead">
+            Todos com no mínimo 44&nbsp;px de altura, o alvo de toque
+            confortável exigido na Fase 7.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-12 col-lg-6">
+            <div class="aq-card">
+              <div class="aq-card__body">
+                <h3 class="h6 mb-3">Variantes</h3>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <a href="#botoes" class="btn-aq">Ver acomodações</a>
+                  <a href="#botoes" class="btn-aq-outline">Saiba mais</a>
+                  <a href="#botoes" class="btn-aq-whatsapp">
+                    <i class="bi bi-whatsapp" aria-hidden="true"></i> Falar no WhatsApp
+                  </a>
+                </div>
+                <p class="aq-text-xs aq-text-muted mb-0 sg-label">
+                  .btn-aq · .btn-aq-outline · .btn-aq-whatsapp
+                </p>
+
+                <hr class="aq-divider" style="margin-block: 1.5rem">
+
+                <h3 class="h6 mb-3">Tamanhos</h3>
+                <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                  <a href="#botoes" class="btn-aq btn-aq-lg">Grande</a>
+                  <a href="#botoes" class="btn-aq">Padrão</a>
+                  <a href="#botoes" class="btn-aq btn-aq-sm">Pequeno</a>
+                </div>
+                <p class="aq-text-xs aq-text-muted mb-0 sg-label">
+                  .btn-aq-lg · padrão · .btn-aq-sm
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <div class="aq-card">
+              <div class="aq-card__body">
+                <h3 class="h6 mb-3">Links</h3>
+                <p class="mb-2">
+                  Um <a href="#botoes">link dentro de um parágrafo</a> herda o
+                  azul primário e escurece no hover.
+                </p>
+                <p class="mb-2"><a href="#botoes" class="aq-link">Link discreto</a> — sublinha só no hover.</p>
+                <p class="mb-3"><a href="#botoes" class="aq-link-arrow">Ver todas as fotos</a></p>
+                <p class="aq-text-xs aq-text-muted mb-0 sg-label">a · .aq-link · .aq-link-arrow</p>
+
+                <hr class="aq-divider" style="margin-block: 1.5rem">
+
+                <h3 class="h6 mb-3">Foco pelo teclado</h3>
+                <p class="aq-text-sm aq-text-muted mb-3">
+                  Navegue com Tab: o anel dourado de 3&nbsp;px aparece em
+                  qualquer elemento focável. Em fundo escuro ele vira branco.
+                </p>
+                <a href="#botoes" class="btn-aq-outline">Teste o foco aqui</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="aq-bg-dark aq-radius mt-4" style="padding: var(--aquarios-space-lg)">
+          <span class="aq-eyebrow">Sobre fundo escuro</span>
+          <h3 class="mb-2">O dourado ganha função de destaque</h3>
+          <p class="aq-lead mb-3" style="max-width: 46rem">
+            É aqui que o <code>.btn-aq-gold</code> faz sentido: sobre azul
+            profundo ou sobre foto, nunca solto no branco.
+          </p>
+          <div class="d-flex flex-wrap gap-2">
+            <a href="#botoes" class="btn-aq-gold">Consultar disponibilidade</a>
+            <a href="#botoes" class="btn-aq-whatsapp">
+              <i class="bi bi-whatsapp" aria-hidden="true"></i> WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CARDS ================= -->
+    <section class="aq-section aq-bg-alt sg-anchor" id="cards">
+      <div class="container">
+        <div class="aq-section-head">
+          <div class="aq-rule"></div>
+          <span class="aq-eyebrow">04</span>
+          <h2>Cards</h2>
+          <p class="aq-lead">
+            Um card com foto e um card com ícone cobrem quase tudo que o site
+            precisa. A elevação no hover só é aplicada onde existe mouse.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-12 col-md-6 col-lg-4">
+            <article class="aq-card aq-card--hover">
+              <div class="aq-media aq-media--4x3 aq-media--zoom aq-media--flush">
+                <img src="img/foto-de-quarto.webp" alt="Quarto da pousada" loading="lazy" decoding="async">
+              </div>
+              <div class="aq-card__body">
+                <span class="aq-pill mb-2">Conteúdo provisório</span>
+                <h3 class="aq-card__title">Card com foto</h3>
+                <p class="aq-card__text mb-0">
+                  Base das acomodações. Nome, capacidade e comodidades ficam
+                  vazios até a confirmação com o proprietário.
+                </p>
+              </div>
+              <div class="aq-card__footer">
+                <a href="#cards" class="aq-link-arrow">Ver detalhes</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-4">
+            <article class="aq-card aq-card--hover">
+              <div class="aq-card__body">
+                <span class="aq-card__icon"><i class="bi bi-cup-hot" aria-hidden="true"></i></span>
+                <h3 class="aq-card__title">Card com ícone</h3>
+                <p class="aq-card__text mb-0">
+                  Base das comodidades. O ícone fica em azul sobre o tinte
+                  claro, sem competir com as fotos.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-4">
+            <article class="aq-card">
+              <div class="aq-media aq-media--4x3 aq-media--overlay aq-media--flush">
+                <img src="img/area-vista-rio.webp" alt="Área da pousada com vista para o rio" loading="lazy" decoding="async">
+              </div>
+              <div class="aq-card__body">
+                <h3 class="aq-card__title">Card sem hover</h3>
+                <p class="aq-card__text mb-0">
+                  Mesma estrutura, com véu escuro na foto — o padrão para
+                  quando houver texto por cima da imagem.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MÍDIA ================= -->
+    <section class="aq-section sg-anchor" id="midia">
+      <div class="container">
+        <div class="aq-section-head">
+          <div class="aq-rule"></div>
+          <span class="aq-eyebrow">05</span>
+          <h2>Proporções de imagem</h2>
+          <p class="aq-lead">
+            A proporção fica no container, não no arquivo. Trocar as fotos
+            provisórias pelas definitivas não vai mexer no layout
+            (roadmap, seção 25).
+          </p>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-6 col-lg-3">
+            <div class="aq-media aq-media--16x9">
+              <img src="img/nascer-do-sol1.webp" alt="Nascer do sol no rio" loading="lazy" decoding="async">
+            </div>
+            <p class="sg-label aq-text-muted mt-2 mb-0">.aq-media--16x9</p>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="aq-media aq-media--4x3">
+              <img src="img/area-jardim.webp" alt="Área de jardim da pousada" loading="lazy" decoding="async">
+            </div>
+            <p class="sg-label aq-text-muted mt-2 mb-0">.aq-media--4x3</p>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="aq-media aq-media--1x1">
+              <img src="img/area-cafe-social.webp" alt="Área de café da pousada" loading="lazy" decoding="async">
+            </div>
+            <p class="sg-label aq-text-muted mt-2 mb-0">.aq-media--1x1</p>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="aq-media aq-media--3x4">
+              <img src="img/sacada.webp" alt="Sacada de um dos quartos" loading="lazy" decoding="async">
+            </div>
+            <p class="sg-label aq-text-muted mt-2 mb-0">.aq-media--3x4</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ESPAÇO, SOMBRA, DETALHES ================= -->
+    <section class="aq-section aq-bg-alt sg-anchor" id="fundacoes">
+      <div class="container">
+        <div class="aq-section-head">
+          <div class="aq-rule"></div>
+          <span class="aq-eyebrow">06</span>
+          <h2>Espaçamento, sombras e detalhes</h2>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-12 col-lg-4">
+            <div class="aq-card"><div class="aq-card__body">
+              <h3 class="h6 mb-3">Espaçamento</h3>
+              <div class="sg-box mb-2" style="height:.25rem"></div>
+              <p class="sg-label aq-text-muted mb-2">--aquarios-space-3xs · 4px</p>
+              <div class="sg-box mb-2" style="height:1rem"></div>
+              <p class="sg-label aq-text-muted mb-2">--aquarios-space-sm · 16px</p>
+              <div class="sg-box mb-2" style="height:1.5rem"></div>
+              <p class="sg-label aq-text-muted mb-2">--aquarios-space-md · 24px</p>
+              <div class="sg-box mb-2" style="height:2.5rem"></div>
+              <p class="sg-label aq-text-muted mb-0">--aquarios-space-lg · 40px</p>
+            </div></div>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <div class="aq-card"><div class="aq-card__body">
+              <h3 class="h6 mb-3">Sombras e raios</h3>
+              <div class="aq-shadow-sm aq-radius bg-white p-3 mb-3">
+                <p class="sg-label mb-0">--aquarios-shadow-sm</p>
+              </div>
+              <div class="aq-shadow aq-radius bg-white p-3 mb-3">
+                <p class="sg-label mb-0">--aquarios-shadow</p>
+              </div>
+              <div class="aq-shadow-lg aq-radius-lg bg-white p-3">
+                <p class="sg-label mb-0">--aquarios-shadow-lg · radius-lg</p>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <div class="aq-card"><div class="aq-card__body">
+              <h3 class="h6 mb-3">Pills e filete</h3>
+              <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="aq-pill"><i class="bi bi-wifi" aria-hidden="true"></i> Padrão</span>
+                <span class="aq-pill aq-pill--gold"><i class="bi bi-star-fill" aria-hidden="true"></i> Dourada</span>
+              </div>
+              <div class="aq-bg-dark aq-radius p-3 mb-3">
+                <span class="aq-pill aq-pill--dark">Sobre fundo escuro</span>
+              </div>
+              <div class="aq-rule"></div>
+              <p class="sg-label aq-text-muted mb-0">.aq-rule</p>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="aq-section--sm">
+      <div class="container">
+        <p class="aq-text-sm aq-text-muted aq-measure mb-0">
+          Nenhum dado da pousada — WhatsApp, telefone, endereço, acomodações,
+          preços, políticas — foi confirmado com o proprietário. Os textos
+          desta página são exemplos de composição, não conteúdo do site
+          (roadmap, seção 26).
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+          crossorigin="anonymous" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

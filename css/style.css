@@ -1,82 +1,177 @@
 /* ==========================================================================
    Hotel Pousada Aquários — style.css
+
    Fase 1: base do projeto (tokens de identidade + reset + tipografia base).
-   Componentes (botões, cards, navbar, etc.) entram na Fase 2 / Fase 3.
+   Fase 2: design system (tipografia, espaçamentos, botões, cards, mídia).
+
+   Sumário
+     1. Fontes
+     2. Tokens da identidade
+     3. Overrides do Bootstrap
+     4. Base e reset
+     5. Tipografia
+     6. Layout
+     7. Links
+     8. Botões
+     9. Cards
+    10. Mídia e imagens
+    11. Pills, divisores e detalhes
+    12. Acessibilidade
+    13. Utilitários
+    14. Tela provisória de setup (remover a partir da Fase 3)
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. Tokens da identidade
-   Cores extraídas da logo (img/logo.png):
-   azul do globo, azul escuro para contraste, dourado do lettering "Aquários".
-   Contrastes verificados em WCAG 2.1 — ver anotações ao lado de cada token.
+   1. Fontes
+   Figtree variável, self-hosted (nenhuma requisição a terceiros).
+   Um único arquivo cobre os pesos 300–900, ~20 KB no subset latin.
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300 900;
+  src: url('../fonts/figtree-latin-ext-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+                 U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
+                 U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0,
+                 U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300 900;
+  src: url('../fonts/figtree-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                 U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+                 U+FFFD;
+}
+
+/* --------------------------------------------------------------------------
+   2. Tokens da identidade
+   Cores extraídas da logo (img/logo.png): azul do globo, azul escuro para
+   contraste e o dourado do lettering "Aquários".
+   Todo contraste anotado foi verificado em WCAG 2.1.
    -------------------------------------------------------------------------- */
 :root {
-  /* Azuis — base da identidade */
+  /* --- Azuis: base da identidade --- */
   --aquarios-primary:        #1A5FC2;  /* 6.07:1 com branco — AA texto normal */
-  --aquarios-primary-dark:   #0A2F63;  /* 13.1:1 com branco — rodapé, overlays */
+  --aquarios-primary-hover:  #164FA3;  /* hover de superfícies azuis */
+  --aquarios-primary-dark:   #0A2F63;  /* 13.1:1 com branco — títulos, rodapé */
   --aquarios-primary-deep:   #071E3F;  /* 16.6:1 com branco — fundos profundos */
-  --aquarios-primary-soft:   #E8F0FB;  /* tinte claro para seções alternadas */
+  --aquarios-primary-soft:   #E8F0FB;  /* tinte para seções alternadas */
 
-  /* Dourado — cor secundária, uso pontual (nunca dominante) */
-  --aquarios-gold:           #F0C419;  /* 9.75:1 com --aquarios-text — só sobre fundo escuro/claro como preenchimento */
-  --aquarios-gold-dark:      #C9880A;  /* 3.00:1 com branco — apenas texto grande e ícones */
+  /* --- Dourado: secundária, uso pontual (nunca dominante) --- */
+  --aquarios-gold:           #F0C419;  /* preenchimento; 9.75:1 com --aquarios-text */
+  --aquarios-gold-hover:     #DBB110;
+  --aquarios-gold-dark:      #C9880A;  /* 3.00:1 com branco — só texto grande e ícones */
 
-  /* Superfícies e texto */
+  /* --- Superfícies e texto --- */
   --aquarios-bg:             #FFFFFF;
   --aquarios-bg-alt:         #F2F6FB;
   --aquarios-text:           #17212E;  /* 16.2:1 com branco */
   --aquarios-text-muted:     #5A6675;  /* 5.85:1 com branco — AA texto normal */
+  --aquarios-text-invert:    #FFFFFF;
   --aquarios-border:         #DBE3EC;
+  --aquarios-border-strong:  #B9C6D6;
 
-  /* WhatsApp — canal principal de conversão */
-  --aquarios-whatsapp:       #25D366;
-  --aquarios-whatsapp-dark:  #128C7E;
+  /* --- WhatsApp: canal principal de conversão ---
+     O verde oficial #25D366 tem só 1.98:1 com branco e reprova em WCAG,
+     tanto para texto quanto para componentes. Superfícies clicáveis usam a
+     variação escura da própria paleta do WhatsApp; o verde claro fica
+     reservado a preenchimento de ícone sobre fundo escuro. */
+  --aquarios-whatsapp:       #0F7A6C;  /* 5.22:1 com branco — AA */
+  --aquarios-whatsapp-hover: #0B6157;
+  --aquarios-whatsapp-light: #25D366;  /* só sobre fundo escuro */
 
-  /* Tipografia — família definitiva será decidida na Fase 2 */
-  --aquarios-font-base: system-ui, -apple-system, "Segoe UI", Roboto,
-                        "Helvetica Neue", Arial, sans-serif;
+  /* --- Tipografia --- */
+  --aquarios-font-base: 'Figtree', system-ui, -apple-system, 'Segoe UI',
+                        Roboto, 'Helvetica Neue', Arial, sans-serif;
   --aquarios-font-heading: var(--aquarios-font-base);
 
-  /* Escala de espaçamento */
-  --aquarios-space-xs: .5rem;
-  --aquarios-space-sm: 1rem;
-  --aquarios-space-md: 2rem;
-  --aquarios-space-lg: 4rem;
-  --aquarios-space-xl: 6rem;
+  /* Escala tipográfica fluida: mínimo em 320px, máximo em ~1400px */
+  --aquarios-fs-h1:      clamp(2rem,     1.35rem + 3.2vw, 3.5rem);
+  --aquarios-fs-h2:      clamp(1.625rem, 1.28rem + 1.7vw, 2.5rem);
+  --aquarios-fs-h3:      clamp(1.25rem,  1.10rem + 0.7vw, 1.625rem);
+  --aquarios-fs-h4:      clamp(1.125rem, 1.06rem + 0.3vw, 1.3125rem);
+  --aquarios-fs-h5:      1.125rem;
+  --aquarios-fs-h6:      1rem;
+  --aquarios-fs-lead:    clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  --aquarios-fs-body:    1rem;
+  --aquarios-fs-sm:      0.9375rem;
+  --aquarios-fs-xs:      0.8125rem;
 
-  /* Bordas e sombras */
+  --aquarios-lh-tight:   1.15;
+  --aquarios-lh-snug:    1.35;
+  --aquarios-lh-base:    1.65;
+
+  /* --- Espaçamento --- */
+  --aquarios-space-3xs: .25rem;
+  --aquarios-space-2xs: .5rem;
+  --aquarios-space-xs:  .75rem;
+  --aquarios-space-sm:  1rem;
+  --aquarios-space-md:  1.5rem;
+  --aquarios-space-lg:  2.5rem;
+  --aquarios-space-xl:  4rem;
+  --aquarios-space-2xl: 6rem;
+
+  /* Respiro vertical das seções, fluido entre mobile e desktop */
+  --aquarios-section-y:    clamp(3rem, 2rem + 5vw, 6rem);
+  --aquarios-section-y-sm: clamp(2rem, 1.5rem + 3vw, 3.5rem);
+
+  /* --- Bordas --- */
   --aquarios-radius-sm: .375rem;
   --aquarios-radius:    .75rem;
   --aquarios-radius-lg: 1.25rem;
+  --aquarios-radius-pill: 999px;
+
+  /* --- Sombras: base azulada, para não cinzar a interface --- */
   --aquarios-shadow-sm: 0 1px 2px rgba(7, 30, 63, .06),
                         0 2px 8px rgba(7, 30, 63, .06);
   --aquarios-shadow:    0 4px 12px rgba(7, 30, 63, .08),
                         0 12px 32px rgba(7, 30, 63, .08);
+  --aquarios-shadow-lg: 0 8px 24px rgba(7, 30, 63, .10),
+                        0 24px 56px rgba(7, 30, 63, .12);
 
-  /* Largura máxima de leitura confortável */
-  --aquarios-measure: 68ch;
-}
+  /* --- Movimento --- */
+  --aquarios-transition: 180ms cubic-bezier(.2, .6, .3, 1);
 
-/* Sobrescreve as variáveis do Bootstrap 5 para que os utilitários
-   nativos (.btn-primary, .text-primary, .link-primary...) já saiam
-   na identidade da pousada, sem CSS extra. */
-:root {
-  --bs-primary:     #1A5FC2;
-  --bs-primary-rgb: 26, 95, 194;
-  --bs-body-color:  #17212E;
-  --bs-body-color-rgb: 23, 33, 46;
-  --bs-body-bg:     #FFFFFF;
-  --bs-border-color: #DBE3EC;
-  --bs-link-color:  #1A5FC2;
-  --bs-link-color-rgb: 26, 95, 194;
-  --bs-link-hover-color: #0A2F63;
-  --bs-link-hover-color-rgb: 10, 47, 99;
-  --bs-body-font-family: var(--aquarios-font-base);
-  --bs-border-radius: var(--aquarios-radius-sm);
+  /* --- Medidas --- */
+  --aquarios-measure: 68ch;      /* largura de leitura confortável */
+  --aquarios-container: 1200px;  /* largura máxima do container */
+  --aquarios-tap: 2.75rem;       /* alvo mínimo de toque: 44px */
 }
 
 /* --------------------------------------------------------------------------
-   2. Base
+   3. Overrides do Bootstrap
+   Faz os utilitários nativos (.btn-primary, .text-primary, .link-primary…)
+   já saírem na identidade da pousada, sem CSS extra.
+   -------------------------------------------------------------------------- */
+:root {
+  --bs-primary:              #1A5FC2;
+  --bs-primary-rgb:          26, 95, 194;
+  --bs-body-color:           #17212E;
+  --bs-body-color-rgb:       23, 33, 46;
+  --bs-body-bg:              #FFFFFF;
+  --bs-secondary-color:      #5A6675;
+  --bs-border-color:         #DBE3EC;
+  --bs-link-color:           #1A5FC2;
+  --bs-link-color-rgb:       26, 95, 194;
+  --bs-link-hover-color:     #0A2F63;
+  --bs-link-hover-color-rgb: 10, 47, 99;
+  --bs-body-font-family:     var(--aquarios-font-base);
+  --bs-body-line-height:     var(--aquarios-lh-base);
+  --bs-border-radius:        var(--aquarios-radius-sm);
+  --bs-border-radius-lg:     var(--aquarios-radius);
+  --bs-border-radius-xl:     var(--aquarios-radius-lg);
+  --bs-focus-ring-color:     rgba(240, 196, 25, .55);
+  --bs-code-color:           #0A2F63;  /* o rosa padrão do Bootstrap destoa da identidade */
+}
+
+/* --------------------------------------------------------------------------
+   4. Base e reset
    -------------------------------------------------------------------------- */
 *,
 *::before,
@@ -84,8 +179,9 @@
 
 html {
   scroll-behavior: smooth;
-  /* Compensa header sticky ao navegar por âncoras (ajustar na Fase 3) */
+  /* Compensa o header sticky ao navegar por âncoras (ajustar na Fase 3) */
   scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -93,41 +189,399 @@ body {
   background-color: var(--aquarios-bg);
   color: var(--aquarios-text);
   font-family: var(--aquarios-font-base);
-  font-size: 1rem;
-  line-height: 1.65;
+  font-size: var(--aquarios-fs-body);
+  line-height: var(--aquarios-lh-base);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   /* Nenhuma página do site deve rolar horizontalmente (Fase 7) */
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+/* --------------------------------------------------------------------------
+   5. Tipografia
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  margin-top: 0;
+  margin-bottom: var(--aquarios-space-xs);
   font-family: var(--aquarios-font-heading);
   color: var(--aquarios-primary-dark);
   font-weight: 700;
-  line-height: 1.2;
+  line-height: var(--aquarios-lh-tight);
+  letter-spacing: -.012em;
   text-wrap: balance;
 }
 
-p { text-wrap: pretty; }
+h1, .h1 { font-size: var(--aquarios-fs-h1); font-weight: 800; letter-spacing: -.02em; }
+h2, .h2 { font-size: var(--aquarios-fs-h2); font-weight: 800; letter-spacing: -.016em; }
+h3, .h3 { font-size: var(--aquarios-fs-h3); }
+h4, .h4 { font-size: var(--aquarios-fs-h4); }
+h5, .h5 { font-size: var(--aquarios-fs-h5); line-height: var(--aquarios-lh-snug); }
+h6, .h6 { font-size: var(--aquarios-fs-h6); line-height: var(--aquarios-lh-snug); }
 
-a { text-decoration-thickness: 1px; text-underline-offset: .18em; }
+p {
+  margin-top: 0;
+  margin-bottom: var(--aquarios-space-sm);
+  text-wrap: pretty;
+}
+p:last-child { margin-bottom: 0; }
 
-/* Imagens nunca estouram o container nem deformam (Fase 7 / Fase 8) */
+/* Linha de apoio logo abaixo de um título de seção */
+.aq-lead {
+  font-size: var(--aquarios-fs-lead);
+  line-height: 1.55;
+  color: var(--aquarios-text-muted);
+}
+
+/* Rótulo curto acima do título ("Acomodações", "Estrutura"…) */
+.aq-eyebrow {
+  display: block;
+  margin-bottom: var(--aquarios-space-2xs);
+  color: var(--aquarios-gold-dark);
+  font-size: var(--aquarios-fs-xs);
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.aq-text-sm { font-size: var(--aquarios-fs-sm); }
+.aq-text-xs { font-size: var(--aquarios-fs-xs); }
+
+/* Cabeçalho padrão de seção: eyebrow + título + lead */
+.aq-section-head { margin-bottom: var(--aquarios-space-lg); }
+.aq-section-head .aq-lead { max-width: var(--aquarios-measure); }
+.aq-section-head--center {
+  text-align: center;
+  margin-inline: auto;
+  max-width: 46rem;
+}
+.aq-section-head--center .aq-lead { margin-inline: auto; }
+
+/* --------------------------------------------------------------------------
+   6. Layout
+   -------------------------------------------------------------------------- */
+.container,
+.container-lg,
+.container-xl,
+.container-xxl { max-width: var(--aquarios-container); }
+
+.aq-section    { padding-block: var(--aquarios-section-y); }
+.aq-section--sm{ padding-block: var(--aquarios-section-y-sm); }
+
+.aq-bg-alt   { background-color: var(--aquarios-bg-alt); }
+.aq-bg-soft  { background-color: var(--aquarios-primary-soft); }
+
+/* Seções escuras: inverte texto e títulos sem precisar de classe por elemento */
+.aq-bg-dark {
+  background-color: var(--aquarios-primary-deep);
+  color: rgba(255, 255, 255, .86);
+}
+.aq-bg-dark h1, .aq-bg-dark h2, .aq-bg-dark h3,
+.aq-bg-dark h4, .aq-bg-dark h5, .aq-bg-dark h6 { color: #fff; }
+.aq-bg-dark .aq-lead      { color: rgba(255, 255, 255, .82); }
+.aq-bg-dark .aq-eyebrow   { color: var(--aquarios-gold); }
+.aq-bg-dark .aq-text-muted{ color: rgba(255, 255, 255, .74); }
+.aq-bg-dark code          { color: var(--aquarios-gold); }
+
+.aq-measure    { max-width: var(--aquarios-measure); }
+.aq-text-muted { color: var(--aquarios-text-muted); }
+.aq-gold       { color: var(--aquarios-gold-dark); }
+
+/* --------------------------------------------------------------------------
+   7. Links
+   -------------------------------------------------------------------------- */
+a {
+  color: var(--aquarios-primary);
+  text-decoration-thickness: 1px;
+  text-underline-offset: .18em;
+  transition: color var(--aquarios-transition);
+}
+a:hover { color: var(--aquarios-primary-dark); }
+
+/* Link discreto que só sublinha no hover */
+.aq-link {
+  font-weight: 600;
+  text-decoration: none;
+}
+.aq-link:hover { text-decoration: underline; }
+
+/* Link com seta, para "ver mais" */
+.aq-link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .375rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.aq-link-arrow::after {
+  content: '→';
+  transition: transform var(--aquarios-transition);
+}
+.aq-link-arrow:hover::after { transform: translateX(3px); }
+
+/* --------------------------------------------------------------------------
+   8. Botões
+   -------------------------------------------------------------------------- */
+.btn {
+  --bs-btn-border-radius: var(--aquarios-radius-sm);
+  font-weight: 600;
+  transition: background-color var(--aquarios-transition),
+              border-color var(--aquarios-transition),
+              color var(--aquarios-transition),
+              box-shadow var(--aquarios-transition),
+              transform var(--aquarios-transition);
+}
+
+/* Base dos botões da identidade */
+.btn-aq,
+.btn-aq-outline,
+.btn-aq-gold,
+.btn-aq-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-height: var(--aquarios-tap);
+  padding: .625rem 1.375rem;
+  border: 1px solid transparent;
+  border-radius: var(--aquarios-radius-sm);
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Primário: ação principal da página */
+.btn-aq {
+  background-color: var(--aquarios-primary);
+  border-color: var(--aquarios-primary);
+  color: var(--aquarios-text-invert);
+  box-shadow: var(--aquarios-shadow-sm);
+}
+.btn-aq:hover {
+  background-color: var(--aquarios-primary-hover);
+  border-color: var(--aquarios-primary-hover);
+  color: var(--aquarios-text-invert);
+  box-shadow: var(--aquarios-shadow);
+}
+.btn-aq:active { transform: translateY(1px); box-shadow: var(--aquarios-shadow-sm); }
+
+/* Secundário: ação de apoio */
+.btn-aq-outline {
+  background-color: transparent;
+  border-color: var(--aquarios-border-strong);
+  color: var(--aquarios-primary-dark);
+}
+.btn-aq-outline:hover {
+  background-color: var(--aquarios-primary-soft);
+  border-color: var(--aquarios-primary);
+  color: var(--aquarios-primary-dark);
+}
+.btn-aq-outline:active { transform: translateY(1px); }
+
+/* Dourado: destaque pontual sobre fundo escuro ou foto */
+.btn-aq-gold {
+  background-color: var(--aquarios-gold);
+  border-color: var(--aquarios-gold);
+  color: var(--aquarios-text);
+  box-shadow: var(--aquarios-shadow-sm);
+}
+.btn-aq-gold:hover {
+  background-color: var(--aquarios-gold-hover);
+  border-color: var(--aquarios-gold-hover);
+  color: var(--aquarios-text);
+  box-shadow: var(--aquarios-shadow);
+}
+.btn-aq-gold:active { transform: translateY(1px); box-shadow: var(--aquarios-shadow-sm); }
+
+/* WhatsApp: conversão. Verde escuro da paleta do WhatsApp, que passa em AA */
+.btn-aq-whatsapp {
+  background-color: var(--aquarios-whatsapp);
+  border-color: var(--aquarios-whatsapp);
+  color: var(--aquarios-text-invert);
+  box-shadow: var(--aquarios-shadow-sm);
+}
+.btn-aq-whatsapp:hover {
+  background-color: var(--aquarios-whatsapp-hover);
+  border-color: var(--aquarios-whatsapp-hover);
+  color: var(--aquarios-text-invert);
+  box-shadow: var(--aquarios-shadow);
+}
+.btn-aq-whatsapp:active { transform: translateY(1px); box-shadow: var(--aquarios-shadow-sm); }
+
+/* Variantes de tamanho */
+.btn-aq-lg { padding: .875rem 1.75rem; font-size: 1.0625rem; min-height: 3.25rem; }
+.btn-aq-sm { padding: .5rem 1rem; font-size: var(--aquarios-fs-sm); }
+.btn-aq-block { width: 100%; }
+
+/* Em telas pequenas os botões ocupam a largura toda por padrão (Fase 7) */
+@media (max-width: 575.98px) {
+  .btn-aq-block-sm { width: 100%; }
+}
+
+/* --------------------------------------------------------------------------
+   9. Cards
+   -------------------------------------------------------------------------- */
+.aq-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--aquarios-bg);
+  border: 1px solid var(--aquarios-border);
+  border-radius: var(--aquarios-radius);
+  box-shadow: var(--aquarios-shadow-sm);
+  overflow: hidden;
+  transition: box-shadow var(--aquarios-transition),
+              transform var(--aquarios-transition),
+              border-color var(--aquarios-transition);
+}
+.aq-card__body { padding: var(--aquarios-space-md); flex: 1 1 auto; }
+.aq-card__title { margin-bottom: var(--aquarios-space-2xs); font-size: var(--aquarios-fs-h4); }
+.aq-card__text { color: var(--aquarios-text-muted); }
+.aq-card__footer {
+  padding: var(--aquarios-space-sm) var(--aquarios-space-md);
+  border-top: 1px solid var(--aquarios-border);
+}
+
+/* Elevação só onde existe hover real — evita "grudar" o efeito no toque */
+@media (hover: hover) {
+  .aq-card--hover:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--aquarios-shadow);
+    border-color: var(--aquarios-border-strong);
+  }
+  .aq-card--hover:hover .aq-media--zoom img { transform: scale(1.05); }
+}
+
+/* Card com ícone, para comodidades */
+.aq-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: var(--aquarios-space-xs);
+  border-radius: var(--aquarios-radius-sm);
+  background-color: var(--aquarios-primary-soft);
+  color: var(--aquarios-primary);
+  font-size: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   10. Mídia e imagens
+   As fotos atuais são provisórias: o padrão abaixo fixa a proporção para que
+   a troca das imagens não quebre o layout (roadmap, seção 25).
+   -------------------------------------------------------------------------- */
 img {
   max-width: 100%;
   height: auto;
   vertical-align: middle;
 }
 
+.aq-media {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--aquarios-primary-soft);
+  border-radius: var(--aquarios-radius);
+}
+.aq-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 400ms cubic-bezier(.2, .6, .3, 1);
+}
+.aq-media--16x9 { aspect-ratio: 16 / 9; }
+.aq-media--4x3  { aspect-ratio: 4 / 3; }
+.aq-media--3x2  { aspect-ratio: 3 / 2; }
+.aq-media--1x1  { aspect-ratio: 1 / 1; }
+.aq-media--3x4  { aspect-ratio: 3 / 4; }
+.aq-media--flush { border-radius: 0; }
+
+/* Véu escuro para texto sobre foto (hero, chamadas) */
+.aq-media--overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+              rgba(7, 30, 63, .15) 0%,
+              rgba(7, 30, 63, .55) 60%,
+              rgba(7, 30, 63, .78) 100%);
+}
+
 /* --------------------------------------------------------------------------
-   3. Acessibilidade
+   11. Pills, divisores e detalhes
+   -------------------------------------------------------------------------- */
+.aq-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .375rem;
+  padding: .25rem .75rem;
+  border-radius: var(--aquarios-radius-pill);
+  background-color: var(--aquarios-primary-soft);
+  color: var(--aquarios-primary-dark);
+  font-size: var(--aquarios-fs-xs);
+  font-weight: 600;
+}
+.aq-pill--gold {
+  background-color: rgba(240, 196, 25, .18);
+  color: #6B4A00;
+}
+.aq-pill--dark {
+  background-color: rgba(255, 255, 255, .12);
+  color: #fff;
+}
+
+.aq-divider {
+  height: 1px;
+  border: 0;
+  margin: var(--aquarios-space-lg) 0;
+  background-color: var(--aquarios-border);
+  opacity: 1;
+}
+
+/* Filete dourado curto, usado como detalhe sob títulos */
+.aq-rule {
+  width: 3rem;
+  height: 3px;
+  border-radius: 2px;
+  background-color: var(--aquarios-gold);
+  margin-bottom: var(--aquarios-space-sm);
+}
+.aq-section-head--center .aq-rule { margin-inline: auto; }
+
+/* Lista com marcador de ícone, para comodidades */
+.aq-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.aq-list li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: var(--aquarios-space-2xs);
+}
+.aq-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: .55em;
+  width: .5rem;
+  height: .5rem;
+  border-radius: 50%;
+  background-color: var(--aquarios-gold);
+}
+
+/* --------------------------------------------------------------------------
+   12. Acessibilidade
    -------------------------------------------------------------------------- */
 :focus-visible {
   outline: 3px solid var(--aquarios-gold);
   outline-offset: 2px;
   border-radius: var(--aquarios-radius-sm);
 }
+/* Sobre fundo escuro o dourado some; o anel vira branco */
+.aq-bg-dark :focus-visible { outline-color: #fff; }
 
 /* Link "pular para o conteúdo" — visível apenas ao receber foco */
 .skip-link {
@@ -155,25 +609,27 @@ img {
 }
 
 /* --------------------------------------------------------------------------
-   4. Utilitários próprios
+   13. Utilitários
    -------------------------------------------------------------------------- */
-.aq-measure   { max-width: var(--aquarios-measure); }
-.aq-bg-alt    { background-color: var(--aquarios-bg-alt); }
-.aq-bg-soft   { background-color: var(--aquarios-primary-soft); }
-.aq-text-muted{ color: var(--aquarios-text-muted); }
-.aq-gold      { color: var(--aquarios-gold-dark); }
+.aq-stack > * + * { margin-top: var(--aquarios-space-sm); }
+.aq-stack-md > * + * { margin-top: var(--aquarios-space-md); }
+.aq-shadow-sm { box-shadow: var(--aquarios-shadow-sm); }
+.aq-shadow    { box-shadow: var(--aquarios-shadow); }
+.aq-shadow-lg { box-shadow: var(--aquarios-shadow-lg); }
+.aq-radius    { border-radius: var(--aquarios-radius); }
+.aq-radius-lg { border-radius: var(--aquarios-radius-lg); }
 
 /* --------------------------------------------------------------------------
-   5. Tela provisória de setup (Fase 1)
-   Este bloco existe só para validar a base localmente.
-   Deve ser REMOVIDO quando as páginas reais forem construídas (Fase 3+).
+   14. Tela provisória de setup (Fase 1)
+   Existe só para validar a base localmente.
+   REMOVER quando as páginas reais forem construídas (Fase 3+).
    -------------------------------------------------------------------------- */
 .setup {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: var(--aquarios-space-lg) var(--aquarios-space-sm);
+  padding: var(--aquarios-space-xl) var(--aquarios-space-sm);
   background:
     radial-gradient(1200px 600px at 50% -10%, var(--aquarios-primary-soft), transparent 70%),
     var(--aquarios-bg);
@@ -182,10 +638,10 @@ img {
 .setup__badge {
   display: inline-block;
   padding: .25rem .75rem;
-  border-radius: 999px;
+  border-radius: var(--aquarios-radius-pill);
   background: var(--aquarios-primary-soft);
   color: var(--aquarios-primary-dark);
-  font-size: .8125rem;
+  font-size: var(--aquarios-fs-xs);
   font-weight: 600;
   letter-spacing: .02em;
 }
@@ -202,10 +658,6 @@ img {
   border-radius: var(--aquarios-radius-sm);
   border: 1px solid var(--aquarios-border);
 }
-.setup__nav a {
-  color: var(--aquarios-primary);
-  font-weight: 600;
-  text-decoration: none;
-}
+.setup__nav a { color: var(--aquarios-primary); font-weight: 600; text-decoration: none; }
 .setup__nav a:hover { color: var(--aquarios-primary-dark); text-decoration: underline; }
 .setup__nav [aria-current="page"] { color: var(--aquarios-text); text-decoration: underline; }
