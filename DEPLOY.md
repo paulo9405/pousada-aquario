@@ -93,6 +93,10 @@ clique; em canonical, faz o Google ver uma URL diferente da declarada.
 O `tools/servidor-local.py` reproduz esse comportamento — inclusive o 308 —
 para que o que passa no teste local passe em produção.
 
+Consequência: **abrir os arquivos com duplo clique não funciona.** No
+protocolo `file://`, `/contato` aponta para a raiz do disco, não do projeto.
+Use sempre o servidor local.
+
 ## Página 404
 
 Sem um `404.html` na raiz, o Pages devolve **200 com a home** em qualquer

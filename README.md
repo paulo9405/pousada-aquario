@@ -48,13 +48,24 @@ apresentação) e não é versionada.
 
 ## Rodando localmente
 
-Por causa dos caminhos relativos e do CDN, sirva a pasta em vez de abrir o
-arquivo direto:
-
 ```bash
-python3 -m http.server 8000
-# http://localhost:8000
+python3 tools/servidor-local.py
+# http://127.0.0.1:8900
 ```
+
+**Não abra os arquivos com duplo clique.** Os links do site são absolutos a
+partir da raiz (`/contato`, `/pousada`), que é o formato que o Cloudflare
+Pages serve sem redirecionar. No protocolo `file://`, a raiz é a raiz do
+disco: `/contato` vira `file:///contato` e o navegador devolve
+`ERR_FILE_NOT_FOUND`, ou lista os diretórios do sistema.
+
+Não existe formato de link que funcione nos dois casos — `contato.html`
+volta a redirecionar em produção. Site com URL limpa precisa de servidor.
+
+O `tools/servidor-local.py` não é um servidor genérico: ele imita o Cloudflare
+Pages de propósito, com compressão de texto, URL sem extensão, o 308 de
+`/contato.html` para `/contato` e o 404 real. É o que garante que o que passa
+no teste local passe em produção.
 
 ## Design system
 
