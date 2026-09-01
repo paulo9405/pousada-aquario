@@ -3,6 +3,7 @@
 
    Fase 1: base do projeto (tokens de identidade + reset + tipografia base).
    Fase 2: design system (tipografia, espaçamentos, botões, cards, mídia).
+   Fase 3: header, navegação responsiva e botão flutuante de WhatsApp.
 
    Sumário
      1. Fontes
@@ -179,8 +180,8 @@
 
 html {
   scroll-behavior: smooth;
-  /* Compensa o header sticky ao navegar por âncoras (ajustar na Fase 3) */
-  scroll-padding-top: 5rem;
+  /* Compensa a altura do header sticky ao navegar por âncoras */
+  scroll-padding-top: 6.5rem;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -619,45 +620,191 @@ img {
 .aq-radius    { border-radius: var(--aquarios-radius); }
 .aq-radius-lg { border-radius: var(--aquarios-radius-lg); }
 
+
 /* --------------------------------------------------------------------------
-   14. Tela provisória de setup (Fase 1)
-   Existe só para validar a base localmente.
-   REMOVER quando as páginas reais forem construídas (Fase 3+).
+   14. Header e navegação
+   Sticky em todas as telas: o botão de reserva é o caminho principal de
+   conversão e precisa estar sempre a um toque de distância.
    -------------------------------------------------------------------------- */
-.setup {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: var(--aquarios-space-xl) var(--aquarios-space-sm);
-  background:
-    radial-gradient(1200px 600px at 50% -10%, var(--aquarios-primary-soft), transparent 70%),
-    var(--aquarios-bg);
+.aq-header {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  background-color: rgba(255, 255, 255, .94);
+  border-bottom: 1px solid transparent;
+  transition: box-shadow var(--aquarios-transition),
+              border-color var(--aquarios-transition),
+              background-color var(--aquarios-transition);
 }
-.setup__logo  { display: block; width: 200px; margin-bottom: var(--aquarios-space-md); }
-.setup__badge {
-  display: inline-block;
-  padding: .25rem .75rem;
-  border-radius: var(--aquarios-radius-pill);
-  background: var(--aquarios-primary-soft);
-  color: var(--aquarios-primary-dark);
-  font-size: var(--aquarios-fs-xs);
-  font-weight: 600;
-  letter-spacing: .02em;
-}
-.setup__card {
-  background: var(--aquarios-bg);
-  border: 1px solid var(--aquarios-border);
-  border-radius: var(--aquarios-radius);
+/* Sem backdrop-filter aqui de propósito: ele cria bloco de contenção para
+   descendentes position:fixed, e o offcanvas do menu passaria a medir a
+   altura do header em vez da viewport. */
+
+/* Só ganha peso depois que a página rola — no topo fica leve sobre o hero */
+.aq-header--scrolled {
+  background-color: var(--aquarios-bg);
+  border-bottom-color: var(--aquarios-border);
   box-shadow: var(--aquarios-shadow-sm);
-  padding: var(--aquarios-space-sm);
-  height: 100%;
 }
-.setup__swatch {
-  height: 3.5rem;
-  border-radius: var(--aquarios-radius-sm);
+
+.aq-header .navbar { padding: 0; }
+
+/* --- Logo --- */
+.aq-brand { display: inline-flex; align-items: center; padding: 0; }
+.aq-brand img {
+  height: 2.75rem;
+  width: auto;
+  transition: height var(--aquarios-transition);
+}
+.aq-header__inner { min-height: 4.25rem; }
+
+@media (min-width: 992px) {
+  .aq-brand img { height: 4rem; }
+  .aq-header__inner { min-height: 5.5rem; }
+}
+
+/* --- Botão do menu mobile --- */
+.aq-toggler {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--aquarios-tap);
+  height: var(--aquarios-tap);
+  padding: 0;
   border: 1px solid var(--aquarios-border);
+  border-radius: var(--aquarios-radius-sm);
+  background-color: transparent;
+  color: var(--aquarios-primary-dark);
+  font-size: 1.375rem;
+  line-height: 1;
+  transition: background-color var(--aquarios-transition),
+              border-color var(--aquarios-transition);
 }
-.setup__nav a { color: var(--aquarios-primary); font-weight: 600; text-decoration: none; }
-.setup__nav a:hover { color: var(--aquarios-primary-dark); text-decoration: underline; }
-.setup__nav [aria-current="page"] { color: var(--aquarios-text); text-decoration: underline; }
+.aq-toggler:hover {
+  background-color: var(--aquarios-primary-soft);
+  border-color: var(--aquarios-border-strong);
+}
+
+/* --- Links do menu --- */
+.aq-nav { gap: .25rem; }
+.aq-nav .nav-link {
+  position: relative;
+  padding: .625rem .875rem;
+  color: var(--aquarios-text);
+  font-weight: 600;
+  border-radius: var(--aquarios-radius-sm);
+  transition: color var(--aquarios-transition),
+              background-color var(--aquarios-transition);
+}
+.aq-nav .nav-link:hover,
+.aq-nav .nav-link:focus-visible { color: var(--aquarios-primary); }
+
+/* Página atual: filete dourado, o mesmo detalhe usado sob os títulos */
+.aq-nav .nav-link[aria-current="page"] { color: var(--aquarios-primary-dark); }
+.aq-nav .nav-link[aria-current="page"]::after {
+  content: '';
+  position: absolute;
+  left: .875rem;
+  right: .875rem;
+  bottom: .3rem;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--aquarios-gold);
+}
+
+/* --- Painel do menu no mobile --- */
+.aq-offcanvas { border-left: 0; }
+.aq-offcanvas .offcanvas-header { padding: var(--aquarios-space-sm); }
+.aq-offcanvas .offcanvas-body {
+  display: flex;
+  padding: var(--aquarios-space-sm);
+}
+
+@media (max-width: 991.98px) {
+  /* Especificidade de dois nomes de classe: o Bootstrap fixa 400px
+     em .navbar-expand-lg .offcanvas e ganharia de .aq-offcanvas sozinho. */
+  .aq-header .aq-offcanvas { width: min(20rem, 85vw); }
+  /* Alvos de toque generosos: o menu é o principal caminho no celular */
+  .aq-nav .nav-link {
+    padding: .875rem .75rem;
+    font-size: 1.0625rem;
+    border-bottom: 1px solid var(--aquarios-border);
+    border-radius: 0;
+  }
+  .aq-nav .nav-item:last-child .nav-link { border-bottom: 0; }
+  .aq-nav .nav-link[aria-current="page"] {
+    background-color: var(--aquarios-primary-soft);
+    border-bottom-color: transparent;
+    border-radius: var(--aquarios-radius-sm);
+  }
+  .aq-nav .nav-link[aria-current="page"]::after { display: none; }
+
+  /* Empilha links e CTA no painel lateral */
+  .aq-offcanvas .offcanvas-body { flex-direction: column; }
+  .aq-header__cta { margin-top: var(--aquarios-space-md); }
+}
+
+@media (min-width: 992px) {
+  /* No desktop o painel volta a ser uma linha alinhada à direita */
+  .aq-header .offcanvas-body {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0;
+  }
+  .aq-header__cta {
+    flex: 0 0 auto;
+    margin-left: var(--aquarios-space-sm);
+    white-space: nowrap;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   15. Botão flutuante de WhatsApp
+   Fica oculto por padrão: só aparece quando o número oficial for confirmado
+   e preenchido em js/main.js (roadmap, seção 26).
+   -------------------------------------------------------------------------- */
+.aq-fab {
+  position: fixed;
+  right: var(--aquarios-space-sm);
+  bottom: var(--aquarios-space-sm);
+  z-index: 1040;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: var(--aquarios-whatsapp);
+  color: #fff;
+  font-size: 1.75rem;
+  line-height: 1;
+  text-decoration: none;
+  box-shadow: var(--aquarios-shadow);
+  transition: background-color var(--aquarios-transition),
+              transform var(--aquarios-transition),
+              box-shadow var(--aquarios-transition);
+}
+.aq-fab:hover {
+  background-color: var(--aquarios-whatsapp-hover);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--aquarios-shadow-lg);
+}
+.aq-fab[hidden] { display: none; }
+
+@media (min-width: 992px) {
+  .aq-fab {
+    right: var(--aquarios-space-md);
+    bottom: var(--aquarios-space-md);
+    width: 3.75rem;
+    height: 3.75rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   16. Placeholder de página (provisório)
+   Usado nas páginas cujo conteúdo entra nas próximas fases. REMOVER conforme
+   cada página for construída.
+   -------------------------------------------------------------------------- */
+.aq-placeholder { padding-block: clamp(3rem, 2rem + 6vw, 7rem); }

@@ -28,105 +28,79 @@
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <!--
-    TELA PROVISÓRIA DE SETUP — FASE 1
-    Serve apenas para validar a base localmente (Bootstrap, ícones, tokens
-    da identidade, navegação entre as páginas). Todo o conteúdo abaixo será
-    substituído a partir da Fase 3 (header/navegação) e Fase 4 (home).
-  -->
-  <main id="conteudo" class="setup">
+  <header class="aq-header" data-header>
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12 col-lg-10 col-xl-9">
+      <nav class="navbar navbar-expand-lg aq-header__inner" aria-label="Navegação principal">
 
-          <img src="img/logo.png" alt="Hotel Pousada Aquários"
-               class="setup__logo" width="200" height="133">
+        <a class="navbar-brand aq-brand me-auto" href="index.html">
+          <img src="img/logo-nav.webp"
+               srcset="img/logo-nav.webp 300w, img/logo-nav@2x.webp 600w"
+               sizes="(min-width: 992px) 77px, 61px"
+               alt="Hotel Pousada Aquários — página inicial"
+               width="300" height="218">
+        </a>
 
-          <p class="setup__badge mb-3">Fase 1 — setup inicial</p>
-          <h1 class="mb-2">Acomodações</h1>
-          <p class="aq-text-muted aq-measure mb-4">
-            Base do projeto configurada. Esta tela é provisória e será
-            substituída pelo site a partir da Fase 3.
-          </p>
+        <button class="aq-toggler d-lg-none" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#aqMenu"
+                aria-controls="aqMenu" aria-label="Abrir menu de navegação">
+          <i class="bi bi-list" aria-hidden="true"></i>
+        </button>
 
-          <nav aria-label="Páginas do site" class="mb-5">
-            <ul class="list-inline setup__nav mb-0">
-            <li class="list-inline-item me-3"><a href="index.html">Início</a></li>
-            <li class="list-inline-item me-3"><a href="acomodacoes.html" aria-current="page">Acomodações</a></li>
-            <li class="list-inline-item me-3"><a href="pousada.html">A Pousada</a></li>
-            <li class="list-inline-item me-3"><a href="contato.html">Localização e contato</a></li>
+        <div class="offcanvas offcanvas-end aq-offcanvas" tabindex="-1"
+             id="aqMenu" aria-labelledby="aqMenuTitulo">
+          <div class="offcanvas-header">
+            <h2 class="offcanvas-title h6 mb-0" id="aqMenuTitulo">Menu</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                    aria-label="Fechar menu"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav aq-nav align-items-lg-center">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html">Início</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="acomodacoes.html" aria-current="page">Acomodações</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="pousada.html">A Pousada</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contato.html">Localização</a>
+                </li>
             </ul>
-          </nav>
 
-          <div class="row g-3 mb-5">
-            <div class="col-12 col-md-4">
-              <div class="setup__card">
-                <p class="mb-1"><i class="bi bi-grid-1x2 fs-4 aq-gold" aria-hidden="true"></i></p>
-                <h2 class="h6 mb-1">Bootstrap 5.3.8</h2>
-                <p class="small aq-text-muted mb-0">
-                  Grid e utilitários carregados via CDN com SRI.
-                </p>
-              </div>
-            </div>
-            <div class="col-12 col-md-4">
-              <div class="setup__card">
-                <p class="mb-1"><i class="bi bi-emoji-smile fs-4 aq-gold" aria-hidden="true"></i></p>
-                <h2 class="h6 mb-1">Bootstrap Icons 1.13.1</h2>
-                <p class="small aq-text-muted mb-0">
-                  Se este ícone aparecer, a fonte de ícones está ativa.
-                </p>
-              </div>
-            </div>
-            <div class="col-12 col-md-4">
-              <div class="setup__card">
-                <p class="mb-1"><i class="bi bi-droplet-half fs-4 aq-gold" aria-hidden="true"></i></p>
-                <h2 class="h6 mb-1">Identidade em CSS</h2>
-                <p class="small aq-text-muted mb-0">
-                  Tokens <code>--aquarios-*</code> definidos em
-                  <code>css/style.css</code>.
-                </p>
-              </div>
-            </div>
+            <!-- CTA principal. Vira link do WhatsApp assim que o número for
+                 confirmado em js/main.js; até lá leva para a página de contato. -->
+            <a class="btn-aq aq-header__cta" href="contato.html" data-whatsapp>
+              Reservar
+            </a>
           </div>
-
-          <h2 class="h5 mb-3">Paleta extraída da logo</h2>
-          <div class="row g-3 mb-5">
-            <div class="col-6 col-sm-4 col-lg-2">
-              <div class="setup__swatch" style="background: var(--aquarios-primary);"></div>
-              <p class="small aq-text-muted mb-0 mt-2"><code>--aquarios-primary</code><br>#1A5FC2</p>
-            </div>
-            <div class="col-6 col-sm-4 col-lg-2">
-              <div class="setup__swatch" style="background: var(--aquarios-primary-dark);"></div>
-              <p class="small aq-text-muted mb-0 mt-2"><code>--aquarios-primary-dark</code><br>#0A2F63</p>
-            </div>
-            <div class="col-6 col-sm-4 col-lg-2">
-              <div class="setup__swatch" style="background: var(--aquarios-primary-soft);"></div>
-              <p class="small aq-text-muted mb-0 mt-2"><code>--aquarios-primary-soft</code><br>#E8F0FB</p>
-            </div>
-            <div class="col-6 col-sm-4 col-lg-2">
-              <div class="setup__swatch" style="background: var(--aquarios-gold);"></div>
-              <p class="small aq-text-muted mb-0 mt-2"><code>--aquarios-gold</code><br>#F0C419</p>
-            </div>
-            <div class="col-6 col-sm-4 col-lg-2">
-              <div class="setup__swatch" style="background: var(--aquarios-bg-alt);"></div>
-              <p class="small aq-text-muted mb-0 mt-2"><code>--aquarios-bg-alt</code><br>#F2F6FB</p>
-            </div>
-            <div class="col-6 col-sm-4 col-lg-2">
-              <div class="setup__swatch" style="background: var(--aquarios-text);"></div>
-              <p class="small aq-text-muted mb-0 mt-2"><code>--aquarios-text</code><br>#17212E</p>
-            </div>
-          </div>
-
-          <p class="small aq-text-muted mb-0">
-            WhatsApp, endereço, telefone e dados das acomodações ainda não
-            foram confirmados com o proprietário e não devem ser publicados
-            (roadmap, seção 26).
-          </p>
-
         </div>
+
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo" class="aq-placeholder">
+    <div class="container">
+      <div class="aq-section-head mb-0">
+        <div class="aq-rule"></div>
+        <span class="aq-eyebrow">Em construção</span>
+        <h1>Acomodações</h1>
+        <p class="aq-lead aq-measure">
+          O cabeçalho e a navegação já estão prontos. O conteúdo desta página
+          entra na Fase 5.
+        </p>
       </div>
     </div>
   </main>
+
+  <!-- Botão flutuante de WhatsApp. Fica oculto até o número oficial ser
+       confirmado e preenchido em js/main.js (roadmap, seção 26). -->
+  <a class="aq-fab" href="#" data-whatsapp hidden
+     aria-label="Conversar no WhatsApp">
+    <i class="bi bi-whatsapp" aria-hidden="true"></i>
+  </a>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous" defer></script>

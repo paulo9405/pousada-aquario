@@ -23,6 +23,7 @@ pousada-aquarios/
 ├── js/main.js           # configuração do site (contato, helpers)
 ├── fonts/               # Figtree variável (woff2, self-hosted)
 ├── img/                 # fotografias e logo (provisórias)
+│   └── logo-nav.webp    # logo recortada e otimizada para o header
 ├── index.html           # Início
 ├── acomodacoes.html     # Acomodações
 ├── pousada.html         # A Pousada
@@ -82,17 +83,32 @@ breakpoints.
 
 `.btn-aq` · `.btn-aq-outline` · `.btn-aq-gold` · `.btn-aq-whatsapp` ·
 `.aq-card` · `.aq-media` (proporções fixas) · `.aq-pill` · `.aq-section-head` ·
-`.aq-list` · `.aq-rule`
+`.aq-list` · `.aq-rule` · `.aq-header` · `.aq-nav` · `.aq-fab`
 
 Todos os botões têm no mínimo 44 px de altura. A proporção das imagens fica
 no container, não no arquivo — trocar as fotos provisórias pelas definitivas
 não mexe no layout.
 
+## Contato e WhatsApp
+
+O número oficial ainda não foi confirmado, então `AQUARIOS.whatsapp` está
+vazio em `js/main.js`. Enquanto estiver assim:
+
+- o botão flutuante de WhatsApp fica oculto;
+- o botão "Reservar" do header leva para `contato.html`.
+
+Ao preencher o número (só dígitos, com DDI e DDD), `initWhatsApp()` ativa
+sozinho todos os pontos marcados com `data-whatsapp`: ajusta o `href` para
+`wa.me` com a mensagem pré-preenchida e revela o botão flutuante. Nenhuma
+outra alteração é necessária.
+
 ## Status
 
-Fases 1 (setup) e 2 (design system) concluídas. As quatro páginas ainda
-exibem uma tela provisória de verificação, que será substituída a partir da
-Fase 3 (header e navegação).
+Fases 1 (setup), 2 (design system) e 3 (header e navegação) concluídas.
+
+O header é sticky, com navegação em offcanvas no mobile e barra horizontal a
+partir de 992 px. As quatro páginas ainda mostram um placeholder no lugar do
+conteúdo, que entra nas Fases 4 a 6.
 
 Nenhum dado da pousada — WhatsApp, telefone, endereço, acomodações, preços,
 políticas — foi confirmado com o proprietário. Nada disso deve ser publicado

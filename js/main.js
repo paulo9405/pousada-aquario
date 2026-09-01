@@ -1,7 +1,8 @@
 /* ==========================================================================
    Hotel Pousada Aquários — main.js
-   Fase 1: configuração central do site. Sem manipulação de DOM ainda —
-   navbar, menu mobile e botão flutuante de WhatsApp entram na Fase 3.
+
+   Fase 1: configuração central do site.
+   Fase 3: header sticky e ativação dos pontos de contato do WhatsApp.
    ========================================================================== */
 'use strict';
 
@@ -10,7 +11,9 @@
  *
  * ATENÇÃO: nada aqui foi confirmado com o proprietário (ver seção 26 do
  * roadmap). Enquanto `whatsapp` estiver vazio, nenhum link de WhatsApp
- * deve ser publicado. Não preencher com o número do Google sem confirmar.
+ * é publicado: o botão flutuante fica oculto e o botão "Reservar" leva
+ * para a página de contato. Não preencher com o número do Google sem
+ * confirmar antes.
  */
 const AQUARIOS = {
   // Somente dígitos, com DDI e DDD. Ex.: '5538999999999'
@@ -35,8 +38,49 @@ function buildWhatsAppLink(message = AQUARIOS.whatsappMessage) {
 }
 
 /**
+ * Ativa todos os pontos de contato marcados com [data-whatsapp].
+ *
+ * Sem número confirmado:
+ *   - elementos com [hidden] continuam ocultos (é o caso do botão flutuante);
+ *   - os demais mantêm o href de fallback escrito no HTML.
+ */
+function initWhatsApp() {
+  const href = buildWhatsAppLink();
+  if (!href) return;
+
+  document.querySelectorAll('[data-whatsapp]').forEach((el) => {
+    el.setAttribute('href', href);
+    el.setAttribute('target', '_blank');
+    el.setAttribute('rel', 'noopener');
+    el.removeAttribute('hidden');
+  });
+}
+
+/**
+ * Dá peso ao header depois que a página rola.
+ * Usa rAF para não recalcular estilo a cada evento de scroll.
+ */
+function initHeader() {
+  const header = document.querySelector('[data-header]');
+  if (!header) return;
+
+  let ticking = false;
+  const update = () => {
+    header.classList.toggle('aq-header--scrolled', window.scrollY > 8);
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(update);
+  }, { passive: true });
+
+  update();
+}
+
+/**
  * Preenche o ano corrente em qualquer elemento [data-ano-atual].
- * Usado no rodapé a partir da Fase 3.
  */
 function initAnoAtual() {
   const ano = String(new Date().getFullYear());
@@ -46,5 +90,7 @@ function initAnoAtual() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  initHeader();
+  initWhatsApp();
   initAnoAtual();
 });
