@@ -587,12 +587,21 @@ system, header e navegação, home, acomodações, institucional e localização
 responsividade, performance, SEO local e QA. Site publicado, domínio ativo,
 HTTPS e deploy automático funcionando.
 
-### Bloqueia a saída do estágio de protótipo
+### O que depende da conversa com o proprietário
 
-1. **Categorias de quarto** — o maior buraco. Quem chega pelo Google querendo
-   hospedagem vê um aviso de "em confirmação"
-2. **Confirmar as demais informações** com o proprietário —
-   `docs/Informacoes-a-confirmar-com-Roney.md` tem o checklist completo
+**O site está no estágio de protótipo por opção, não por falta de trabalho
+técnico.** A conversa com o Roney ainda não aconteceu, e é ela que vai
+destravar o conteúdo comercial. Os espaços já estão construídos e esperando o
+dado — estado vazio nas categorias, ficha de regras com os campos, espaço
+reservado para a história.
+
+**Um agente que abrir este projeto não deve preencher esses espaços por conta
+própria.** Estado vazio bem feito é melhor que dado inventado: o protótipo
+serve justamente para mostrar ao proprietário onde cada informação entra.
+
+O checklist completo está em `docs/Informacoes-a-confirmar-com-Roney.md`. O
+item de maior peso comercial são as **categorias de quarto** — nome,
+capacidade, cama, comodidades e preço.
 
 ### Pendências técnicas menores
 
@@ -600,7 +609,7 @@ HTTPS e deploy automático funcionando.
 - Mover `img/area-externa.webp` (folheto com telefones) para `docs/`
 - Gerar variantes AVIF quando houver codificador
 
-### Depois da validação do proprietário
+### Depois da conversa com o proprietário
 
 - Sessão fotográfica e substituição de todas as imagens
 - Domínio próprio, com `tools/definir-dominio.py`
