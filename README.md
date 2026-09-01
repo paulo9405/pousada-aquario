@@ -1,5 +1,10 @@
 # Hotel Pousada Aquários
 
+> **Contexto do projeto:** [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) reúne a
+> memória técnica e de produto — decisões, identidade visual com valores
+> exatos, o que é dado confirmado e o que é provisório, e o que ainda depende
+> do proprietário. Leia antes de alterações relevantes.
+
 Site institucional da Hotel Pousada Aquários — Buritizeiro/MG, às margens do
 Rio São Francisco.
 
