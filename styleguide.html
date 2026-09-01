@@ -15,11 +15,7 @@
   <link rel="preload" href="fonts/figtree-latin-wght-normal.woff2"
         as="font" type="font/woff2" crossorigin>
 
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-        integrity="sha384-CK2SzKma4jA5H/MXDUU7i1TqZlCFaD4T01vtyDFvPlD97JQyS+IsSh1nI2EFbpyk" crossorigin="anonymous">
+  <link rel="stylesheet" href="vendor/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
 
   <style>
@@ -35,7 +31,7 @@
 
   <header class="aq-section--sm border-bottom">
     <div class="container">
-      <img src="img/logo.png" alt="Hotel Pousada Aquários" width="150" height="100" style="display:block;width:150px">
+      <img src="img/logo-nav.webp" alt="Hotel Pousada Aquários" width="150" height="109" style="display:block;width:150px">
       <span class="aq-eyebrow mt-3">Fase 2 — referência interna</span>
       <h1>Design system</h1>
       <p class="aq-lead aq-measure">
@@ -99,7 +95,7 @@
           <div class="col-6 col-md-3">
             <div class="sg-swatch" style="background: var(--aquarios-gold-dark)"></div>
             <p class="sg-label mt-2 mb-0">--aquarios-gold-dark</p>
-            <p class="aq-text-xs aq-text-muted mb-0">#C9880A · 3.00:1 · só texto grande e ícones</p>
+            <p class="aq-text-xs aq-text-muted mb-0">#8F6006 · 5.46:1 com branco · AA texto normal</p>
           </div>
         </div>
 
@@ -235,7 +231,7 @@
                   <a href="#botoes" class="btn-aq">Ver acomodações</a>
                   <a href="#botoes" class="btn-aq-outline">Saiba mais</a>
                   <a href="#botoes" class="btn-aq-whatsapp">
-                    <i class="bi bi-whatsapp" aria-hidden="true"></i> Falar no WhatsApp
+                    <svg class="aq-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg> Falar no WhatsApp
                   </a>
                 </div>
                 <p class="aq-text-xs aq-text-muted mb-0 sg-label">
@@ -292,7 +288,7 @@
           <div class="d-flex flex-wrap gap-2">
             <a href="#botoes" class="btn-aq-gold">Consultar disponibilidade</a>
             <a href="#botoes" class="btn-aq-whatsapp">
-              <i class="bi bi-whatsapp" aria-hidden="true"></i> WhatsApp
+              <svg class="aq-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg> WhatsApp
             </a>
           </div>
         </div>
@@ -316,7 +312,7 @@
           <div class="col-12 col-md-6 col-lg-4">
             <article class="aq-card aq-card--hover">
               <div class="aq-media aq-media--4x3 aq-media--zoom aq-media--flush">
-                <img src="img/foto-de-quarto.webp" alt="Quarto da pousada" loading="lazy" decoding="async">
+                <img src="img/foto-de-quarto-400.webp" alt="Quarto da pousada" loading="lazy" decoding="async">
               </div>
               <div class="aq-card__body">
                 <span class="aq-pill mb-2">Conteúdo provisório</span>
@@ -335,7 +331,7 @@
           <div class="col-12 col-md-6 col-lg-4">
             <article class="aq-card aq-card--hover">
               <div class="aq-card__body">
-                <span class="aq-card__icon"><i class="bi bi-cup-hot" aria-hidden="true"></i></span>
+                <span class="aq-card__icon"><svg class="aq-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M.5 6a.5.5 0 0 0-.488.608l1.652 7.434A2.5 2.5 0 0 0 4.104 16h5.792a2.5 2.5 0 0 0 2.44-1.958l.131-.59a3 3 0 0 0 1.3-5.854l.221-.99A.5.5 0 0 0 13.5 6zM13 12.5a2 2 0 0 1-.316-.025l.867-3.898A2.001 2.001 0 0 1 13 12.5M2.64 13.825 1.123 7h11.754l-1.517 6.825A1.5 1.5 0 0 1 9.896 15H4.104a1.5 1.5 0 0 1-1.464-1.175"/> <path d="m4.4.8-.003.004-.014.019a4 4 0 0 0-.204.31 2 2 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.6.6 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3 3 0 0 1-.202.388 5 5 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 3.6 4.2l.003-.004.014-.019a4 4 0 0 0 .204-.31 2 2 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.6.6 0 0 0-.09-.252A4 4 0 0 0 3.6 2.8l-.01-.012a5 5 0 0 1-.37-.543A1.53 1.53 0 0 1 3 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a6 6 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 4.4.8m3 0-.003.004-.014.019a4 4 0 0 0-.204.31 2 2 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.6.6 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3 3 0 0 1-.202.388 5 5 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 6.6 4.2l.003-.004.014-.019a4 4 0 0 0 .204-.31 2 2 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.6.6 0 0 0-.09-.252A4 4 0 0 0 6.6 2.8l-.01-.012a5 5 0 0 1-.37-.543A1.53 1.53 0 0 1 6 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a6 6 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 7.4.8m3 0-.003.004-.014.019a4 4 0 0 0-.204.31 2 2 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.6.6 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3 3 0 0 1-.202.388 5 5 0 0 1-.252.382l-.019.025-.005.008-.002.002A.5.5 0 0 1 9.6 4.2l.003-.004.014-.019a4 4 0 0 0 .204-.31 2 2 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.6.6 0 0 0-.09-.252A4 4 0 0 0 9.6 2.8l-.01-.012a5 5 0 0 1-.37-.543A1.53 1.53 0 0 1 9 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a6 6 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 10.4.8"/></svg></span>
                 <h3 class="aq-card__title">Card com ícone</h3>
                 <p class="aq-card__text mb-0">
                   Base das comodidades. O ícone fica em azul sobre o tinte
@@ -380,25 +376,25 @@
         <div class="row g-3">
           <div class="col-6 col-lg-3">
             <div class="aq-media aq-media--16x9">
-              <img src="img/nascer-do-sol1.webp" alt="Nascer do sol no rio" loading="lazy" decoding="async">
+              <img src="img/nascer-do-sol1-400.webp" alt="Nascer do sol no rio" loading="lazy" decoding="async">
             </div>
             <p class="sg-label aq-text-muted mt-2 mb-0">.aq-media--16x9</p>
           </div>
           <div class="col-6 col-lg-3">
             <div class="aq-media aq-media--4x3">
-              <img src="img/area-jardim.webp" alt="Área de jardim da pousada" loading="lazy" decoding="async">
+              <img src="img/area-jardim-400.webp" alt="Área de jardim da pousada" loading="lazy" decoding="async">
             </div>
             <p class="sg-label aq-text-muted mt-2 mb-0">.aq-media--4x3</p>
           </div>
           <div class="col-6 col-lg-3">
             <div class="aq-media aq-media--1x1">
-              <img src="img/area-cafe-social.webp" alt="Área de café da pousada" loading="lazy" decoding="async">
+              <img src="img/area-cafe-social-400.webp" alt="Área de café da pousada" loading="lazy" decoding="async">
             </div>
             <p class="sg-label aq-text-muted mt-2 mb-0">.aq-media--1x1</p>
           </div>
           <div class="col-6 col-lg-3">
             <div class="aq-media aq-media--3x4">
-              <img src="img/sacada.webp" alt="Sacada de um dos quartos" loading="lazy" decoding="async">
+              <img src="img/sacada-400.webp" alt="Sacada de um dos quartos" loading="lazy" decoding="async">
             </div>
             <p class="sg-label aq-text-muted mt-2 mb-0">.aq-media--3x4</p>
           </div>
@@ -449,8 +445,8 @@
             <div class="aq-card"><div class="aq-card__body">
               <h3 class="h6 mb-3">Pills e filete</h3>
               <div class="d-flex flex-wrap gap-2 mb-3">
-                <span class="aq-pill"><i class="bi bi-wifi" aria-hidden="true"></i> Padrão</span>
-                <span class="aq-pill aq-pill--gold"><i class="bi bi-star-fill" aria-hidden="true"></i> Dourada</span>
+                <span class="aq-pill"><svg class="aq-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.44 12.44 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.52.52 0 0 0 .668.05A11.45 11.45 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049"/> <path d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.46 9.46 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065m-2.183 2.183c.226-.226.185-.605-.1-.75A6.5 6.5 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.5 5.5 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091zM9.06 12.44c.196-.196.198-.52-.04-.66A2 2 0 0 0 8 11.5a2 2 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z"/></svg> Padrão</span>
+                <span class="aq-pill aq-pill--gold"><svg class="aq-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg> Dourada</span>
               </div>
               <div class="aq-bg-dark aq-radius p-3 mb-3">
                 <span class="aq-pill aq-pill--dark">Sobre fundo escuro</span>
@@ -476,9 +472,9 @@
 
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-          crossorigin="anonymous" defer></script>
+  <!-- bootstrap.min.js e não o bundle: o bundle embute o Popper, usado só
+       por dropdown, tooltip e popover. O site só usa o offcanvas. -->
+  <script src="vendor/bootstrap.min.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>

@@ -7,6 +7,7 @@
    Fase 4: hero, mosaico de fotos, avaliações e rodapé.
    Fase 5: cabeçalho de página, estado vazio e ficha de dados.
    Fase 6: galeria e área do mapa.
+   Fase 8: ícones em SVG inline no lugar da fonte de ícones.
 
    Sumário
      1. Fontes
@@ -70,7 +71,12 @@
   /* --- Dourado: secundária, uso pontual (nunca dominante) --- */
   --aquarios-gold:           #F0C419;  /* preenchimento; 9.75:1 com --aquarios-text */
   --aquarios-gold-hover:     #DBB110;
-  --aquarios-gold-dark:      #C9880A;  /* 3.00:1 com branco — só texto grande e ícones */
+  /* Versão escura para texto e ícones. Era #C9880A (3.00:1), documentado
+     como "só texto grande" — mas .aq-eyebrow é 13px bold, que não conta
+     como texto grande em WCAG. O Lighthouse pegou. Este valor passa em AA
+     para texto normal nos três fundos claros: branco 5.46:1, bg-alt 5.03:1,
+     primary-soft 4.76:1. */
+  --aquarios-gold-dark:      #8F6006;
 
   /* --- Superfícies e texto --- */
   --aquarios-bg:             #FFFFFF;
@@ -986,8 +992,13 @@ img {
   color: var(--aquarios-primary-dark);
   letter-spacing: -.03em;
 }
-/* Ícone é elemento gráfico: 3:1 basta, e o dourado escuro entrega 3.00:1 */
-.aq-stars { color: var(--aquarios-gold-dark); font-size: 1.25rem; letter-spacing: .1em; }
+/* Ícone precisaria só de 3:1, mas usa o mesmo dourado do texto por consistência */
+.aq-stars {
+  display: inline-flex;
+  gap: .15em;
+  color: var(--aquarios-gold-dark);
+  font-size: 1.25rem;
+}
 
 /* --------------------------------------------------------------------------
    20. Rodapé
@@ -1155,4 +1166,16 @@ img {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   27. Ícones
+   SVG inline, dimensionado em em para acompanhar o texto ao redor — o mesmo
+   comportamento de uma fonte de ícones, sem os 221 KB dela.
+   -------------------------------------------------------------------------- */
+.aq-icon {
+  width: 1em;
+  height: 1em;
+  flex: 0 0 auto;
+  vertical-align: -.125em;
 }

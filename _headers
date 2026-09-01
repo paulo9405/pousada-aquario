@@ -1,0 +1,22 @@
+# Cabeçalhos do Cloudflare Pages.
+# Assets com nome versionado (variantes de imagem, fonte, vendor) podem ser
+# guardados por muito tempo: quando o conteúdo muda, o nome do arquivo muda.
+# O HTML não, senão uma correção demora a chegar em quem já visitou.
+
+/img/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/vendor/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/css/*
+  Cache-Control: public, max-age=86400
+
+/js/*
+  Cache-Control: public, max-age=86400
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate

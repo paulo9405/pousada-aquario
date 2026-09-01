@@ -11,8 +11,10 @@ Instagram e indicações em contato direto pelo WhatsApp.
 HTML5 · CSS3 · Bootstrap 5.3.8 · Bootstrap Icons 1.13.1 · JavaScript vanilla ·
 Cloudflare Pages
 
-Bootstrap e Bootstrap Icons são carregados por CDN com Subresource Integrity.
-A fonte (Figtree variável) é servida do próprio domínio, em `fonts/`.
+Tudo é servido do próprio domínio — Bootstrap em `vendor/`, a fonte Figtree
+em `fonts/`. Nenhuma requisição a terceiros: pelo CDN o navegador abria uma
+segunda conexão (DNS + TLS) no caminho crítico.
+
 Não há etapa de build: os arquivos são servidos como estão.
 
 ## Estrutura
@@ -22,6 +24,9 @@ pousada-aquarios/
 ├── css/style.css        # design system completo
 ├── js/main.js           # configuração do site (contato, helpers)
 ├── fonts/               # Figtree variável (woff2, self-hosted)
+├── vendor/              # Bootstrap CSS e JS (self-hosted)
+├── tools/               # scripts de desenvolvimento (fora do deploy)
+├── _headers             # cache do Cloudflare Pages
 ├── img/                 # fotografias e logo (provisórias)
 │   ├── logo-nav.webp    # logo recortada e otimizada para o header
 │   └── hero-rio-*.webp  # recortes do hero (wide para desktop, tall para mobile)
@@ -67,6 +72,7 @@ anotações estão ao lado de cada token.
 | `--aquarios-primary-dark` | `#0A2F63` | títulos, rodapé, overlays        |
 | `--aquarios-primary-soft` | `#E8F0FB` | fundos de seção                  |
 | `--aquarios-gold`         | `#F0C419` | destaque pontual (nunca dominante) |
+| `--aquarios-gold-dark`    | `#8F6006` | texto e ícones dourados (AA)     |
 | `--aquarios-text`         | `#17212E` | texto                            |
 | `--aquarios-whatsapp`     | `#0F7A6C` | superfícies de conversão         |
 
@@ -122,8 +128,9 @@ quarto, as regras da hospedagem, a história da pousada e o endereço.
 ## Status
 
 Fases 1 (setup), 2 (design system), 3 (header e navegação), 4 (home),
-5 (acomodações), 6 (institucional e localização) e 7 (responsividade)
-concluídas — as quatro páginas do MVP estão construídas e auditadas.
+5 (acomodações), 6 (institucional e localização), 7 (responsividade) e
+8 (performance) concluídas — as quatro páginas do MVP estão construídas,
+auditadas e medidas.
 
 A home está completa: hero, apresentação, acomodações, comodidades, estrutura
 em mosaico, Rio São Francisco, avaliações, chamada de WhatsApp e rodapé. O
@@ -166,7 +173,7 @@ seção 19 do roadmap:
 Roda nos dois estados: com e sem número de WhatsApp confirmado.
 
 ```bash
-python3 -m http.server 8899 --bind 127.0.0.1 &
+python3 tools/servidor-local.py &
 python3 tools/auditoria-responsiva.py        # estado atual
 python3 tools/auditoria-responsiva.py --wa   # simulando WhatsApp confirmado
 ```
@@ -178,7 +185,37 @@ Além disso, o contraste do texto do hero é medido sobre os pixels compostos
 da foto em 11 combinações de viewport, incluindo celular deitado e zoom de
 200%. Pior caso atual: 4,96:1.
 
-Próximas fases: 8 (performance), 9 (SEO local) e 10 (QA e deploy).
+## Performance
+
+Lighthouse rodado nas quatro páginas, servidas com compressão — como o
+Cloudflare Pages faz. `tools/servidor-local.py` reproduz isso; o
+`python3 -m http.server` não comprime e derruba a nota artificialmente.
+
+| Página | Perf. mobile | Perf. desktop | Acess. | Boas práticas | SEO |
+| ------ | ------------ | ------------- | ------ | ------------- | --- |
+| index.html       | 98  | 99  | 100 | 100 | 100 |
+| acomodacoes.html | 100 | 100 | 100 | 100 | 100 |
+| pousada.html     | 100 | 100 | 100 | 100 | 100 |
+| contato.html     | 100 | 100 | 100 | 100 | 100 |
+
+Home no mobile: LCP 2,5 s · FCP 1,1 s · TBT 0 ms · CLS 0 · 289 KiB no total.
+
+O que trouxe o ganho:
+
+- **Ícones em SVG inline** no lugar da fonte do Bootstrap Icons — eram 87 KB
+  de CSS mais 134 KB de fonte para 21 símbolos.
+- **`bootstrap.min.js` no lugar do bundle** — o bundle embute o Popper, usado
+  só por dropdown, tooltip e popover. O site só usa o offcanvas.
+- **Imagens recortadas na proporção de exibição.** O mosaico da home é 1:1 e a
+  galeria é 4:3; antes o navegador baixava a foto vertical inteira para o
+  `object-fit` descartar metade dos pixels.
+- **`srcset` e `sizes` em todas as fotos**, com degraus de 300 a 1200 px.
+- **Bootstrap e fonte no próprio domínio**, sem conexão a terceiros.
+
+AVIF ficou de fora: o ambiente não tem codificador disponível. Vale gerar as
+variantes AVIF junto com as fotos definitivas, quando houver ferramenta.
+
+Próximas fases: 9 (SEO local) e 10 (QA e deploy).
 
 O contraste do texto do hero é medido sobre os pixels compostos da foto, não
 estimado — o pior caso em 11 tamanhos de viewport é 5.17:1, acima de AA. Se a

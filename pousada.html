@@ -15,12 +15,11 @@
   <link rel="preload" href="fonts/figtree-latin-wght-normal.woff2"
         as="font" type="font/woff2" crossorigin>
 
-  <!-- Bootstrap 5 + Bootstrap Icons (CDN com Subresource Integrity) -->
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-        integrity="sha384-CK2SzKma4jA5H/MXDUU7i1TqZlCFaD4T01vtyDFvPlD97JQyS+IsSh1nI2EFbpyk" crossorigin="anonymous">
+  <!-- Bootstrap servido do próprio domínio: pelo CDN o navegador abria
+       uma segunda conexão (DNS + TLS) no caminho crítico. Os ícones são
+       SVG inline — a fonte do Bootstrap Icons custava 87 KB de CSS mais
+       134 KB de fonte para 21 símbolos. -->
+  <link rel="stylesheet" href="vendor/bootstrap.min.css">
 
   <!-- CSS próprio: sempre depois do Bootstrap -->
   <link rel="stylesheet" href="css/style.css">
@@ -33,17 +32,17 @@
       <nav class="navbar navbar-expand-lg aq-header__inner" aria-label="Navegação principal">
 
         <a class="navbar-brand aq-brand me-auto" href="index.html">
-          <img src="img/logo-nav.webp"
-               srcset="img/logo-nav.webp 300w, img/logo-nav@2x.webp 600w"
-               sizes="(min-width: 992px) 77px, 61px"
+          <img src="img/logo-nav-360.webp"
+               srcset="img/logo-nav-180.webp 180w, img/logo-nav-360.webp 360w, img/logo-nav@2x.webp 600w"
+               sizes="(min-width: 992px) 88px, 61px"
                alt="Hotel Pousada Aquários — página inicial"
-               width="300" height="218">
+               width="360" height="262">
         </a>
 
         <button class="aq-toggler d-lg-none" type="button"
                 data-bs-toggle="offcanvas" data-bs-target="#aqMenu"
                 aria-controls="aqMenu" aria-label="Abrir menu de navegação">
-          <i class="bi bi-list" aria-hidden="true"></i>
+          <svg class="aq-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/></svg>
         </button>
 
         <div class="offcanvas offcanvas-end aq-offcanvas" tabindex="-1"
@@ -122,7 +121,7 @@
               (roadmap, seção 18).
             -->
             <div class="aq-empty" data-confirmar>
-              <span class="aq-empty__icon"><i class="bi bi-journal-text" aria-hidden="true"></i></span>
+              <span class="aq-empty__icon"><svg class="aq-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/> <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/> <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"/></svg></span>
               <h3 class="h5">História em confirmação</h3>
               <p class="aq-text-muted mb-0">
                 Quando a pousada abriu, quem cuida do dia a dia e o que mudou
@@ -151,49 +150,61 @@
         <div class="aq-gallery">
           <figure>
             <div class="aq-media aq-media--4x3">
-              <img src="img/area-cafe-social.webp"
+              <img src="img/area-cafe-social-43-800.webp"
+                   srcset="img/area-cafe-social-43-400.webp 400w, img/area-cafe-social-43-800.webp 800w"
+                   sizes="(min-width: 768px) 380px, 50vw"
                    alt="Área coberta com mesas e bancos de madeira, usada para o café da manhã"
-                   loading="lazy" decoding="async" width="765" height="1020">
+                   loading="lazy" decoding="async" width="800" height="600">
             </div>
             <figcaption>Área de café e convivência</figcaption>
           </figure>
           <figure>
             <div class="aq-media aq-media--4x3">
-              <img src="img/local-externo-sentar.webp"
+              <img src="img/local-externo-sentar-43-800.webp"
+                   srcset="img/local-externo-sentar-43-400.webp 400w, img/local-externo-sentar-43-800.webp 800w"
+                   sizes="(min-width: 768px) 380px, 50vw"
                    alt="Varanda com colunas brancas, bancos de madeira e piso claro"
-                   loading="lazy" decoding="async" width="765" height="1020">
+                   loading="lazy" decoding="async" width="800" height="600">
             </div>
             <figcaption>Varanda</figcaption>
           </figure>
           <figure>
             <div class="aq-media aq-media--4x3">
-              <img src="img/sacada.webp"
+              <img src="img/sacada-43-800.webp"
+                   srcset="img/sacada-43-400.webp 400w, img/sacada-43-800.webp 800w"
+                   sizes="(min-width: 768px) 380px, 50vw"
                    alt="Corredor externo do andar superior, com guarda-corpo branco"
-                   loading="lazy" decoding="async" width="1360" height="1020">
+                   loading="lazy" decoding="async" width="800" height="600">
             </div>
             <figcaption>Circulação externa</figcaption>
           </figure>
           <figure>
             <div class="aq-media aq-media--4x3">
-              <img src="img/area-jardim.webp"
+              <img src="img/area-jardim-43-800.webp"
+                   srcset="img/area-jardim-43-400.webp 400w, img/area-jardim-43-800.webp 800w"
+                   sizes="(min-width: 768px) 380px, 50vw"
                    alt="Jardim interno com canteiro central e palmeira"
-                   loading="lazy" decoding="async" width="1360" height="765">
+                   loading="lazy" decoding="async" width="800" height="600">
             </div>
             <figcaption>Jardim interno</figcaption>
           </figure>
           <figure>
             <div class="aq-media aq-media--4x3">
-              <img src="img/area-jardin-noite.webp"
+              <img src="img/area-jardin-noite-43-400.webp"
+                   srcset="img/area-jardin-noite-43-400.webp 400w"
+                   sizes="(min-width: 768px) 380px, 50vw"
                    alt="Área interna da pousada iluminada à noite"
-                   loading="lazy" decoding="async" width="459" height="1020">
+                   loading="lazy" decoding="async" width="400" height="300">
             </div>
             <figcaption>À noite</figcaption>
           </figure>
           <figure>
             <div class="aq-media aq-media--4x3">
-              <img src="img/foto-de-quarto.webp"
+              <img src="img/foto-de-quarto-43-800.webp"
+                   srcset="img/foto-de-quarto-43-400.webp 400w, img/foto-de-quarto-43-800.webp 800w"
+                   sizes="(min-width: 768px) 380px, 50vw"
                    alt="Quarto da pousada, com cama de casal arrumada"
-                   loading="lazy" decoding="async" width="1280" height="958">
+                   loading="lazy" decoding="async" width="800" height="600">
             </div>
             <figcaption>Um dos quartos</figcaption>
           </figure>
@@ -221,7 +232,7 @@
         <div class="row g-3">
           <div class="col-12 col-md-6 col-lg-4">
             <div class="aq-card h-100" data-confirmar><div class="aq-card__body">
-              <span class="aq-card__icon"><i class="bi bi-cup-hot" aria-hidden="true"></i></span>
+              <span class="aq-card__icon"><svg class="aq-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M.5 6a.5.5 0 0 0-.488.608l1.652 7.434A2.5 2.5 0 0 0 4.104 16h5.792a2.5 2.5 0 0 0 2.44-1.958l.131-.59a3 3 0 0 0 1.3-5.854l.221-.99A.5.5 0 0 0 13.5 6zM13 12.5a2 2 0 0 1-.316-.025l.867-3.898A2.001 2.001 0 0 1 13 12.5M2.64 13.825 1.123 7h11.754l-1.517 6.825A1.5 1.5 0 0 1 9.896 15H4.104a1.5 1.5 0 0 1-1.464-1.175"/> <path d="m4.4.8-.003.004-.014.019a4 4 0 0 0-.204.31 2 2 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.6.6 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3 3 0 0 1-.202.388 5 5 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 3.6 4.2l.003-.004.014-.019a4 4 0 0 0 .204-.31 2 2 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.6.6 0 0 0-.09-.252A4 4 0 0 0 3.6 2.8l-.01-.012a5 5 0 0 1-.37-.543A1.53 1.53 0 0 1 3 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a6 6 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 4.4.8m3 0-.003.004-.014.019a4 4 0 0 0-.204.31 2 2 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.6.6 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3 3 0 0 1-.202.388 5 5 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 6.6 4.2l.003-.004.014-.019a4 4 0 0 0 .204-.31 2 2 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.6.6 0 0 0-.09-.252A4 4 0 0 0 6.6 2.8l-.01-.012a5 5 0 0 1-.37-.543A1.53 1.53 0 0 1 6 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a6 6 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 7.4.8m3 0-.003.004-.014.019a4 4 0 0 0-.204.31 2 2 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.6.6 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3 3 0 0 1-.202.388 5 5 0 0 1-.252.382l-.019.025-.005.008-.002.002A.5.5 0 0 1 9.6 4.2l.003-.004.014-.019a4 4 0 0 0 .204-.31 2 2 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.6.6 0 0 0-.09-.252A4 4 0 0 0 9.6 2.8l-.01-.012a5 5 0 0 1-.37-.543A1.53 1.53 0 0 1 9 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a6 6 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 10.4.8"/></svg></span>
               <h3 class="aq-card__title h5">Café da manhã</h3>
               <p class="aq-card__text mb-0">
                 Servido na área de convivência. O horário será confirmado com a
@@ -231,7 +242,7 @@
           </div>
           <div class="col-12 col-md-6 col-lg-4">
             <div class="aq-card h-100" data-confirmar><div class="aq-card__body">
-              <span class="aq-card__icon"><i class="bi bi-car-front" aria-hidden="true"></i></span>
+              <span class="aq-card__icon"><svg class="aq-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0m10 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2zM4.862 4.276 3.906 6.19a.51.51 0 0 0 .497.731c.91-.073 2.35-.17 3.597-.17s2.688.097 3.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 10.691 4H5.309a.5.5 0 0 0-.447.276"/> <path d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679q.05.242.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.8.8 0 0 0 .381-.404l.792-1.848ZM4.82 3a1.5 1.5 0 0 0-1.379.91l-.792 1.847a1.8 1.8 0 0 1-.853.904.8.8 0 0 0-.43.564L1.03 8.904a1.5 1.5 0 0 0-.03.294v.413c0 .796.62 1.448 1.408 1.484 1.555.07 3.786.155 5.592.155s4.037-.084 5.592-.155A1.48 1.48 0 0 0 15 9.611v-.413q0-.148-.03-.294l-.335-1.68a.8.8 0 0 0-.43-.563 1.8 1.8 0 0 1-.853-.904l-.792-1.848A1.5 1.5 0 0 0 11.18 3z"/></svg></span>
               <h3 class="aq-card__title h5">Garagem coberta</h3>
               <p class="aq-card__text mb-0">
                 Estacionamento no próprio local, conforme o material de
@@ -241,7 +252,7 @@
           </div>
           <div class="col-12 col-md-6 col-lg-4">
             <div class="aq-card h-100" data-confirmar><div class="aq-card__body">
-              <span class="aq-card__icon"><i class="bi bi-tree" aria-hidden="true"></i></span>
+              <span class="aq-card__icon"><svg class="aq-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8.416.223a.5.5 0 0 0-.832 0l-3 4.5A.5.5 0 0 0 5 5.5h.098L3.076 8.735A.5.5 0 0 0 3.5 9.5h.191l-1.638 3.276a.5.5 0 0 0 .447.724H7V16h2v-2.5h4.5a.5.5 0 0 0 .447-.724L12.31 9.5h.191a.5.5 0 0 0 .424-.765L10.902 5.5H11a.5.5 0 0 0 .416-.777zM6.437 4.758A.5.5 0 0 0 6 4.5h-.066L8 1.401 10.066 4.5H10a.5.5 0 0 0-.424.765L11.598 8.5H11.5a.5.5 0 0 0-.447.724L12.69 12.5H3.309l1.638-3.276A.5.5 0 0 0 4.5 8.5h-.098l2.022-3.235a.5.5 0 0 0 .013-.507"/></svg></span>
               <h3 class="aq-card__title h5">Áreas comuns</h3>
               <p class="aq-card__text mb-0">
                 Jardim, varanda e área coberta com mesas, como aparecem nas
@@ -280,9 +291,11 @@
           </div>
           <div class="col-12 col-lg-6">
             <div class="aq-media aq-media--3x2 aq-shadow-lg">
-              <img src="img/nascer-do-sol2.jpeg"
+              <img src="img/nascer-do-sol2-1200.webp"
+                   srcset="img/nascer-do-sol2-400.webp 400w, img/nascer-do-sol2-600.webp 600w, img/nascer-do-sol2-800.webp 800w, img/nascer-do-sol2-1200.webp 1200w"
+                   sizes="(min-width: 992px) 570px, 94vw"
                    alt="Sol nascendo sobre o Rio São Francisco, com árvores em silhueta"
-                   loading="lazy" decoding="async" width="1536" height="2048">
+                   loading="lazy" decoding="async" width="1200" height="1600">
             </div>
           </div>
         </div>
@@ -301,7 +314,7 @@
           </div>
           <div class="col-12 col-lg-auto">
             <a class="btn-aq-gold btn-aq-lg" href="contato.html" data-whatsapp>
-              <i class="bi bi-whatsapp" aria-hidden="true"></i>
+              <svg class="aq-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
               Consultar disponibilidade
             </a>
           </div>
@@ -357,11 +370,12 @@
        confirmado e preenchido em js/main.js (roadmap, seção 26). -->
   <a class="aq-fab" href="#" data-whatsapp hidden
      aria-label="Conversar no WhatsApp">
-    <i class="bi bi-whatsapp" aria-hidden="true"></i>
+    <svg class="aq-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
   </a>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous" defer></script>
+  <!-- bootstrap.min.js e não o bundle: o bundle embute o Popper, usado só
+       por dropdown, tooltip e popover. O site só usa o offcanvas. -->
+  <script src="vendor/bootstrap.min.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>

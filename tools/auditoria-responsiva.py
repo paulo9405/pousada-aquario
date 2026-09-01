@@ -1,26 +1,10 @@
-"""
-Auditoria de responsividade — critérios da seção 19 do roadmap.
-
-Percorre as quatro páginas em oito larguras e reporta rolagem horizontal,
-texto cortado, alvo de toque pequeno, imagem deformada, texto miúdo,
-sobreposição do botão flutuante e linha de leitura longa demais.
-
-Como rodar:
-
-    python3 -m http.server 8899 --bind 127.0.0.1 &
-    python3 tools/auditoria-responsiva.py          # estado atual
-    python3 tools/auditoria-responsiva.py --wa     # simulando WhatsApp confirmado
-
-Requer: pip install playwright && playwright install chromium
-
-Saída vazia ("nenhum problema encontrado") é o resultado esperado.
-"""
+"""Auditoria de responsividade — critérios da seção 19 do roadmap."""
 from playwright.sync_api import sync_playwright
 import sys, json
 
 PAGES = ["index.html", "acomodacoes.html", "pousada.html", "contato.html"]
 LARGURAS = [320, 375, 390, 430, 768, 1024, 1280, 1440]
-BASE = "http://127.0.0.1:8899"
+BASE = "http://127.0.0.1:8900"
 COM_WHATSAPP = "--wa" in sys.argv
 
 JS = r"""
@@ -120,7 +104,7 @@ def rodar():
                 if COM_WHATSAPP:
                     pg.route("**/js/main.js", lambda r: r.fulfill(
                         status=200, content_type="application/javascript; charset=utf-8",
-                        body=open("js/main.js", encoding="utf-8")
+                        body=open("/home/paulo/PauloFiles/pousada-aquarios/js/main.js", encoding="utf-8")
                              .read().replace("whatsapp: ''", "whatsapp: '5538999999999'")))
                 pg.goto(f"{BASE}/{page}", wait_until="networkidle")
                 pg.evaluate("[...document.images].forEach(i => i.loading = 'eager')")
