@@ -37,6 +37,7 @@ pousada-aquarios/
 ├── styleguide.html      # referência interna do design system (noindex)
 ├── robots.txt
 ├── sitemap.xml
+├── DEPLOY.md            # passo a passo da publicação
 ├── favicon.ico
 └── apple-touch-icon.png
 ```
@@ -147,8 +148,8 @@ quarto, as regras da hospedagem, a história da pousada e o endereço.
 
 Fases 1 (setup), 2 (design system), 3 (header e navegação), 4 (home),
 5 (acomodações), 6 (institucional e localização), 7 (responsividade) e
-8 (performance) e 9 (SEO local) concluídas — as quatro páginas do MVP estão
-construídas, auditadas e medidas.
+8 (performance), 9 (SEO local) e 10 (QA) concluídas. **O MVP está pronto para
+publicar.**
 
 A home está completa: hero, apresentação, acomodações, comodidades, estrutura
 em mosaico, Rio São Francisco, avaliações, chamada de WhatsApp e rodapé. O
@@ -310,9 +311,28 @@ Av. Barnabé Martins, 133 — Buritizeiro/MG, 39280-000
 (31) 99520-6536
 ```
 
-Conferir contra o perfil do Google faz parte da Fase 10.
+Conferir contra o perfil do Google está no checklist de `DEPLOY.md`.
 
-Próxima fase: 10 (QA e deploy).
+## QA antes de publicar
+
+```bash
+python3 tools/servidor-local.py &
+python3 tools/qa.py
+```
+
+Percorre as quatro páginas em **Chromium e Firefox** e verifica links
+internos, âncoras, links externos, WhatsApp, mapa, menu, imagens, metadados,
+dados estruturados, ordem de cabeçalhos e rolagem horizontal em oito
+larguras. Qualquer `[FALHA]` impede a publicação; o domínio de espaço
+reservado sai como `[aviso]`.
+
+Última execução: **173 verificações, 0 falhas.** Os 8 avisos são o domínio
+ainda não definido — 4 páginas × 2 navegadores.
+
+O passo a passo da publicação no Cloudflare Pages está em `DEPLOY.md`.
+
+Falta apenas definir o domínio e conectar o repositório ao Cloudflare Pages —
+o passo a passo está em `DEPLOY.md`.
 
 O contraste do texto do hero é medido sobre os pixels compostos da foto, não
 estimado — o pior caso em 11 tamanhos de viewport é 5.17:1, acima de AA. Se a
