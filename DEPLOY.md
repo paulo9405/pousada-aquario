@@ -76,6 +76,30 @@ medidos.
 Quando a pousada tiver domínio próprio, repita o processo e rode
 `tools/definir-dominio.py` com o novo endereço.
 
+## URLs
+
+O Cloudflare Pages serve **URL sem extensão** e redireciona a versão `.html`
+com 308:
+
+```text
+/contato.html  →  308  →  /contato
+/index.html    →  308  →  /
+```
+
+Por isso os links internos, o canonical, o Open Graph e o sitemap usam a forma
+sem extensão. Redirecionamento em link interno custa uma viagem a cada
+clique; em canonical, faz o Google ver uma URL diferente da declarada.
+
+O `tools/servidor-local.py` reproduz esse comportamento — inclusive o 308 —
+para que o que passa no teste local passe em produção.
+
+## Página 404
+
+Sem um `404.html` na raiz, o Pages devolve **200 com a home** em qualquer
+caminho inexistente. Isso é um soft 404: o Google indexa endereços
+inventados como duplicata da página inicial. O arquivo existe e leva
+`noindex`.
+
 ## Depois de publicar
 
 - [ ] Abrir o site no celular de verdade e testar o botão do WhatsApp

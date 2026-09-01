@@ -34,6 +34,7 @@ pousada-aquarios/
 ├── acomodacoes.html     # Acomodações
 ├── pousada.html         # A Pousada
 ├── contato.html         # Localização e contato
+├── 404.html             # página de erro (noindex)
 ├── styleguide.html      # referência interna do design system (noindex)
 ├── robots.txt
 ├── sitemap.xml
@@ -327,7 +328,9 @@ dados estruturados, ordem de cabeçalhos e rolagem horizontal em oito
 larguras. Qualquer `[FALHA]` impede a publicação; o domínio de espaço
 reservado sai como `[aviso]`.
 
-Última execução: **173 verificações, 0 falhas, 0 avisos.**
+Verifica também que **link interno e canonical respondem 200 sem
+redirecionar** e que um caminho inexistente devolve **404**. As duas
+checagens nasceram de problemas encontrados no primeiro deploy.
 
 O passo a passo da publicação no Cloudflare Pages está em `DEPLOY.md`.
 

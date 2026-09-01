@@ -20,7 +20,7 @@ import urllib.request
 from playwright.sync_api import sync_playwright
 
 BASE = "http://127.0.0.1:8900"
-PAGINAS = ["index.html", "acomodacoes.html", "pousada.html", "contato.html"]
+PAGINAS = ["/", "/acomodacoes", "/pousada", "/contato"]
 LARGURAS = [320, 375, 390, 430, 768, 1024, 1280, 1440]
 
 falhas = []
@@ -40,6 +40,22 @@ def avisa(rotulo, detalhe=""):
     avisos.append(rotulo)
 
 
+def sem_redirecionar(url):
+    """Devolve (status, destino) sem seguir redirecionamento."""
+    class NaoSegue(urllib.request.HTTPRedirectHandler):
+        def redirect_request(self, *a, **kw):
+            return None
+
+    abridor = urllib.request.build_opener(NaoSegue)
+    try:
+        r = abridor.open(url, timeout=15)
+        return r.getcode(), None
+    except urllib.error.HTTPError as e:
+        return e.code, e.headers.get("Location")
+    except urllib.error.URLError as e:
+        return str(e), None
+
+
 def links(pg):
     return pg.evaluate("[...document.querySelectorAll('a[href]')].map(a => a.getAttribute('href'))")
 
@@ -57,7 +73,7 @@ def rodar(nav, nome_nav):
         erros_console, falhas_rede = [], []
         pg.on("console", lambda m: erros_console.append(m.text) if m.type == "error" else None)
         pg.on("requestfailed", lambda r: falhas_rede.append(r.url.split("/")[-1]))
-        pg.goto(f"{BASE}/{pagina}", wait_until="networkidle")
+        pg.goto(f"{BASE}{pagina}", wait_until="networkidle")
         pg.evaluate("[...document.images].forEach(i => i.loading = 'eager')")
         pg.wait_for_timeout(1500)
 
@@ -94,6 +110,11 @@ def rodar(nav, nome_nav):
         checa(bool(meta["desc"]) and 80 <= len(meta["desc"]) <= 170, "description no tamanho útil",
               f"{len(meta['desc'] or '')} caracteres")
         checa(bool(meta["canonical"]), "canonical presente")
+        if meta["canonical"] and meta["canonical"].startswith("http"):
+            caminho = re.sub(r"^https?://[^/]+", "", meta["canonical"]) or "/"
+            codigo, destino = sem_redirecionar(BASE + caminho)
+            checa(codigo == 200, "canonical não redireciona",
+                  f"{codigo}{' -> ' + destino if destino else ''}")
         checa(bool(meta["ogImg"]) and bool(meta["ogTitulo"]), "Open Graph presente")
         reservado = [v for v in (meta["canonical"], meta["ogImg"], meta["ogTitulo"])
                      if v and "dominio-a-definir" in v.lower()]
@@ -124,14 +145,15 @@ def rodar(nav, nome_nav):
         fab = pg.evaluate("(() => { const f = document.querySelector('.aq-fab'); return f && !f.hidden; })()")
         checa(bool(fab), "botão flutuante visível")
 
-        # links internos
-        internos = {h for h in links(pg) if h.endswith(".html")}
+        # Links internos: exige 200 direto. Redirecionamento em link interno
+        # custa uma viagem a cada clique, e em canonical ou sitemap faz o
+        # Google ver uma URL diferente da declarada — foi o que aconteceu no
+        # primeiro deploy, com os links em .html virando 308.
+        internos = {h for h in links(pg) if h.startswith("/") and not h.startswith("//")}
         for h in sorted(internos):
-            try:
-                codigo = urllib.request.urlopen(f"{BASE}/{h}", timeout=10).getcode()
-            except urllib.error.URLError as e:
-                codigo = str(e)
-            checa(codigo == 200, f"link interno {h}", str(codigo))
+            codigo, destino = sem_redirecionar(BASE + h)
+            checa(codigo == 200, f"link interno {h} responde 200 direto",
+                  f"{codigo}{' -> ' + destino if destino else ''}")
 
         # âncoras
         ancoras = {h for h in links(pg) if h.startswith("#") and h != "#"}
@@ -145,7 +167,7 @@ def rodar(nav, nome_nav):
     # menu responsivo
     print("\n-- menu responsivo")
     pg = nav.new_page(viewport={"width": 390, "height": 844})
-    pg.goto(f"{BASE}/index.html", wait_until="networkidle")
+    pg.goto(f"{BASE}/", wait_until="networkidle")
     pg.click("[data-bs-toggle=offcanvas]")
     pg.wait_for_timeout(700)
     checa(pg.locator("#aqMenu").is_visible(), "menu abre no celular")
@@ -167,7 +189,7 @@ def rodar(nav, nome_nav):
     pg = nav.new_page(viewport={"width": 1280, "height": 900})
     terceiros = []
     pg.on("request", lambda r: terceiros.append(r.url) if "google" in r.url else None)
-    pg.goto(f"{BASE}/contato.html", wait_until="networkidle")
+    pg.goto(f"{BASE}/contato", wait_until="networkidle")
     pg.wait_for_timeout(600)
     checa(len(terceiros) == 0, "nada de terceiros antes do clique", f"{len(terceiros)} requisições")
     altura_antes = pg.evaluate("Math.round(document.querySelector('[data-mapa]').getBoundingClientRect().height)")
@@ -179,13 +201,19 @@ def rodar(nav, nome_nav):
           f"{altura_antes}px -> {altura_depois}px")
     pg.close()
 
+    # 404 de verdade
+    print("\n-- página de erro")
+    codigo, _ = sem_redirecionar(f"{BASE}/caminho-que-nao-existe-{id(nav)}")
+    checa(codigo == 404, "caminho inexistente devolve 404",
+          f"devolveu {codigo} — sem 404.html o Pages entrega 200 com a home")
+
     # rolagem horizontal
     print("\n-- resoluções")
     rolou = []
     for pagina in PAGINAS:
         for largura in LARGURAS:
             pg = nav.new_page(viewport={"width": largura, "height": 800})
-            pg.goto(f"{BASE}/{pagina}", wait_until="networkidle")
+            pg.goto(f"{BASE}{pagina}", wait_until="networkidle")
             if pg.evaluate("(() => { window.scrollTo(9999, 0); return window.scrollX; })()"):
                 rolou.append(f"{pagina}@{largura}")
             pg.close()

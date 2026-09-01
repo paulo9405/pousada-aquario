@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Página interna de referência do design system
-Disallow: /styleguide.html
+Disallow: /styleguide
 
 # Scripts de desenvolvimento
 Disallow: /tools/
